@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>전국 분양 일정 리포트 | GoldClass</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, 'Noto Sans KR', sans-serif; background: #f4f6f9; color: #222; }
+    header { background: #1a3c5e; color: #fff; padding: 20px 16px; text-align: center; }
+    header h1 { font-size: 1.3rem; font-weight: 700; }
+    header p { font-size: 0.85rem; margin-top: 4px; opacity: 0.8; }
+    .container { max-width: 720px; margin: 0 auto; padding: 16px; }
+    .date-section { margin-bottom: 28px; }
+    .date-label { font-size: 0.95rem; font-weight: 700; color: #1a3c5e; border-left: 4px solid #1a3c5e; padding-left: 10px; margin-bottom: 12px; }
+    .card { background: #fff; border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+    .card-title { font-size: 1rem; font-weight: 700; margin-bottom: 8px; color: #111; }
+    .card-row { display: flex; font-size: 0.82rem; color: #555; margin-top: 4px; }
+    .card-row .label { color: #999; min-width: 72px; }
+    .card-row .value { color: #333; }
+    .badge { display: inline-block; font-size: 0.72rem; padding: 2px 7px; border-radius: 20px; margin-left: 6px; background: #e8f0fe; color: #1a3c5e; }
+    .empty { text-align: center; color: #aaa; padding: 30px; font-size: 0.9rem; }
+    footer { text-align: center; font-size: 0.75rem; color: #aaa; padding: 20px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>전국 분양 일정 리포트</h1>
+    <p>매일 오전 8시 자동 업데이트 | GoldClass</p>
+  </header>
+  <div class="container" id="report-container">
+    <div class="empty">데이터를 불러오는 중...</div>
+  </div>
+  <footer>데이터 출처: 청약홈 (applyhome.co.kr)</footer>
+
+  <script>
+    fetch('data.json?t=' + Date.now())
+      .then(r => r.json())
+      .then(data => {
+        const container = document.getElementById('report-container');
+        container.innerHTML = '';
+        if (!data || data.length === 0) {
+          container.innerHTML = '<div class="empty">등록된 데이터가 없습니다.</div>';
+          return;
+        }
+        // 날짜별 그룹
+        const groups = {};
+        data.forEach(item => {
+          const d = item.date || '날짜 없음';
+          if (!groups[d]) groups[d] = [];
+          groups[d].push(item);
+        });
+        Object.keys(groups).sort((a,b) => b.localeCompare(a)).forEach(date => {
+          const section = document.createElement('div');
+          section.className = 'date-section';
+          section.innerHTML = `<div class="date-label">${date}</div>`;
+          groups[date].forEach(item => {
+            section.innerHTML += `
+              <div class="card">
+                <div class="card-title">${item.단지명}<span class="badge">${item.위치}</span></div>
+                <div class="card-row"><span class="label">건설사</span><span class="value">${item.건설사}</span></div>
+                <div class="card-row"><span class="label">주택구분</span><span class="value">${item.주택구분 || '-'}</span></div>
+                <div class="card-row"><span class="label">모집공고일</span><span class="value">${item.모집공고일 || '-'}</span></div>
+                <div class="card-row"><span class="label">청약기간</span><span class="value">${item.청약기간 || '-'}</span></div>
+                <div class="card-row"><span class="label">당첨발표</span><span class="value">${item.당첨자발표 || '-'}</span></div>
+              </div>`;
+          });
+          container.appendChild(section);
+        });
+      })
+      .catch(() => {
+        document.getElementById('report-container').innerHTML = '<div class="empty">데이터를 불러올 수 없습니다.</div>';
+      });
+  </script>
+</body>
+</html>
