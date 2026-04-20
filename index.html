@@ -10,7 +10,18 @@
     header { background: #1a3c5e; color: #fff; padding: 20px 16px; text-align: center; }
     header h1 { font-size: 1.3rem; font-weight: 700; }
     header p { font-size: 0.82rem; margin-top: 4px; opacity: 0.75; }
+
+    /* 탭 네비게이션 */
+    .tab-nav { display: flex; background: #fff; border-bottom: 2px solid #e0e4ea; position: sticky; top: 0; z-index: 10; }
+    .tab-btn { flex: 1; padding: 13px 8px; font-size: 0.92rem; font-weight: 600; color: #888; background: none; border: none; cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: color .2s; }
+    .tab-btn.active { color: #1a3c5e; border-bottom-color: #1a3c5e; }
+
+    /* 탭 콘텐츠 */
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
     .container { max-width: 720px; margin: 0 auto; padding: 16px; }
+
+    /* 분양 일정 탭 */
     .status-section { margin-bottom: 28px; }
     .status-label { font-size: 0.95rem; font-weight: 700; border-left: 4px solid; padding-left: 10px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
     .count { font-size: 0.78rem; font-weight: 400; color: #888; }
@@ -19,19 +30,40 @@
     .card-row { display: flex; font-size: 0.82rem; margin-top: 4px; }
     .card-row .label { color: #999; min-width: 72px; flex-shrink: 0; }
     .card-row .value { color: #333; }
-    .badge { display: inline-block; font-size: 0.72rem; padding: 2px 7px; border-radius: 20px; margin-left: 6px; background: #e8f0fe; color: #1a3c5e; font-weight: 400; }
+
+    /* 경쟁률 자료 탭 */
+    .comp-card { background: #fff; border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+    .comp-header { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+    .comp-name { font-size: 1rem; font-weight: 700; color: #111; }
+    .comp-rate { font-size: 1.25rem; font-weight: 800; margin: 6px 0 8px; }
+    .rate-num { color: #c0392b; }
+    .rate-pending { color: #bbb; font-size: 0.95rem; font-weight: 400; }
+    .comp-meta { display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 0.78rem; color: #888; }
+
+    /* 공통 */
+    .badge { display: inline-block; font-size: 0.72rem; padding: 2px 7px; border-radius: 20px; background: #e8f0fe; color: #1a3c5e; font-weight: 400; }
+    .chip { display: inline-block; font-size: 0.7rem; padding: 2px 8px; border-radius: 20px; font-weight: 600; }
+    .chip-done { background: #eafaf1; color: #27ae60; }
+    .chip-wait { background: #fef9e7; color: #e67e22; }
     .competition { color: #c0392b; font-weight: 600; }
-    .rate-pending { color: #aaa; }
+
     footer { text-align: center; font-size: 0.75rem; color: #aaa; padding: 20px; }
   </style>
 </head>
 <body>
   <header>
     <h1>전국 분양 일정 리포트</h1>
-    <p>매일 오전 8시 자동 업데이트 | 최종 업데이트: 2026-04-20 13:02</p>
+    <p>매일 오전 8시 자동 업데이트 | 최종 업데이트: 2026-04-20 13:06</p>
   </header>
-  <div class="container">
-    
+
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('schedule', this)">전국 분양 일정</button>
+    <button class="tab-btn" onclick="switchTab('competition', this)">경쟁률 자료</button>
+  </div>
+
+  <div id="tab-schedule" class="tab-content active">
+    <div class="container">
+      
       <div class="status-section">
         <div class="status-label" style="border-color:#27ae60;color:#27ae60">
           접수중 <span class="count">11건</span>
@@ -380,7 +412,150 @@
           <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-03-30</span></div>
         </div>
       </div>
+    </div>
   </div>
+
+  <div id="tab-competition" class="tab-content">
+    <div class="container" style="padding-top:20px">
+      
+        <div class="comp-card">
+          <div class="comp-header">
+            <span class="comp-name">라클라체자이드파인</span>
+            <span class="badge">서울</span>
+            <span class="chip chip-wait">집계중</span>
+          </div>
+          <div class="comp-rate"><span class="rate-pending">접수전</span></div>
+          <div class="comp-meta">
+            <span>청약기간 2026-04-13 ~ 2026-04-16</span>
+            <span>당첨발표 2026-04-22</span>
+            <span>세대수 369세대</span>
+            <span>건설사 지에스건설(주), 에스케이에코플랜트 주식회사</span>
+          </div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-header">
+            <span class="comp-name">업성 푸르지오 레이크시티</span>
+            <span class="badge">충남</span>
+            <span class="chip chip-wait">집계중</span>
+          </div>
+          <div class="comp-rate"><span class="rate-pending">접수전</span></div>
+          <div class="comp-meta">
+            <span>청약기간 2026-04-13 ~ 2026-04-15</span>
+            <span>당첨발표 2026-04-22</span>
+            <span>세대수 1460세대</span>
+            <span>건설사 (주)대우건설</span>
+          </div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-header">
+            <span class="comp-name">북전주 광신프로그레스</span>
+            <span class="badge">전북</span>
+            <span class="chip chip-wait">집계중</span>
+          </div>
+          <div class="comp-rate"><span class="rate-pending">접수전</span></div>
+          <div class="comp-meta">
+            <span>청약기간 2026-04-13 ~ 2026-04-15</span>
+            <span>당첨발표 2026-04-22</span>
+            <span>세대수 352세대</span>
+            <span>건설사 (주)광신종합건설, (주)광신토건</span>
+          </div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-header">
+            <span class="comp-name">온천장 하늘채 엘리시움</span>
+            <span class="badge">부산</span>
+            <span class="chip chip-wait">집계중</span>
+          </div>
+          <div class="comp-rate"><span class="rate-pending">접수전</span></div>
+          <div class="comp-meta">
+            <span>청약기간 2026-04-13 ~ 2026-04-15</span>
+            <span>당첨발표 2026-04-21</span>
+            <span>세대수 129세대</span>
+            <span>건설사 코오롱글로벌(주)</span>
+          </div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-header">
+            <span class="comp-name">풍무역세권 수자인 그라센트 2차</span>
+            <span class="badge">경기</span>
+            <span class="chip chip-wait">집계중</span>
+          </div>
+          <div class="comp-rate"><span class="rate-pending">접수전</span></div>
+          <div class="comp-meta">
+            <span>청약기간 2026-04-13 ~ 2026-04-15</span>
+            <span>당첨발표 2026-04-21</span>
+            <span>세대수 639세대</span>
+            <span>건설사 (주)비에스한양</span>
+          </div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-header">
+            <span class="comp-name">르네오션 고성 퍼스트뷰</span>
+            <span class="badge">강원</span>
+            <span class="chip chip-wait">집계중</span>
+          </div>
+          <div class="comp-rate"><span class="rate-pending">접수전</span></div>
+          <div class="comp-meta">
+            <span>청약기간 2026-04-13 ~ 2026-04-15</span>
+            <span>당첨발표 2026-04-21</span>
+            <span>세대수 263세대</span>
+            <span>건설사 금강종합건설(주)</span>
+          </div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-header">
+            <span class="comp-name">오티에르 반포</span>
+            <span class="badge">서울</span>
+            <span class="chip chip-wait">집계중</span>
+          </div>
+          <div class="comp-rate"><span class="rate-pending">접수전</span></div>
+          <div class="comp-meta">
+            <span>청약기간 2026-04-10 ~ 2026-04-15</span>
+            <span>당첨발표 2026-04-21</span>
+            <span>세대수 86세대</span>
+            <span>건설사 ㈜포스코이앤씨</span>
+          </div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-header">
+            <span class="comp-name">이촌 르엘</span>
+            <span class="badge">서울</span>
+            <span class="chip chip-done">발표완료</span>
+          </div>
+          <div class="comp-rate"><span class="rate-pending">접수전</span></div>
+          <div class="comp-meta">
+            <span>청약기간 2026-04-09 ~ 2026-04-14</span>
+            <span>당첨발표 2026-04-20</span>
+            <span>세대수 88세대</span>
+            <span>건설사 롯데건설 주식회사</span>
+          </div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-header">
+            <span class="comp-name">구서 다움포레</span>
+            <span class="badge">부산</span>
+            <span class="chip chip-done">발표완료</span>
+          </div>
+          <div class="comp-rate"><span class="rate-pending">접수전</span></div>
+          <div class="comp-meta">
+            <span>청약기간 2026-04-09 ~ 2026-04-13</span>
+            <span>당첨발표 2026-04-17</span>
+            <span>세대수 68세대</span>
+            <span>건설사 비엠산업개발주식회사</span>
+          </div>
+        </div>
+    </div>
+  </div>
+
   <footer>데이터 출처: 청약홈 (applyhome.co.kr)</footer>
+
+  <script>
+    function switchTab(name, btn) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+      document.getElementById('tab-' + name).classList.add('active');
+      btn.classList.add('active');
+    }
+  </script>
 </body>
 </html>
