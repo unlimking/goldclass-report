@@ -61,12 +61,12 @@
     .chip-done { background: #eafaf1; color: #27ae60; }
     .chip-wait { background: #fef9e7; color: #e67e22; }
 
-    /* 뉴스 카드 */
-    .news-notice { font-size: 0.72rem; color: #aaa; margin-bottom: 8px; padding-left: 2px; }
-    .news-card { display: block; background: #fff; border-radius: 10px; padding: 11px 14px; margin-bottom: 7px; box-shadow: 0 1px 3px rgba(0,0,0,0.07); text-decoration: none; border-left: 3px solid #8e44ad; transition: box-shadow .15s; }
+    /* 뉴스 카드 (오픈 예정 섹션 내 포함) */
+    .news-card { display: block; background: #f8f4ff; border-radius: 10px; padding: 11px 14px; margin-bottom: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.07); text-decoration: none; border-left: 3px solid #8e44ad; transition: box-shadow .15s; }
     .news-card:hover { box-shadow: 0 3px 8px rgba(142,68,173,0.15); }
     .news-title { font-size: 0.88rem; font-weight: 600; color: #222; margin-bottom: 5px; line-height: 1.4; }
     .news-meta { display: flex; gap: 10px; font-size: 0.72rem; color: #aaa; }
+    .chip-news { display: inline-block; font-size: 0.62rem; padding: 1px 5px; border-radius: 10px; background: #8e44ad; color: #fff; font-weight: 600; vertical-align: middle; margin-left: 4px; }
 
     footer { text-align: center; font-size: 0.72rem; color: #bbb; padding: 20px; }
   </style>
@@ -74,7 +74,7 @@
 <body>
   <header>
     <h1>전국 분양 일정 리포트</h1>
-    <p>매일 오전 8시 자동 업데이트 · 최종 업데이트: 2026-04-20 15:10</p>
+    <p>매일 오전 8시 자동 업데이트 · 최종 업데이트: 2026-04-20 15:14</p>
   </header>
 
   <div class="tab-nav">
@@ -192,7 +192,7 @@
       </div>
       <div class="status-section">
         <div class="status-label" style="border-color:#2e86de;color:#2e86de">
-          오픈 예정 <span class="count">8건</span>
+          오픈 예정 <span class="count">14건</span>
         </div>
         
         <div class="simple-card">
@@ -267,50 +267,43 @@
             <span><b>건설사</b> (주)서희건설</span>
           </div>
         </div>
-      </div>
-      <div class="status-section">
-        <div class="status-label" style="border-color:#8e44ad;color:#8e44ad">
-          뉴스 기반 분양 예정 <span class="count">6건</span>
-        </div>
-        <p class="news-notice">청약홈 미등록 단지 포함 — 인터넷 기사 기반 정보입니다.</p>
-        
         <a class="news-card" href="https://news.google.com/rss/articles/CBMibEFVX3lxTE9BVXNqS3kyblh6eEluRXZzM1hUa3lOaGxPNUZXSXdFaFhKNEFLaUFsY0xIUmNwQlctSHhUOFlqRERxY3BGbGRfR3BJUmNwb29WLTR3b3VucmJwWjZvZWZpYXdwaE5BYWRsUnFSStIBcEFVX3lxTFBHdlFFVjBTdXNhVnFFX0Y1cDNlMEx1ZTRrT0JLS2pHWlVZaGxpdnBOUTVveUxCdzJBS05TSmhpb1hVWGV6WFFNRk9EaENycGRYaXpmNmdsNmtnNzg3RVMtQVBJZGhjTzZGY1R4Ymdpa2I?oc=5" target="_blank" rel="noopener">
-          <div class="news-title">다음 주 수도권·지방 아파트 쏟아진다…11개 단지 총 9258가구 분양</div>
+          <div class="news-title">다음 주 수도권·지방 아파트 쏟아진다…11개 단지 총 9258가구 분양 <span class="chip-news">뉴스</span></div>
           <div class="news-meta">
             <span>ceodaily.co.kr</span>
             <span>04/19</span>
           </div>
         </a>
         <a class="news-card" href="https://news.google.com/rss/articles/CBMiggFBVV95cUxQX3RnekxxQVRXZjVYZS1ub1JYVHp4S0RXTlVZNHdCVHFGdnlZTjMzakNGVDY4MDNHVFBCVVJGa0Vwb2EzZlB6cTVKbEdxd0RDNlpoYTBqazMtZVc4TkdWdjdaNHo5MDl0NTFsUUU2UzQtSmIxeWRoeV9kMVhIVmtFekJR?oc=5" target="_blank" rel="noopener">
-          <div class="news-title">한국부동산 청약홈페이지 이용방법 청약 일정 확인부터 신청까지 정리 https://www.applyhome.co.kr/</div>
+          <div class="news-title">한국부동산 청약홈페이지 이용방법 청약 일정 확인부터 신청까지 정리 https://www.applyhome.co.kr/ <span class="chip-news">뉴스</span></div>
           <div class="news-meta">
             <span>네이버 프리미엄콘텐츠</span>
             <span>04/19</span>
           </div>
         </a>
         <a class="news-card" href="https://news.google.com/rss/articles/CBMiVEFVX3lxTE1pcWFaZ1lGR2Fpa3hBenZ3a3lNUC1wNF9KcUE0MVdrS1g5R00wLVBCcGowNXRzU1NOTThQVThlekx0VmJJcTZSaGRzaHV6M3luRm9DdQ?oc=5" target="_blank" rel="noopener">
-          <div class="news-title">[오늘의 청약 일정] '경기광주역롯데캐슬시그니처(1단지)' 견본주택 오픈 등</div>
+          <div class="news-title">[오늘의 청약 일정] '경기광주역롯데캐슬시그니처(1단지)' 견본주택 오픈 등 <span class="chip-news">뉴스</span></div>
           <div class="news-meta">
             <span>이투데이</span>
             <span>04/16</span>
           </div>
         </a>
         <a class="news-card" href="https://news.google.com/rss/articles/CBMibkFVX3lxTFBVYjNhUGdkaEdXUXJRb2JhaTR6S2o1WUx0VmMyVlJNcjNsaF9xcVRTYVdTTG9nVlhFUW8tS0JFTkVYdEI5XzZnM3R2TFNUdU4wZXdPMjRHQmtDWmNkS2taTFdTbDNQdUxVSnlpNktR0gFyQVVfeXFMTVI5VTRBejVVVmthekVYMWE3TlE0eXo1VHhOak52cTRJQWlrTE80OHYxR0JVZlRCUkVFSWFmWWxOWTBTODNXYWhVLWppOXF6NlFqWjlBZ3NoMnpSR3BTTUdiWnBYalFJTzlvZ1RyWmdqUTBn?oc=5" target="_blank" rel="noopener">
-          <div class="news-title">안동 첫 '더샵' 아파트 본격 분양...20일부터 청약 일정 돌입</div>
+          <div class="news-title">안동 첫 '더샵' 아파트 본격 분양...20일부터 청약 일정 돌입 <span class="chip-news">뉴스</span></div>
           <div class="news-meta">
             <span>딜라이트닷넷</span>
             <span>04/17</span>
           </div>
         </a>
         <a class="news-card" href="https://news.google.com/rss/articles/CBMiP0FVX3lxTFBFLTA4R2toSGNZaTd0TjNRSnowc0lucHpVMXFabm9obDF5MExpek5QSXRsM1AxRDM2bkVYZFp0dw?oc=5" target="_blank" rel="noopener">
-          <div class="news-title">[먼저보기] 더샵 분당하이스트 청약 (’26. 5/4 예정)</div>
+          <div class="news-title">[먼저보기] 더샵 분당하이스트 청약 (’26. 5/4 예정) <span class="chip-news">뉴스</span></div>
           <div class="news-meta">
             <span>홈두부</span>
             <span>04/12</span>
           </div>
         </a>
         <a class="news-card" href="https://news.google.com/rss/articles/CBMiggFBVV95cUxPRzJjSk10RUE3NE1BdkxCdWh2YmJ5bWpBMlBiRWdHbWtsYmY1VlRJR2ZiMDhldmhuSTIwcmFRUmpEaGVVbHY5azJTVlB2YmM1dHRSUTYtYVZ1THRhSzZYbXo3bjZfeXRaVGFkeGNvODRmY2szRGpmOFc4RlE3UjJWZUVB?oc=5" target="_blank" rel="noopener">
-          <div class="news-title">양주 옥정 아파트 옥정중앙역 대방디에트르, 왜 완판 어렵다고 할까(청약 전 꼭 확인)</div>
+          <div class="news-title">양주 옥정 아파트 옥정중앙역 대방디에트르, 왜 완판 어렵다고 할까(청약 전 꼭 확인) <span class="chip-news">뉴스</span></div>
           <div class="news-meta">
             <span>네이버 프리미엄콘텐츠</span>
             <span>04/14</span>
