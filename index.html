@@ -11,643 +11,373 @@
     header h1 { font-size: 1.3rem; font-weight: 700; }
     header p { font-size: 0.82rem; margin-top: 4px; opacity: 0.75; }
     .container { max-width: 720px; margin: 0 auto; padding: 16px; }
-    .date-section { margin-bottom: 28px; }
-    .date-label { font-size: 0.95rem; font-weight: 700; color: #1a3c5e; border-left: 4px solid #1a3c5e; padding-left: 10px; margin-bottom: 12px; }
+    .status-section { margin-bottom: 28px; }
+    .status-label { font-size: 0.95rem; font-weight: 700; border-left: 4px solid; padding-left: 10px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    .count { font-size: 0.78rem; font-weight: 400; color: #888; }
     .card { background: #fff; border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
     .card-title { font-size: 1rem; font-weight: 700; margin-bottom: 8px; color: #111; }
     .card-row { display: flex; font-size: 0.82rem; margin-top: 4px; }
-    .card-row .label { color: #999; min-width: 72px; }
+    .card-row .label { color: #999; min-width: 72px; flex-shrink: 0; }
     .card-row .value { color: #333; }
     .badge { display: inline-block; font-size: 0.72rem; padding: 2px 7px; border-radius: 20px; margin-left: 6px; background: #e8f0fe; color: #1a3c5e; font-weight: 400; }
     .competition { color: #c0392b; font-weight: 600; }
+    .rate-pending { color: #aaa; }
     footer { text-align: center; font-size: 0.75rem; color: #aaa; padding: 20px; }
   </style>
 </head>
 <body>
   <header>
     <h1>전국 분양 일정 리포트</h1>
-    <p>매일 오전 8시 자동 업데이트 | 최종 업데이트: 2026-04-20 08:00</p>
+    <p>매일 오전 8시 자동 업데이트 | 최종 업데이트: 2026-04-20 13:02</p>
   </header>
   <div class="container">
     
-      <div class="date-section">
-        <div class="date-label">2026년 04월 20일</div>
+      <div class="status-section">
+        <div class="status-label" style="border-color:#27ae60;color:#27ae60">
+          접수중 <span class="count">11건</span>
+        </div>
         
         <div class="card">
-          <div class="card-title">고덕신도시 아테라 A-63블록 공공분양주택 <span class="badge">경기</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">한국토지주택공사 경기남부지역본부</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">금호건설(주)</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">630세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
-          <div class="card-row"><span class="label">주택구분</span><span class="value">국민 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">경기도 평택시 고덕동, 고덕면 일원(평택고덕국제화계획지구 내 A-63BL)</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-17</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-27 ~ 2026-04-29</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-05-07</span></div>
-        </div>
-        <div class="card">
-          <div class="card-title">두산위브더제니스 구미(조합원취소분) <span class="badge">경북</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">구미중앙숲지역주택조합</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">두산건설(주)</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">63세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
+          <div class="card-title">야목역 서희스타힐스 그랜드힐 <span class="badge">경기</span></div>
+          <div class="card-row"><span class="label">경쟁률</span><span class="value rate-pending">접수전</span></div>
+          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-16 ~ 2026-04-20</span></div>
+          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-24</span></div>
+          <div class="card-row"><span class="label">세대수</span><span class="value">241세대</span></div>
+          <div class="card-row"><span class="label">시행사</span><span class="value">비봉지역주택조합</span></div>
+          <div class="card-row"><span class="label">건설사</span><span class="value">(주)서희건설</span></div>
           <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">경상북도 구미시 광평동 227번지 일원</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-17</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-27 ~ 2026-04-29</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-05-07</span></div>
-        </div>
-        <div class="card">
-          <div class="card-title">공덕역자이르네 <span class="badge">서울</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">주식회사 에스시티공덕피에프브이</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">자이에스앤디(주)</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">177세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
-          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">서울특별시 마포구 도화동 16-1번지 일원</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-17</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-27 ~ 2026-04-30</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-05-08</span></div>
-        </div>
-        <div class="card">
-          <div class="card-title">경기광주역 롯데캐슬 시그니처 1단지 <span class="badge">경기</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">신한자산신탁 주식회사</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">롯데건설㈜</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">1077세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
-          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">경기도 광주시 양벌동 산54-3번지</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-17</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-27 ~ 2026-04-29</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-05-07</span></div>
-        </div>
-        <div class="card">
-          <div class="card-title">강릉 우미 린 더 프리미어 <span class="badge">강원</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">(주)한국토지신탁</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">우미건설 주식회사</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">772세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
-          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">강원특별자치도 강릉시 송정동 1048번지 일원</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-17</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-27 ~ 2026-04-29</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-05-08</span></div>
-        </div>
-        <div class="card">
-          <div class="card-title">동탄 그웬 160 (동탄2 B11BL) <span class="badge">경기</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">코리아신탁(주)</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">(주)한토건설</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">160세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
-          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">경기도 화성특례시 동탄2 택지개발지구 B11BL (신동720)</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-16</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-27 ~ 2026-04-29</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-05-07</span></div>
-        </div>
-        <div class="card">
-          <div class="card-title">인천가정2지구 B2블록 공공분양주택(후속사업) <span class="badge">인천</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">한국토지주택공사 인천지역본부</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">㈜금강주택</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">308세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
-          <div class="card-row"><span class="label">주택구분</span><span class="value">국민 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">인천광역시 서구 가정동, 청라동 일원 인천가정2 공공주택지구내 B2블록</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-15</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-27 ~ 2026-04-30</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-05-15</span></div>
-        </div>
-        <div class="card">
-          <div class="card-title">문수로 라티에르 673 <span class="badge">울산</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">(주)한국토지신탁</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">금강종합건설(주)</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">199세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수중(미집계)</span></div>
-          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">울산광역시 남구 신정동 673-1번지 외 14필지</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-10</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-20 ~ 2026-04-22</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-29</span></div>
-        </div>
-        <div class="card">
-          <div class="card-title">용인 고림 동문 디 이스트 <span class="badge">경기</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">신영부동산신탁 주식회사</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">동문건설 주식회사</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">350세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수중(미집계)</span></div>
-          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">경기도 용인시 처인구 고림동 620번지 일원</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-10</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-20 ~ 2026-04-22</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-29</span></div>
-        </div>
-        <div class="card">
-          <div class="card-title">엘리프 창원 <span class="badge">경남</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">(주)케이알산업</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">(주)케이알산업</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">349세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수중(미집계)</span></div>
-          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">경상남도 창원시 의창구 창원명곡 공공주택지구 B-1BL</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-10</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-20 ~ 2026-04-22</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-29</span></div>
-        </div>
-      </div>
-      <div class="date-section">
-        <div class="date-label">2026년 04월 15일</div>
-        
-        <div class="card">
-          <div class="card-title">인천가정2지구 B2블록 공공분양주택(후속사업) <span class="badge">인천</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">한국토지주택공사 인천지역본부</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">㈜금강주택</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">308세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
-          <div class="card-row"><span class="label">주택구분</span><span class="value">국민 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">인천광역시 서구 가정동, 청라동 일원 인천가정2 공공주택지구내 B2블록</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-15</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-27 ~ 2026-04-30</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-05-15</span></div>
-        </div>
-        <div class="card">
-          <div class="card-title">문수로 라티에르 673 <span class="badge">울산</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">(주)한국토지신탁</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">금강종합건설(주)</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">199세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
-          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">울산광역시 남구 신정동 673-1번지 외 14필지</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-10</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-20 ~ 2026-04-22</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-29</span></div>
-        </div>
-        <div class="card">
-          <div class="card-title">용인 고림 동문 디 이스트 <span class="badge">경기</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">신영부동산신탁 주식회사</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">동문건설 주식회사</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">350세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
-          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">경기도 용인시 처인구 고림동 620번지 일원</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-10</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-20 ~ 2026-04-22</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-29</span></div>
-        </div>
-        <div class="card">
-          <div class="card-title">엘리프 창원 <span class="badge">경남</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">(주)케이알산업</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">(주)케이알산업</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">349세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
-          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">경상남도 창원시 의창구 창원명곡 공공주택지구 B-1BL</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-10</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-20 ~ 2026-04-22</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-29</span></div>
+          <div class="card-row"><span class="label">상세주소</span><span class="value">경기도 화성시 효행구 비봉면 구포리 614-18번지 일원</span></div>
+          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-06</span></div>
         </div>
         <div class="card">
           <div class="card-title">아산경남아너스빌 랜드마크49 <span class="badge">충남</span></div>
+          <div class="card-row"><span class="label">경쟁률</span><span class="value rate-pending">접수전</span></div>
+          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-20 ~ 2026-04-22</span></div>
+          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-28</span></div>
+          <div class="card-row"><span class="label">세대수</span><span class="value">467세대</span></div>
           <div class="card-row"><span class="label">시행사</span><span class="value">(주)남선알미늄</span></div>
           <div class="card-row"><span class="label">건설사</span><span class="value">(주)남선알미늄</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">467세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
           <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
           <div class="card-row"><span class="label">상세주소</span><span class="value">충청남도 아산시 온천동 14-7일원</span></div>
           <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-10</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-20 ~ 2026-04-22</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-28</span></div>
-        </div>
-        <div class="card">
-          <div class="card-title">도안자이 센텀리체 2단지 <span class="badge">대전</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">교보자산신탁(주)</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">지에스건설(주)</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">834세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
-          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">대전광역시 유성구 도안 2-6지구 30블록(유성구 용계동 299-7번지 일원)</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-10</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-20 ~ 2026-04-22</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-29</span></div>
         </div>
         <div class="card">
           <div class="card-title">도안자이 센텀리체 1단지 <span class="badge">대전</span></div>
+          <div class="card-row"><span class="label">경쟁률</span><span class="value rate-pending">접수전</span></div>
+          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-20 ~ 2026-04-22</span></div>
+          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-28</span></div>
+          <div class="card-row"><span class="label">세대수</span><span class="value">946세대</span></div>
           <div class="card-row"><span class="label">시행사</span><span class="value">교보자산신탁(주)</span></div>
           <div class="card-row"><span class="label">건설사</span><span class="value">지에스건설(주)</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">946세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
           <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
           <div class="card-row"><span class="label">상세주소</span><span class="value">대전광역시 유성구 도안 2-8지구 26블록(유성구 용계동 267-3번지 일원)</span></div>
           <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-10</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-20 ~ 2026-04-22</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-28</span></div>
-        </div>
-        <div class="card">
-          <div class="card-title">청주 푸르지오 씨엘리체 <span class="badge">충북</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">(주)코람코자산신탁</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">(주)대우건설</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">1351세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
-          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">충청북도 청주시 서원구 미평동 54-3번지 일원</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-10</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-20 ~ 2026-04-22</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-30</span></div>
-        </div>
-        <div class="card">
-          <div class="card-title">힐스테이트 평거 센트럴 <span class="badge">경남</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">신한자산신탁 주식회사</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">현대엔지니어링(주)</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">261세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
-          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">경상남도 진주시 평거동 148번지 외 4필지</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-10</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-20 ~ 2026-04-22</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-29</span></div>
         </div>
         <div class="card">
           <div class="card-title">골드클래스 시그니처 <span class="badge">전북</span></div>
+          <div class="card-row"><span class="label">경쟁률</span><span class="value rate-pending">접수전</span></div>
+          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-20 ~ 2026-04-22</span></div>
+          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-28</span></div>
+          <div class="card-row"><span class="label">세대수</span><span class="value">341세대</span></div>
           <div class="card-row"><span class="label">시행사</span><span class="value">동양아파트인근구역주택재개발정비사업조합</span></div>
           <div class="card-row"><span class="label">건설사</span><span class="value">보광종합건설(주)</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">341세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
           <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
           <div class="card-row"><span class="label">상세주소</span><span class="value">전북특별자치도 전주시 덕진구 진북동 417-47번지 일원</span></div>
           <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-10</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-20 ~ 2026-04-22</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-28</span></div>
-        </div>
-      </div>
-      <div class="date-section">
-        <div class="date-label">2026년 04월 14일</div>
-        
-        <div class="card">
-          <div class="card-title">문수로 라티에르 673 <span class="badge">울산</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">(주)한국토지신탁</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">금강종합건설(주)</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">199세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
-          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">울산광역시 남구 신정동 673-1번지 외 14필지</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-10</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-20 ~ 2026-04-22</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-29</span></div>
-        </div>
-        <div class="card">
-          <div class="card-title">용인 고림 동문 디 이스트 <span class="badge">경기</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">신영부동산신탁 주식회사</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">동문건설 주식회사</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">350세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
-          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">경기도 용인시 처인구 고림동 620번지 일원</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-10</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-20 ~ 2026-04-22</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-29</span></div>
-        </div>
-        <div class="card">
-          <div class="card-title">엘리프 창원 <span class="badge">경남</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">(주)케이알산업</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">(주)케이알산업</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">349세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
-          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">경상남도 창원시 의창구 창원명곡 공공주택지구 B-1BL</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-10</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-20 ~ 2026-04-22</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-29</span></div>
-        </div>
-        <div class="card">
-          <div class="card-title">아산경남아너스빌 랜드마크49 <span class="badge">충남</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">(주)남선알미늄</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">(주)남선알미늄</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">467세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
-          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">충청남도 아산시 온천동 14-7일원</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-10</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-20 ~ 2026-04-22</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-28</span></div>
-        </div>
-        <div class="card">
-          <div class="card-title">도안자이 센텀리체 2단지 <span class="badge">대전</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">교보자산신탁(주)</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">지에스건설(주)</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">834세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
-          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">대전광역시 유성구 도안 2-6지구 30블록(유성구 용계동 299-7번지 일원)</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-10</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-20 ~ 2026-04-22</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-29</span></div>
-        </div>
-        <div class="card">
-          <div class="card-title">도안자이 센텀리체 1단지 <span class="badge">대전</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">교보자산신탁(주)</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">지에스건설(주)</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">946세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
-          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">대전광역시 유성구 도안 2-8지구 26블록(유성구 용계동 267-3번지 일원)</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-10</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-20 ~ 2026-04-22</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-28</span></div>
-        </div>
-        <div class="card">
-          <div class="card-title">청주 푸르지오 씨엘리체 <span class="badge">충북</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">(주)코람코자산신탁</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">(주)대우건설</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">1351세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
-          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">충청북도 청주시 서원구 미평동 54-3번지 일원</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-10</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-20 ~ 2026-04-22</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-30</span></div>
-        </div>
-        <div class="card">
-          <div class="card-title">힐스테이트 평거 센트럴 <span class="badge">경남</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">신한자산신탁 주식회사</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">현대엔지니어링(주)</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">261세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
-          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">경상남도 진주시 평거동 148번지 외 4필지</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-10</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-20 ~ 2026-04-22</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-29</span></div>
-        </div>
-        <div class="card">
-          <div class="card-title">골드클래스 시그니처 <span class="badge">전북</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">동양아파트인근구역주택재개발정비사업조합</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">보광종합건설(주)</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">341세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
-          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">전북특별자치도 전주시 덕진구 진북동 417-47번지 일원</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-10</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-20 ~ 2026-04-22</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-28</span></div>
         </div>
         <div class="card">
           <div class="card-title">더샵 안동더퍼스트 <span class="badge">경북</span></div>
+          <div class="card-row"><span class="label">경쟁률</span><span class="value rate-pending">접수전</span></div>
+          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-20 ~ 2026-04-22</span></div>
+          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-28</span></div>
+          <div class="card-row"><span class="label">세대수</span><span class="value">493세대</span></div>
           <div class="card-row"><span class="label">시행사</span><span class="value">코리아신탁(주)</span></div>
           <div class="card-row"><span class="label">건설사</span><span class="value">(주)포스코이앤씨</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">493세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
           <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
           <div class="card-row"><span class="label">상세주소</span><span class="value">경상북도 안동시 옥동 1069번지 일원</span></div>
           <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-09</span></div>
+        </div>
+        <div class="card">
+          <div class="card-title">문수로 라티에르 673 <span class="badge">울산</span></div>
+          <div class="card-row"><span class="label">경쟁률</span><span class="value rate-pending">접수중(미집계)</span></div>
           <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-20 ~ 2026-04-22</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-28</span></div>
-        </div>
-      </div>
-      <div class="date-section">
-        <div class="date-label">2026년 04월 08일</div>
-        
-        <div class="card">
-          <div class="card-title">야목역 서희스타힐스 그랜드힐 <span class="badge">경기</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">비봉지역주택조합</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">(주)서희건설</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">241세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
-          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">경기도 화성시 효행구 비봉면 구포리 614-18번지 일원</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-06</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-16 ~ 2026-04-20</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-24</span></div>
-        </div>
-        <div class="card">
-          <div class="card-title">온천장 하늘채 엘리시움 <span class="badge">부산</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">온천장지역주택조합</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">코오롱글로벌(주)</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">129세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
-          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">부산광역시 동래구 온천동 147-52 일원</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-03</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-13 ~ 2026-04-15</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-21</span></div>
-        </div>
-        <div class="card">
-          <div class="card-title">라클라체자이드파인 <span class="badge">서울</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">노량진6재정비촉진구역 주택재개발정비사업조합</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">지에스건설(주), 에스케이에코플랜트 주식회사</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">369세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
-          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">서울특별시 동작구 노량진동 294-220번지 일대</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-03</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-13 ~ 2026-04-16</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-22</span></div>
-        </div>
-        <div class="card">
-          <div class="card-title">업성 푸르지오 레이크시티 <span class="badge">충남</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">교보자산신탁(주)</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">(주)대우건설</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">1460세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
-          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">충청남도 천안시 서북구 업성동 업성3도시개발구역 A1BL</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-03</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-13 ~ 2026-04-15</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-22</span></div>
-        </div>
-        <div class="card">
-          <div class="card-title">북전주 광신프로그레스 <span class="badge">전북</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">(주)광신주택</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">(주)광신종합건설, (주)광신토건</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">352세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
-          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">전북특별자치도 전주시 덕진구 고랑동 742번지 일원</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-03</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-13 ~ 2026-04-15</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-22</span></div>
-        </div>
-        <div class="card">
-          <div class="card-title">풍무역세권 수자인 그라센트 2차 <span class="badge">경기</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">(주)비에스한양,(주)비에스산업</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">(주)비에스한양</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">639세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
-          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">경기도 김포시 풍무역세권도시개발사업 B1BL(김포시 사우동 167-1번지)</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-03</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-13 ~ 2026-04-15</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-21</span></div>
-        </div>
-        <div class="card">
-          <div class="card-title">르네오션 고성 퍼스트뷰 <span class="badge">강원</span></div>
+          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-29</span></div>
+          <div class="card-row"><span class="label">세대수</span><span class="value">199세대</span></div>
           <div class="card-row"><span class="label">시행사</span><span class="value">(주)한국토지신탁</span></div>
           <div class="card-row"><span class="label">건설사</span><span class="value">금강종합건설(주)</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">263세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
           <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">강원특별자치도 고성군 토성면 청간리 1번지 외 16필지</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-03</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-13 ~ 2026-04-15</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-21</span></div>
+          <div class="card-row"><span class="label">상세주소</span><span class="value">울산광역시 남구 신정동 673-1번지 외 14필지</span></div>
+          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-10</span></div>
         </div>
         <div class="card">
+          <div class="card-title">용인 고림 동문 디 이스트 <span class="badge">경기</span></div>
+          <div class="card-row"><span class="label">경쟁률</span><span class="value rate-pending">접수중(미집계)</span></div>
+          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-20 ~ 2026-04-22</span></div>
+          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-29</span></div>
+          <div class="card-row"><span class="label">세대수</span><span class="value">350세대</span></div>
+          <div class="card-row"><span class="label">시행사</span><span class="value">신영부동산신탁 주식회사</span></div>
+          <div class="card-row"><span class="label">건설사</span><span class="value">동문건설 주식회사</span></div>
+          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
+          <div class="card-row"><span class="label">상세주소</span><span class="value">경기도 용인시 처인구 고림동 620번지 일원</span></div>
+          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-10</span></div>
+        </div>
+        <div class="card">
+          <div class="card-title">엘리프 창원 <span class="badge">경남</span></div>
+          <div class="card-row"><span class="label">경쟁률</span><span class="value rate-pending">접수중(미집계)</span></div>
+          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-20 ~ 2026-04-22</span></div>
+          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-29</span></div>
+          <div class="card-row"><span class="label">세대수</span><span class="value">349세대</span></div>
+          <div class="card-row"><span class="label">시행사</span><span class="value">(주)케이알산업</span></div>
+          <div class="card-row"><span class="label">건설사</span><span class="value">(주)케이알산업</span></div>
+          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
+          <div class="card-row"><span class="label">상세주소</span><span class="value">경상남도 창원시 의창구 창원명곡 공공주택지구 B-1BL</span></div>
+          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-10</span></div>
+        </div>
+        <div class="card">
+          <div class="card-title">도안자이 센텀리체 2단지 <span class="badge">대전</span></div>
+          <div class="card-row"><span class="label">경쟁률</span><span class="value rate-pending">접수전</span></div>
+          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-20 ~ 2026-04-22</span></div>
+          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-29</span></div>
+          <div class="card-row"><span class="label">세대수</span><span class="value">834세대</span></div>
+          <div class="card-row"><span class="label">시행사</span><span class="value">교보자산신탁(주)</span></div>
+          <div class="card-row"><span class="label">건설사</span><span class="value">지에스건설(주)</span></div>
+          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
+          <div class="card-row"><span class="label">상세주소</span><span class="value">대전광역시 유성구 도안 2-6지구 30블록(유성구 용계동 299-7번지 일원)</span></div>
+          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-10</span></div>
+        </div>
+        <div class="card">
+          <div class="card-title">힐스테이트 평거 센트럴 <span class="badge">경남</span></div>
+          <div class="card-row"><span class="label">경쟁률</span><span class="value rate-pending">접수전</span></div>
+          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-20 ~ 2026-04-22</span></div>
+          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-29</span></div>
+          <div class="card-row"><span class="label">세대수</span><span class="value">261세대</span></div>
+          <div class="card-row"><span class="label">시행사</span><span class="value">신한자산신탁 주식회사</span></div>
+          <div class="card-row"><span class="label">건설사</span><span class="value">현대엔지니어링(주)</span></div>
+          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
+          <div class="card-row"><span class="label">상세주소</span><span class="value">경상남도 진주시 평거동 148번지 외 4필지</span></div>
+          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-10</span></div>
+        </div>
+        <div class="card">
+          <div class="card-title">청주 푸르지오 씨엘리체 <span class="badge">충북</span></div>
+          <div class="card-row"><span class="label">경쟁률</span><span class="value rate-pending">접수전</span></div>
+          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-20 ~ 2026-04-22</span></div>
+          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-30</span></div>
+          <div class="card-row"><span class="label">세대수</span><span class="value">1351세대</span></div>
+          <div class="card-row"><span class="label">시행사</span><span class="value">(주)코람코자산신탁</span></div>
+          <div class="card-row"><span class="label">건설사</span><span class="value">(주)대우건설</span></div>
+          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
+          <div class="card-row"><span class="label">상세주소</span><span class="value">충청북도 청주시 서원구 미평동 54-3번지 일원</span></div>
+          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-10</span></div>
+        </div>
+      </div>
+      <div class="status-section">
+        <div class="status-label" style="border-color:#e67e22;color:#e67e22">
+          집계중 <span class="count">7건</span>
+        </div>
+        
+        <div class="card">
           <div class="card-title">오티에르 반포 <span class="badge">서울</span></div>
+          <div class="card-row"><span class="label">경쟁률</span><span class="value rate-pending">접수전</span></div>
+          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-10 ~ 2026-04-15</span></div>
+          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-21</span></div>
+          <div class="card-row"><span class="label">세대수</span><span class="value">86세대</span></div>
           <div class="card-row"><span class="label">시행사</span><span class="value">신반포21차아파트주택재건축정비사업조합</span></div>
           <div class="card-row"><span class="label">건설사</span><span class="value">㈜포스코이앤씨</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">86세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
           <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
           <div class="card-row"><span class="label">상세주소</span><span class="value">서울특별시 서초구 잠원동 59-10번지 외 3필지</span></div>
           <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-03-31</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-10 ~ 2026-04-15</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-21</span></div>
-        </div>
-        <div class="card">
-          <div class="card-title">이촌 르엘 <span class="badge">서울</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">이촌동 현대아파트 리모델링주택조합</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">롯데건설 주식회사</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">88세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
-          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">서울특별시 용산구 이촌동 301-160 일원</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-03-30</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-09 ~ 2026-04-14</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-20</span></div>
-        </div>
-        <div class="card">
-          <div class="card-title">구서 다움포레 <span class="badge">부산</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">비엠산업개발주식회사</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">비엠산업개발주식회사</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">68세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
-          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">부산광역시 금정구 구서동 203-14번지 일원</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-03-30</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-09 ~ 2026-04-13</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-17</span></div>
-        </div>
-      </div>
-      <div class="date-section">
-        <div class="date-label">2026년 04월 07일</div>
-        
-        <div class="card">
-          <div class="card-title">야목역 서희스타힐스 그랜드힐 <span class="badge">경기</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">비봉지역주택조합</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">(주)서희건설</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">241세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
-          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">경기도 화성시 효행구 비봉면 구포리 614-18번지 일원</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-06</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-16 ~ 2026-04-20</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-24</span></div>
         </div>
         <div class="card">
           <div class="card-title">온천장 하늘채 엘리시움 <span class="badge">부산</span></div>
+          <div class="card-row"><span class="label">경쟁률</span><span class="value rate-pending">접수전</span></div>
+          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-13 ~ 2026-04-15</span></div>
+          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-21</span></div>
+          <div class="card-row"><span class="label">세대수</span><span class="value">129세대</span></div>
           <div class="card-row"><span class="label">시행사</span><span class="value">온천장지역주택조합</span></div>
           <div class="card-row"><span class="label">건설사</span><span class="value">코오롱글로벌(주)</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">129세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
           <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
           <div class="card-row"><span class="label">상세주소</span><span class="value">부산광역시 동래구 온천동 147-52 일원</span></div>
           <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-03</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-13 ~ 2026-04-15</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-21</span></div>
-        </div>
-        <div class="card">
-          <div class="card-title">라클라체자이드파인 <span class="badge">서울</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">노량진6재정비촉진구역 주택재개발정비사업조합</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">지에스건설(주), 에스케이에코플랜트 주식회사</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">369세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
-          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">서울특별시 동작구 노량진동 294-220번지 일대</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-03</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-13 ~ 2026-04-16</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-22</span></div>
-        </div>
-        <div class="card">
-          <div class="card-title">업성 푸르지오 레이크시티 <span class="badge">충남</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">교보자산신탁(주)</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">(주)대우건설</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">1460세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
-          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">충청남도 천안시 서북구 업성동 업성3도시개발구역 A1BL</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-03</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-13 ~ 2026-04-15</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-22</span></div>
-        </div>
-        <div class="card">
-          <div class="card-title">북전주 광신프로그레스 <span class="badge">전북</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">(주)광신주택</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">(주)광신종합건설, (주)광신토건</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">352세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
-          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">전북특별자치도 전주시 덕진구 고랑동 742번지 일원</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-03</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-13 ~ 2026-04-15</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-22</span></div>
         </div>
         <div class="card">
           <div class="card-title">풍무역세권 수자인 그라센트 2차 <span class="badge">경기</span></div>
+          <div class="card-row"><span class="label">경쟁률</span><span class="value rate-pending">접수전</span></div>
+          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-13 ~ 2026-04-15</span></div>
+          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-21</span></div>
+          <div class="card-row"><span class="label">세대수</span><span class="value">639세대</span></div>
           <div class="card-row"><span class="label">시행사</span><span class="value">(주)비에스한양,(주)비에스산업</span></div>
           <div class="card-row"><span class="label">건설사</span><span class="value">(주)비에스한양</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">639세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
           <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
           <div class="card-row"><span class="label">상세주소</span><span class="value">경기도 김포시 풍무역세권도시개발사업 B1BL(김포시 사우동 167-1번지)</span></div>
           <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-03</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-13 ~ 2026-04-15</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-21</span></div>
         </div>
         <div class="card">
           <div class="card-title">르네오션 고성 퍼스트뷰 <span class="badge">강원</span></div>
+          <div class="card-row"><span class="label">경쟁률</span><span class="value rate-pending">접수전</span></div>
+          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-13 ~ 2026-04-15</span></div>
+          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-21</span></div>
+          <div class="card-row"><span class="label">세대수</span><span class="value">263세대</span></div>
           <div class="card-row"><span class="label">시행사</span><span class="value">(주)한국토지신탁</span></div>
           <div class="card-row"><span class="label">건설사</span><span class="value">금강종합건설(주)</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">263세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
           <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
           <div class="card-row"><span class="label">상세주소</span><span class="value">강원특별자치도 고성군 토성면 청간리 1번지 외 16필지</span></div>
           <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-03</span></div>
+        </div>
+        <div class="card">
+          <div class="card-title">라클라체자이드파인 <span class="badge">서울</span></div>
+          <div class="card-row"><span class="label">경쟁률</span><span class="value rate-pending">접수전</span></div>
+          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-13 ~ 2026-04-16</span></div>
+          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-22</span></div>
+          <div class="card-row"><span class="label">세대수</span><span class="value">369세대</span></div>
+          <div class="card-row"><span class="label">시행사</span><span class="value">노량진6재정비촉진구역 주택재개발정비사업조합</span></div>
+          <div class="card-row"><span class="label">건설사</span><span class="value">지에스건설(주), 에스케이에코플랜트 주식회사</span></div>
+          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
+          <div class="card-row"><span class="label">상세주소</span><span class="value">서울특별시 동작구 노량진동 294-220번지 일대</span></div>
+          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-03</span></div>
+        </div>
+        <div class="card">
+          <div class="card-title">업성 푸르지오 레이크시티 <span class="badge">충남</span></div>
+          <div class="card-row"><span class="label">경쟁률</span><span class="value rate-pending">접수전</span></div>
           <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-13 ~ 2026-04-15</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-21</span></div>
+          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-22</span></div>
+          <div class="card-row"><span class="label">세대수</span><span class="value">1460세대</span></div>
+          <div class="card-row"><span class="label">시행사</span><span class="value">교보자산신탁(주)</span></div>
+          <div class="card-row"><span class="label">건설사</span><span class="value">(주)대우건설</span></div>
+          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
+          <div class="card-row"><span class="label">상세주소</span><span class="value">충청남도 천안시 서북구 업성동 업성3도시개발구역 A1BL</span></div>
+          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-03</span></div>
         </div>
         <div class="card">
-          <div class="card-title">오티에르 반포 <span class="badge">서울</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">신반포21차아파트주택재건축정비사업조합</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">㈜포스코이앤씨</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">86세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
+          <div class="card-title">북전주 광신프로그레스 <span class="badge">전북</span></div>
+          <div class="card-row"><span class="label">경쟁률</span><span class="value rate-pending">접수전</span></div>
+          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-13 ~ 2026-04-15</span></div>
+          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-22</span></div>
+          <div class="card-row"><span class="label">세대수</span><span class="value">352세대</span></div>
+          <div class="card-row"><span class="label">시행사</span><span class="value">(주)광신주택</span></div>
+          <div class="card-row"><span class="label">건설사</span><span class="value">(주)광신종합건설, (주)광신토건</span></div>
           <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">서울특별시 서초구 잠원동 59-10번지 외 3필지</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-03-31</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-10 ~ 2026-04-15</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-21</span></div>
+          <div class="card-row"><span class="label">상세주소</span><span class="value">전북특별자치도 전주시 덕진구 고랑동 742번지 일원</span></div>
+          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-03</span></div>
+        </div>
+      </div>
+      <div class="status-section">
+        <div class="status-label" style="border-color:#2e86de;color:#2e86de">
+          접수전 <span class="count">7건</span>
+        </div>
+        
+        <div class="card">
+          <div class="card-title">고덕신도시 아테라 A-63블록 공공분양주택 <span class="badge">경기</span></div>
+          <div class="card-row"><span class="label">경쟁률</span><span class="value rate-pending">접수전</span></div>
+          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-27 ~ 2026-04-29</span></div>
+          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-05-07</span></div>
+          <div class="card-row"><span class="label">세대수</span><span class="value">630세대</span></div>
+          <div class="card-row"><span class="label">시행사</span><span class="value">한국토지주택공사 경기남부지역본부</span></div>
+          <div class="card-row"><span class="label">건설사</span><span class="value">금호건설(주)</span></div>
+          <div class="card-row"><span class="label">주택구분</span><span class="value">국민 / 분양주택</span></div>
+          <div class="card-row"><span class="label">상세주소</span><span class="value">경기도 평택시 고덕동, 고덕면 일원(평택고덕국제화계획지구 내 A-63BL)</span></div>
+          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-17</span></div>
         </div>
         <div class="card">
-          <div class="card-title">이촌 르엘 <span class="badge">서울</span></div>
-          <div class="card-row"><span class="label">시행사</span><span class="value">이촌동 현대아파트 리모델링주택조합</span></div>
-          <div class="card-row"><span class="label">건설사</span><span class="value">롯데건설 주식회사</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">88세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
+          <div class="card-title">두산위브더제니스 구미(조합원취소분) <span class="badge">경북</span></div>
+          <div class="card-row"><span class="label">경쟁률</span><span class="value rate-pending">접수전</span></div>
+          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-27 ~ 2026-04-29</span></div>
+          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-05-07</span></div>
+          <div class="card-row"><span class="label">세대수</span><span class="value">63세대</span></div>
+          <div class="card-row"><span class="label">시행사</span><span class="value">구미중앙숲지역주택조합</span></div>
+          <div class="card-row"><span class="label">건설사</span><span class="value">두산건설(주)</span></div>
           <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
-          <div class="card-row"><span class="label">상세주소</span><span class="value">서울특별시 용산구 이촌동 301-160 일원</span></div>
-          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-03-30</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-09 ~ 2026-04-14</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-20</span></div>
+          <div class="card-row"><span class="label">상세주소</span><span class="value">경상북도 구미시 광평동 227번지 일원</span></div>
+          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-17</span></div>
         </div>
+        <div class="card">
+          <div class="card-title">경기광주역 롯데캐슬 시그니처 1단지 <span class="badge">경기</span></div>
+          <div class="card-row"><span class="label">경쟁률</span><span class="value rate-pending">접수전</span></div>
+          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-27 ~ 2026-04-29</span></div>
+          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-05-07</span></div>
+          <div class="card-row"><span class="label">세대수</span><span class="value">1077세대</span></div>
+          <div class="card-row"><span class="label">시행사</span><span class="value">신한자산신탁 주식회사</span></div>
+          <div class="card-row"><span class="label">건설사</span><span class="value">롯데건설㈜</span></div>
+          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
+          <div class="card-row"><span class="label">상세주소</span><span class="value">경기도 광주시 양벌동 산54-3번지</span></div>
+          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-17</span></div>
+        </div>
+        <div class="card">
+          <div class="card-title">동탄 그웬 160 (동탄2 B11BL) <span class="badge">경기</span></div>
+          <div class="card-row"><span class="label">경쟁률</span><span class="value rate-pending">접수전</span></div>
+          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-27 ~ 2026-04-29</span></div>
+          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-05-07</span></div>
+          <div class="card-row"><span class="label">세대수</span><span class="value">160세대</span></div>
+          <div class="card-row"><span class="label">시행사</span><span class="value">코리아신탁(주)</span></div>
+          <div class="card-row"><span class="label">건설사</span><span class="value">(주)한토건설</span></div>
+          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
+          <div class="card-row"><span class="label">상세주소</span><span class="value">경기도 화성특례시 동탄2 택지개발지구 B11BL (신동720)</span></div>
+          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-16</span></div>
+        </div>
+        <div class="card">
+          <div class="card-title">공덕역자이르네 <span class="badge">서울</span></div>
+          <div class="card-row"><span class="label">경쟁률</span><span class="value rate-pending">접수전</span></div>
+          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-27 ~ 2026-04-30</span></div>
+          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-05-08</span></div>
+          <div class="card-row"><span class="label">세대수</span><span class="value">177세대</span></div>
+          <div class="card-row"><span class="label">시행사</span><span class="value">주식회사 에스시티공덕피에프브이</span></div>
+          <div class="card-row"><span class="label">건설사</span><span class="value">자이에스앤디(주)</span></div>
+          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
+          <div class="card-row"><span class="label">상세주소</span><span class="value">서울특별시 마포구 도화동 16-1번지 일원</span></div>
+          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-17</span></div>
+        </div>
+        <div class="card">
+          <div class="card-title">강릉 우미 린 더 프리미어 <span class="badge">강원</span></div>
+          <div class="card-row"><span class="label">경쟁률</span><span class="value rate-pending">접수전</span></div>
+          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-27 ~ 2026-04-29</span></div>
+          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-05-08</span></div>
+          <div class="card-row"><span class="label">세대수</span><span class="value">772세대</span></div>
+          <div class="card-row"><span class="label">시행사</span><span class="value">(주)한국토지신탁</span></div>
+          <div class="card-row"><span class="label">건설사</span><span class="value">우미건설 주식회사</span></div>
+          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
+          <div class="card-row"><span class="label">상세주소</span><span class="value">강원특별자치도 강릉시 송정동 1048번지 일원</span></div>
+          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-17</span></div>
+        </div>
+        <div class="card">
+          <div class="card-title">인천가정2지구 B2블록 공공분양주택(후속사업) <span class="badge">인천</span></div>
+          <div class="card-row"><span class="label">경쟁률</span><span class="value rate-pending">접수전</span></div>
+          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-27 ~ 2026-04-30</span></div>
+          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-05-15</span></div>
+          <div class="card-row"><span class="label">세대수</span><span class="value">308세대</span></div>
+          <div class="card-row"><span class="label">시행사</span><span class="value">한국토지주택공사 인천지역본부</span></div>
+          <div class="card-row"><span class="label">건설사</span><span class="value">㈜금강주택</span></div>
+          <div class="card-row"><span class="label">주택구분</span><span class="value">국민 / 분양주택</span></div>
+          <div class="card-row"><span class="label">상세주소</span><span class="value">인천광역시 서구 가정동, 청라동 일원 인천가정2 공공주택지구내 B2블록</span></div>
+          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-04-15</span></div>
+        </div>
+      </div>
+      <div class="status-section">
+        <div class="status-label" style="border-color:#7f8c8d;color:#7f8c8d">
+          발표완료 <span class="count">2건</span>
+        </div>
+        
         <div class="card">
           <div class="card-title">구서 다움포레 <span class="badge">부산</span></div>
+          <div class="card-row"><span class="label">경쟁률</span><span class="value rate-pending">접수전</span></div>
+          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-09 ~ 2026-04-13</span></div>
+          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-17</span></div>
+          <div class="card-row"><span class="label">세대수</span><span class="value">68세대</span></div>
           <div class="card-row"><span class="label">시행사</span><span class="value">비엠산업개발주식회사</span></div>
           <div class="card-row"><span class="label">건설사</span><span class="value">비엠산업개발주식회사</span></div>
-          <div class="card-row"><span class="label">세대수</span><span class="value">68세대</span></div>
-          <div class="card-row"><span class="label">경쟁률</span><span class="value competition">접수전</span></div>
           <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
           <div class="card-row"><span class="label">상세주소</span><span class="value">부산광역시 금정구 구서동 203-14번지 일원</span></div>
           <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-03-30</span></div>
-          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-09 ~ 2026-04-13</span></div>
-          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-17</span></div>
+        </div>
+        <div class="card">
+          <div class="card-title">이촌 르엘 <span class="badge">서울</span></div>
+          <div class="card-row"><span class="label">경쟁률</span><span class="value rate-pending">접수전</span></div>
+          <div class="card-row"><span class="label">청약기간</span><span class="value">2026-04-09 ~ 2026-04-14</span></div>
+          <div class="card-row"><span class="label">당첨발표</span><span class="value">2026-04-20</span></div>
+          <div class="card-row"><span class="label">세대수</span><span class="value">88세대</span></div>
+          <div class="card-row"><span class="label">시행사</span><span class="value">이촌동 현대아파트 리모델링주택조합</span></div>
+          <div class="card-row"><span class="label">건설사</span><span class="value">롯데건설 주식회사</span></div>
+          <div class="card-row"><span class="label">주택구분</span><span class="value">민영 / 분양주택</span></div>
+          <div class="card-row"><span class="label">상세주소</span><span class="value">서울특별시 용산구 이촌동 301-160 일원</span></div>
+          <div class="card-row"><span class="label">모집공고일</span><span class="value">2026-03-30</span></div>
         </div>
       </div>
   </div>
