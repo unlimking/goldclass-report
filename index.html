@@ -68,122 +68,44 @@
     .news-meta { display: flex; gap: 10px; font-size: 0.72rem; color: #aaa; }
     .chip-news { display: inline-block; font-size: 0.62rem; padding: 1px 5px; border-radius: 10px; background: #8e44ad; color: #fff; font-weight: 600; vertical-align: middle; margin-left: 4px; }
 
+    /* 탭4 실거래가 */
+    .rp-filter { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; padding-top: 4px; }
+    .rp-btn { padding: 6px 12px; border-radius: 20px; border: 1px solid #d0d6e0; background: #fff; font-size: 0.78rem; font-weight: 600; color: #666; cursor: pointer; }
+    .rp-btn.rp-active { background: #1a3c5e; color: #fff; border-color: #1a3c5e; }
+    .rp-row { background: #fff; border-radius: 10px; margin-bottom: 7px; box-shadow: 0 1px 3px rgba(0,0,0,0.07); overflow: hidden; }
+    .rp-area-hd { display: flex; align-items: center; padding: 12px 14px; cursor: pointer; gap: 8px; }
+    .rp-area-hd:hover { background: #f8fafc; }
+    .rp-area-name { font-size: 0.92rem; font-weight: 700; color: #1a3c5e; flex: 1; }
+    .rp-unit { font-size: 0.88rem; font-weight: 700; color: #c0392b; }
+    .rp-cnt { font-size: 0.72rem; color: #aaa; }
+    .rp-arrow { font-size: 0.7rem; color: #ccc; transition: transform .2s; }
+    .rp-arrow.open { transform: rotate(180deg); }
+    .rp-deals-wrap { padding: 0 14px 10px; border-top: 1px solid #f5f5f5; }
+    .rp-deal { font-size: 0.78rem; color: #555; padding: 5px 0; border-bottom: 1px solid #f8f8f8; }
+    .rp-deal b { color: #c0392b; }
+    .rp-more-btn { margin-top: 8px; font-size: 0.72rem; color: #1a3c5e; background: none; border: 1px solid #d0d6e0; border-radius: 6px; padding: 4px 10px; cursor: pointer; }
+
     footer { text-align: center; font-size: 0.72rem; color: #bbb; padding: 20px; }
   </style>
 </head>
 <body>
   <header>
     <h1>전국 분양 일정 리포트</h1>
-    <p>매일 오전 8시 자동 업데이트 · 최종 업데이트: 2026-04-21 08:00</p>
+    <p>매일 오전 8시 자동 업데이트 · 최종 업데이트: 2026-04-27 08:01</p>
   </header>
 
   <div class="tab-nav">
     <button class="tab-btn active" onclick="switchTab('schedule',this)">분양 일정</button>
     <button class="tab-btn" onclick="switchTab('competition',this)">경쟁률 자료</button>
     <button class="tab-btn" onclick="switchTab('price',this)">분양가 상세</button>
+    <button class="tab-btn" onclick="switchTab('realprice',this)">실거래가</button>
   </div>
 
   <div id="tab-schedule" class="tab-content active">
     <div class="container">
       <div class="status-section">
         <div class="status-label" style="border-color:#27ae60;color:#27ae60">
-          청약 준비중 <span class="count">10건</span>
-        </div>
-        
-        <div class="simple-card">
-          <div class="simple-name">문수로 라티에르 673 <span class="badge">울산</span></div>
-          <div class="simple-meta">
-            <span><b>청약</b> 2026-04-20 ~ 2026-04-22</span>
-            <span><b>당첨발표</b> 2026-04-29</span>
-            <span><b>세대</b> 199세대</span>
-            <span><b>건설사</b> 금강종합건설(주)</span>
-          </div>
-        </div>
-        <div class="simple-card">
-          <div class="simple-name">용인 고림 동문 디 이스트 <span class="badge">경기</span></div>
-          <div class="simple-meta">
-            <span><b>청약</b> 2026-04-20 ~ 2026-04-22</span>
-            <span><b>당첨발표</b> 2026-04-29</span>
-            <span><b>세대</b> 350세대</span>
-            <span><b>건설사</b> 동문건설 주식회사</span>
-          </div>
-        </div>
-        <div class="simple-card">
-          <div class="simple-name">엘리프 창원 <span class="badge">경남</span></div>
-          <div class="simple-meta">
-            <span><b>청약</b> 2026-04-20 ~ 2026-04-22</span>
-            <span><b>당첨발표</b> 2026-04-29</span>
-            <span><b>세대</b> 349세대</span>
-            <span><b>건설사</b> (주)케이알산업</span>
-          </div>
-        </div>
-        <div class="simple-card">
-          <div class="simple-name">아산경남아너스빌 랜드마크49 <span class="badge">충남</span></div>
-          <div class="simple-meta">
-            <span><b>청약</b> 2026-04-20 ~ 2026-04-22</span>
-            <span><b>당첨발표</b> 2026-04-28</span>
-            <span><b>세대</b> 467세대</span>
-            <span><b>건설사</b> (주)남선알미늄</span>
-          </div>
-        </div>
-        <div class="simple-card">
-          <div class="simple-name">도안자이 센텀리체 2단지 <span class="badge">대전</span></div>
-          <div class="simple-meta">
-            <span><b>청약</b> 2026-04-20 ~ 2026-04-22</span>
-            <span><b>당첨발표</b> 2026-04-29</span>
-            <span><b>세대</b> 834세대</span>
-            <span><b>건설사</b> 지에스건설(주)</span>
-          </div>
-        </div>
-        <div class="simple-card">
-          <div class="simple-name">도안자이 센텀리체 1단지 <span class="badge">대전</span></div>
-          <div class="simple-meta">
-            <span><b>청약</b> 2026-04-20 ~ 2026-04-22</span>
-            <span><b>당첨발표</b> 2026-04-28</span>
-            <span><b>세대</b> 946세대</span>
-            <span><b>건설사</b> 지에스건설(주)</span>
-          </div>
-        </div>
-        <div class="simple-card">
-          <div class="simple-name">청주 푸르지오 씨엘리체 <span class="badge">충북</span></div>
-          <div class="simple-meta">
-            <span><b>청약</b> 2026-04-20 ~ 2026-04-22</span>
-            <span><b>당첨발표</b> 2026-04-30</span>
-            <span><b>세대</b> 1351세대</span>
-            <span><b>건설사</b> (주)대우건설</span>
-          </div>
-        </div>
-        <div class="simple-card">
-          <div class="simple-name">힐스테이트 평거 센트럴 <span class="badge">경남</span></div>
-          <div class="simple-meta">
-            <span><b>청약</b> 2026-04-20 ~ 2026-04-22</span>
-            <span><b>당첨발표</b> 2026-04-29</span>
-            <span><b>세대</b> 261세대</span>
-            <span><b>건설사</b> 현대엔지니어링(주)</span>
-          </div>
-        </div>
-        <div class="simple-card">
-          <div class="simple-name">골드클래스 시그니처 <span class="badge">전북</span></div>
-          <div class="simple-meta">
-            <span><b>청약</b> 2026-04-20 ~ 2026-04-22</span>
-            <span><b>당첨발표</b> 2026-04-28</span>
-            <span><b>세대</b> 341세대</span>
-            <span><b>건설사</b> 보광종합건설(주)</span>
-          </div>
-        </div>
-        <div class="simple-card">
-          <div class="simple-name">더샵 안동더퍼스트 <span class="badge">경북</span></div>
-          <div class="simple-meta">
-            <span><b>청약</b> 2026-04-20 ~ 2026-04-22</span>
-            <span><b>당첨발표</b> 2026-04-28</span>
-            <span><b>세대</b> 493세대</span>
-            <span><b>건설사</b> (주)포스코이앤씨</span>
-          </div>
-        </div>
-      </div>
-      <div class="status-section">
-        <div class="status-label" style="border-color:#2e86de;color:#2e86de">
-          오픈 예정 <span class="count">10건</span>
+          청약 준비중 <span class="count">7건</span>
         </div>
         
         <div class="simple-card">
@@ -249,6 +171,21 @@
             <span><b>건설사</b> ㈜금강주택</span>
           </div>
         </div>
+      </div>
+      <div class="status-section">
+        <div class="status-label" style="border-color:#2e86de;color:#2e86de">
+          오픈 예정 <span class="count">17건</span>
+        </div>
+        
+        <div class="simple-card">
+          <div class="simple-name">기장 이진캐스빌 포레 <span class="badge">부산</span></div>
+          <div class="simple-meta">
+            <span><b>청약</b> 2026-04-29 ~ 2026-05-04</span>
+            <span><b>당첨발표</b> 2026-05-11</span>
+            <span><b>세대</b> 138세대</span>
+            <span><b>건설사</b> 동수토건 주식회사</span>
+          </div>
+        </div>
         <div class="simple-card">
           <div class="simple-name">PH159 <span class="badge">제주</span></div>
           <div class="simple-meta">
@@ -256,6 +193,78 @@
             <span><b>당첨발표</b> 2026-05-11</span>
             <span><b>세대</b> 49세대</span>
             <span><b>건설사</b> 청솔종합건설(주)</span>
+          </div>
+        </div>
+        <div class="simple-card">
+          <div class="simple-name">파주금촌 금호어울림(조합원 취소분) <span class="badge">경기</span></div>
+          <div class="simple-meta">
+            <span><b>청약</b> 2026-05-04 ~ 2026-05-07</span>
+            <span><b>당첨발표</b> 2026-05-13</span>
+            <span><b>세대</b> 60세대</span>
+            <span><b>건설사</b> 금호건설 주식회사</span>
+          </div>
+        </div>
+        <div class="simple-card">
+          <div class="simple-name">천안 휴먼빌 퍼스트시티(2회차) <span class="badge">충남</span></div>
+          <div class="simple-meta">
+            <span><b>청약</b> 2026-05-04 ~ 2026-05-07</span>
+            <span><b>당첨발표</b> 2026-05-13</span>
+            <span><b>세대</b> 309세대</span>
+            <span><b>건설사</b> 일신건영(주)</span>
+          </div>
+        </div>
+        <div class="simple-card">
+          <div class="simple-name">천안 동문 디 이스트 파크시티 <span class="badge">충남</span></div>
+          <div class="simple-meta">
+            <span><b>청약</b> 2026-05-04 ~ 2026-05-07</span>
+            <span><b>당첨발표</b> 2026-05-13</span>
+            <span><b>세대</b> 500세대</span>
+            <span><b>건설사</b> 동문건설(주)</span>
+          </div>
+        </div>
+        <div class="simple-card">
+          <div class="simple-name">소제지구 A4BL 중흥S-클래스 우미린 <span class="badge">전남</span></div>
+          <div class="simple-meta">
+            <span><b>청약</b> 2026-05-04 ~ 2026-05-08</span>
+            <span><b>당첨발표</b> 2026-05-15</span>
+            <span><b>세대</b> 584세대</span>
+            <span><b>건설사</b> 중흥토건(주)</span>
+          </div>
+        </div>
+        <div class="simple-card">
+          <div class="simple-name">소제지구 A3BL 중흥S-클래스 우미린 <span class="badge">전남</span></div>
+          <div class="simple-meta">
+            <span><b>청약</b> 2026-05-04 ~ 2026-05-08</span>
+            <span><b>당첨발표</b> 2026-05-14</span>
+            <span><b>세대</b> 1095세대</span>
+            <span><b>건설사</b> 중흥토건(주)</span>
+          </div>
+        </div>
+        <div class="simple-card">
+          <div class="simple-name">e편한세상 부천 어반스퀘어 <span class="badge">경기</span></div>
+          <div class="simple-meta">
+            <span><b>청약</b> 2026-05-04 ~ 2026-05-07</span>
+            <span><b>당첨발표</b> 2026-05-13</span>
+            <span><b>세대</b> 897세대</span>
+            <span><b>건설사</b> 디엘이앤씨 주식회사, 롯데건설 주식회사</span>
+          </div>
+        </div>
+        <div class="simple-card">
+          <div class="simple-name">더샵 관저아르테 <span class="badge">대전</span></div>
+          <div class="simple-meta">
+            <span><b>청약</b> 2026-05-06 ~ 2026-05-08</span>
+            <span><b>당첨발표</b> 2026-05-14</span>
+            <span><b>세대</b> 951세대</span>
+            <span><b>건설사</b> (주)포스코이앤씨</span>
+          </div>
+        </div>
+        <div class="simple-card">
+          <div class="simple-name">울산신복역 비스타 메트로 <span class="badge">울산</span></div>
+          <div class="simple-meta">
+            <span><b>청약</b> 2026-05-06 ~ 2026-05-08</span>
+            <span><b>당첨발표</b> 2026-05-14</span>
+            <span><b>세대</b> 481세대</span>
+            <span><b>건설사</b> (주)동원개발</span>
           </div>
         </div>
         <div class="simple-card">
@@ -267,10 +276,47 @@
             <span><b>건설사</b> (주)서희건설</span>
           </div>
         </div>
+        <div class="simple-card">
+          <div class="simple-name">더 리치먼드 미아 <span class="badge">서울</span></div>
+          <div class="simple-meta">
+            <span><b>청약</b> 2026-05-07 ~ 2026-05-12</span>
+            <span><b>당첨발표</b> 2026-05-18</span>
+            <span><b>세대</b> 99세대</span>
+            <span><b>건설사</b> 태원건설산업(주)</span>
+          </div>
+        </div>
         <a class="news-card" href="https://news.google.com/rss/articles/CBMibEFVX3lxTE9BVXNqS3kyblh6eEluRXZzM1hUa3lOaGxPNUZXSXdFaFhKNEFLaUFsY0xIUmNwQlctSHhUOFlqRERxY3BGbGRfR3BJUmNwb29WLTR3b3VucmJwWjZvZWZpYXdwaE5BYWRsUnFSStIBcEFVX3lxTFBHdlFFVjBTdXNhVnFFX0Y1cDNlMEx1ZTRrT0JLS2pHWlVZaGxpdnBOUTVveUxCdzJBS05TSmhpb1hVWGV6WFFNRk9EaENycGRYaXpmNmdsNmtnNzg3RVMtQVBJZGhjTzZGY1R4Ymdpa2I?oc=5" target="_blank" rel="noopener">
           <div class="news-title">다음 주 수도권·지방 아파트 쏟아진다…11개 단지 총 9258가구 분양 <span class="chip-news">뉴스</span></div>
           <div class="news-meta">
             <span>ceodaily.co.kr</span>
+            <span>04/19</span>
+          </div>
+        </a>
+        <a class="news-card" href="https://news.google.com/rss/articles/CBMifEFVX3lxTE9DUE9vbnFyQ1pPaTd6Zm9ibzAyZVR6dkZsdEZiX1FjV1gyRExobnVKX0dQRzAyQWNjakQ5N2ViTG9tRTBNbFIwc1hZTWpjZzA3Y0MzV0RLTUlNRDlpaDl4QUgyTTJvaC1rVDIzVXJEcmVyYVBSS25aTThVS2w?oc=5" target="_blank" rel="noopener">
+          <div class="news-title">DL·롯데·두산건설 등 수도권·부산 분양…청약 일정 본격화 <span class="chip-news">뉴스</span></div>
+          <div class="news-meta">
+            <span>한국금융신문</span>
+            <span>04/21</span>
+          </div>
+        </a>
+        <a class="news-card" href="https://news.google.com/rss/articles/CBMiggFBVV95cUxObjA0UFhkZ2R1cHlJcVF3OWFZME5JUWNEa2hUQ1pVcjhfbW1pTlIwa01GNUtrZ1NRWjhxODdfUHRaYWhqX1hiMXRXdHJHcGRDU0g3a0NvMHVGdTNEVk5uR2VrdDFTMWtEOE1QTGJySWFWX01uckU0REFiRVpENlFIODF3?oc=5" target="_blank" rel="noopener">
+          <div class="news-title">도안자이 센텀리체 1단지 84㎡ 8억 고분양가, 청약 고민되는 이유 <span class="chip-news">뉴스</span></div>
+          <div class="news-meta">
+            <span>네이버 프리미엄콘텐츠</span>
+            <span>04/20</span>
+          </div>
+        </a>
+        <a class="news-card" href="https://news.google.com/rss/articles/CBMiVEFVX3lxTE1pcWFaZ1lGR2Fpa3hBenZ3a3lNUC1wNF9KcUE0MVdrS1g5R00wLVBCcGowNXRzU1NOTThQVThlekx0VmJJcTZSaGRzaHV6M3luRm9DdQ?oc=5" target="_blank" rel="noopener">
+          <div class="news-title">[오늘의 청약 일정] '경기광주역롯데캐슬시그니처(1단지)' 견본주택 오픈 등 <span class="chip-news">뉴스</span></div>
+          <div class="news-meta">
+            <span>이투데이</span>
+            <span>04/17</span>
+          </div>
+        </a>
+        <a class="news-card" href="https://news.google.com/rss/articles/CBMiggFBVV95cUxQX3RnekxxQVRXZjVYZS1ub1JYVHp4S0RXTlVZNHdCVHFGdnlZTjMzakNGVDY4MDNHVFBCVVJGa0Vwb2EzZlB6cTVKbEdxd0RDNlpoYTBqazMtZVc4TkdWdjdaNHo5MDl0NTFsUUU2UzQtSmIxeWRoeV9kMVhIVmtFekJR?oc=5" target="_blank" rel="noopener">
+          <div class="news-title">한국부동산 청약홈페이지 이용방법 청약 일정 확인부터 신청까지 정리 https://www.applyhome.co.kr/ <span class="chip-news">뉴스</span></div>
+          <div class="news-meta">
+            <span>네이버 프리미엄콘텐츠</span>
             <span>04/19</span>
           </div>
         </a>
@@ -280,9 +326,149 @@
     <div class="container">
         <div class="comp-card">
           <div class="comp-header">
-            <span class="comp-name">야목역 서희스타힐스 그랜드힐</span>
+            <span class="comp-name">청주 푸르지오 씨엘리체</span>
+            <span class="badge">충북</span>
+            <span class="chip chip-wait">집계중</span>
+          </div>
+          <div class="comp-rate"><span class="rate-pending">접수전</span></div>
+          <div class="comp-meta">
+            <span>청약기간 2026-04-20 ~ 2026-04-22</span>
+            <span>당첨발표 2026-04-30</span>
+            <span>세대수 1351세대</span>
+            <span>건설사 (주)대우건설</span>
+          </div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-header">
+            <span class="comp-name">문수로 라티에르 673</span>
+            <span class="badge">울산</span>
+            <span class="chip chip-wait">집계중</span>
+          </div>
+          <div class="comp-rate"><span class="rate-pending">접수중(미집계)</span></div>
+          <div class="comp-meta">
+            <span>청약기간 2026-04-20 ~ 2026-04-22</span>
+            <span>당첨발표 2026-04-29</span>
+            <span>세대수 199세대</span>
+            <span>건설사 금강종합건설(주)</span>
+          </div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-header">
+            <span class="comp-name">용인 고림 동문 디 이스트</span>
             <span class="badge">경기</span>
             <span class="chip chip-wait">집계중</span>
+          </div>
+          <div class="comp-rate"><span class="rate-pending">접수중(미집계)</span></div>
+          <div class="comp-meta">
+            <span>청약기간 2026-04-20 ~ 2026-04-22</span>
+            <span>당첨발표 2026-04-29</span>
+            <span>세대수 350세대</span>
+            <span>건설사 동문건설 주식회사</span>
+          </div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-header">
+            <span class="comp-name">엘리프 창원</span>
+            <span class="badge">경남</span>
+            <span class="chip chip-wait">집계중</span>
+          </div>
+          <div class="comp-rate"><span class="rate-pending">접수중(미집계)</span></div>
+          <div class="comp-meta">
+            <span>청약기간 2026-04-20 ~ 2026-04-22</span>
+            <span>당첨발표 2026-04-29</span>
+            <span>세대수 349세대</span>
+            <span>건설사 (주)케이알산업</span>
+          </div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-header">
+            <span class="comp-name">도안자이 센텀리체 2단지</span>
+            <span class="badge">대전</span>
+            <span class="chip chip-wait">집계중</span>
+          </div>
+          <div class="comp-rate"><span class="rate-pending">접수전</span></div>
+          <div class="comp-meta">
+            <span>청약기간 2026-04-20 ~ 2026-04-22</span>
+            <span>당첨발표 2026-04-29</span>
+            <span>세대수 834세대</span>
+            <span>건설사 지에스건설(주)</span>
+          </div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-header">
+            <span class="comp-name">힐스테이트 평거 센트럴</span>
+            <span class="badge">경남</span>
+            <span class="chip chip-wait">집계중</span>
+          </div>
+          <div class="comp-rate"><span class="rate-pending">접수전</span></div>
+          <div class="comp-meta">
+            <span>청약기간 2026-04-20 ~ 2026-04-22</span>
+            <span>당첨발표 2026-04-29</span>
+            <span>세대수 261세대</span>
+            <span>건설사 현대엔지니어링(주)</span>
+          </div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-header">
+            <span class="comp-name">아산경남아너스빌 랜드마크49</span>
+            <span class="badge">충남</span>
+            <span class="chip chip-wait">집계중</span>
+          </div>
+          <div class="comp-rate"><span class="rate-pending">접수전</span></div>
+          <div class="comp-meta">
+            <span>청약기간 2026-04-20 ~ 2026-04-22</span>
+            <span>당첨발표 2026-04-28</span>
+            <span>세대수 467세대</span>
+            <span>건설사 (주)남선알미늄</span>
+          </div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-header">
+            <span class="comp-name">도안자이 센텀리체 1단지</span>
+            <span class="badge">대전</span>
+            <span class="chip chip-wait">집계중</span>
+          </div>
+          <div class="comp-rate"><span class="rate-pending">접수전</span></div>
+          <div class="comp-meta">
+            <span>청약기간 2026-04-20 ~ 2026-04-22</span>
+            <span>당첨발표 2026-04-28</span>
+            <span>세대수 946세대</span>
+            <span>건설사 지에스건설(주)</span>
+          </div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-header">
+            <span class="comp-name">골드클래스 시그니처</span>
+            <span class="badge">전북</span>
+            <span class="chip chip-wait">집계중</span>
+          </div>
+          <div class="comp-rate"><span class="rate-pending">접수전</span></div>
+          <div class="comp-meta">
+            <span>청약기간 2026-04-20 ~ 2026-04-22</span>
+            <span>당첨발표 2026-04-28</span>
+            <span>세대수 341세대</span>
+            <span>건설사 보광종합건설(주)</span>
+          </div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-header">
+            <span class="comp-name">더샵 안동더퍼스트</span>
+            <span class="badge">경북</span>
+            <span class="chip chip-wait">집계중</span>
+          </div>
+          <div class="comp-rate"><span class="rate-pending">접수전</span></div>
+          <div class="comp-meta">
+            <span>청약기간 2026-04-20 ~ 2026-04-22</span>
+            <span>당첨발표 2026-04-28</span>
+            <span>세대수 493세대</span>
+            <span>건설사 (주)포스코이앤씨</span>
+          </div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-header">
+            <span class="comp-name">야목역 서희스타힐스 그랜드힐</span>
+            <span class="badge">경기</span>
+            <span class="chip chip-done">발표완료</span>
           </div>
           <div class="comp-rate"><span class="rate-pending">접수전</span></div>
           <div class="comp-meta">
@@ -296,7 +482,7 @@
           <div class="comp-header">
             <span class="comp-name">라클라체자이드파인</span>
             <span class="badge">서울</span>
-            <span class="chip chip-wait">집계중</span>
+            <span class="chip chip-done">발표완료</span>
           </div>
           <div class="comp-rate"><span class="rate-pending">접수전</span></div>
           <div class="comp-meta">
@@ -310,7 +496,7 @@
           <div class="comp-header">
             <span class="comp-name">업성 푸르지오 레이크시티</span>
             <span class="badge">충남</span>
-            <span class="chip chip-wait">집계중</span>
+            <span class="chip chip-done">발표완료</span>
           </div>
           <div class="comp-rate"><span class="rate-pending">접수전</span></div>
           <div class="comp-meta">
@@ -324,7 +510,7 @@
           <div class="comp-header">
             <span class="comp-name">북전주 광신프로그레스</span>
             <span class="badge">전북</span>
-            <span class="chip chip-wait">집계중</span>
+            <span class="chip chip-done">발표완료</span>
           </div>
           <div class="comp-rate"><span class="rate-pending">접수전</span></div>
           <div class="comp-meta">
@@ -403,42 +589,10 @@
             <span>세대수 88세대</span>
             <span>건설사 롯데건설 주식회사</span>
           </div>
-        </div>
-        <div class="comp-card">
-          <div class="comp-header">
-            <span class="comp-name">구서 다움포레</span>
-            <span class="badge">부산</span>
-            <span class="chip chip-done">발표완료</span>
-          </div>
-          <div class="comp-rate"><span class="rate-num">063.7407: 4:1 (해당지역건) | 078.6851: 1:1 (해당지역건)</span></div>
-          <div class="comp-meta">
-            <span>청약기간 2026-04-09 ~ 2026-04-13</span>
-            <span>당첨발표 2026-04-17</span>
-            <span>세대수 68세대</span>
-            <span>건설사 비엠산업개발주식회사</span>
-          </div>
         </div></div>
   </div>
   <div id="tab-price" class="tab-content">
     <div class="container">
-      <div class="price-card">
-        <div class="price-header">
-          <div class="price-name">구서 다움포레 <span class="badge">부산</span></div>
-          <span class="chip" style="background:#f0f4f8;color:#7f8c8d;border:1px solid #7f8c8d22">발표완료</span>
-        </div>
-        <div class="price-sub">
-          <span>모집공고 2026-03-30</span>
-          <span>청약 2026-04-09 ~ 2026-04-13</span>
-          <span>당첨발표 2026-04-17</span>
-          <span>건설사 비엠산업개발주식회사</span>
-        </div>
-        <div class="type-table-wrap">
-          <table class="type-table">
-            <thead><tr><th>주택형</th><th>전용</th><th>분양가</th><th>평단가</th><th>세대수</th></tr></thead>
-            <tbody><tr><td class='t-type'>63</td><td>63.74㎡</td><td class='t-price'>4억 2,731만</td><td class='t-unit'>2,216만/평</td><td>15세대</td></tr><tr><td class='t-type'>78</td><td>78.69㎡</td><td class='t-price'>5억 3,695만</td><td class='t-unit'>2,256만/평</td><td>19세대</td></tr></tbody>
-          </table>
-        </div>
-      </div>
       <div class="price-card">
         <div class="price-header">
           <div class="price-name">이촌 르엘 <span class="badge">서울</span></div>
@@ -532,7 +686,7 @@
       <div class="price-card">
         <div class="price-header">
           <div class="price-name">라클라체자이드파인 <span class="badge">서울</span></div>
-          <span class="chip" style="background:#f0f4f8;color:#e67e22;border:1px solid #e67e2222">집계중</span>
+          <span class="chip" style="background:#f0f4f8;color:#7f8c8d;border:1px solid #7f8c8d22">발표완료</span>
         </div>
         <div class="price-sub">
           <span>모집공고 2026-04-03</span>
@@ -550,7 +704,7 @@
       <div class="price-card">
         <div class="price-header">
           <div class="price-name">업성 푸르지오 레이크시티 <span class="badge">충남</span></div>
-          <span class="chip" style="background:#f0f4f8;color:#e67e22;border:1px solid #e67e2222">집계중</span>
+          <span class="chip" style="background:#f0f4f8;color:#7f8c8d;border:1px solid #7f8c8d22">발표완료</span>
         </div>
         <div class="price-sub">
           <span>모집공고 2026-04-03</span>
@@ -568,7 +722,7 @@
       <div class="price-card">
         <div class="price-header">
           <div class="price-name">북전주 광신프로그레스 <span class="badge">전북</span></div>
-          <span class="chip" style="background:#f0f4f8;color:#e67e22;border:1px solid #e67e2222">집계중</span>
+          <span class="chip" style="background:#f0f4f8;color:#7f8c8d;border:1px solid #7f8c8d22">발표완료</span>
         </div>
         <div class="price-sub">
           <span>모집공고 2026-04-03</span>
@@ -586,7 +740,7 @@
       <div class="price-card">
         <div class="price-header">
           <div class="price-name">야목역 서희스타힐스 그랜드힐 <span class="badge">경기</span></div>
-          <span class="chip" style="background:#f0f4f8;color:#e67e22;border:1px solid #e67e2222">집계중</span>
+          <span class="chip" style="background:#f0f4f8;color:#7f8c8d;border:1px solid #7f8c8d22">발표완료</span>
         </div>
         <div class="price-sub">
           <span>모집공고 2026-04-06</span>
@@ -604,7 +758,7 @@
       <div class="price-card">
         <div class="price-header">
           <div class="price-name">아산경남아너스빌 랜드마크49 <span class="badge">충남</span></div>
-          <span class="chip" style="background:#f0f4f8;color:#27ae60;border:1px solid #27ae6022">청약 준비중</span>
+          <span class="chip" style="background:#f0f4f8;color:#e67e22;border:1px solid #e67e2222">집계중</span>
         </div>
         <div class="price-sub">
           <span>모집공고 2026-04-10</span>
@@ -622,7 +776,7 @@
       <div class="price-card">
         <div class="price-header">
           <div class="price-name">도안자이 센텀리체 1단지 <span class="badge">대전</span></div>
-          <span class="chip" style="background:#f0f4f8;color:#27ae60;border:1px solid #27ae6022">청약 준비중</span>
+          <span class="chip" style="background:#f0f4f8;color:#e67e22;border:1px solid #e67e2222">집계중</span>
         </div>
         <div class="price-sub">
           <span>모집공고 2026-04-10</span>
@@ -640,7 +794,7 @@
       <div class="price-card">
         <div class="price-header">
           <div class="price-name">골드클래스 시그니처 <span class="badge">전북</span></div>
-          <span class="chip" style="background:#f0f4f8;color:#27ae60;border:1px solid #27ae6022">청약 준비중</span>
+          <span class="chip" style="background:#f0f4f8;color:#e67e22;border:1px solid #e67e2222">집계중</span>
         </div>
         <div class="price-sub">
           <span>모집공고 2026-04-10</span>
@@ -658,7 +812,7 @@
       <div class="price-card">
         <div class="price-header">
           <div class="price-name">더샵 안동더퍼스트 <span class="badge">경북</span></div>
-          <span class="chip" style="background:#f0f4f8;color:#27ae60;border:1px solid #27ae6022">청약 준비중</span>
+          <span class="chip" style="background:#f0f4f8;color:#e67e22;border:1px solid #e67e2222">집계중</span>
         </div>
         <div class="price-sub">
           <span>모집공고 2026-04-09</span>
@@ -676,7 +830,7 @@
       <div class="price-card">
         <div class="price-header">
           <div class="price-name">문수로 라티에르 673 <span class="badge">울산</span></div>
-          <span class="chip" style="background:#f0f4f8;color:#27ae60;border:1px solid #27ae6022">청약 준비중</span>
+          <span class="chip" style="background:#f0f4f8;color:#e67e22;border:1px solid #e67e2222">집계중</span>
         </div>
         <div class="price-sub">
           <span>모집공고 2026-04-10</span>
@@ -694,7 +848,7 @@
       <div class="price-card">
         <div class="price-header">
           <div class="price-name">용인 고림 동문 디 이스트 <span class="badge">경기</span></div>
-          <span class="chip" style="background:#f0f4f8;color:#27ae60;border:1px solid #27ae6022">청약 준비중</span>
+          <span class="chip" style="background:#f0f4f8;color:#e67e22;border:1px solid #e67e2222">집계중</span>
         </div>
         <div class="price-sub">
           <span>모집공고 2026-04-10</span>
@@ -712,7 +866,7 @@
       <div class="price-card">
         <div class="price-header">
           <div class="price-name">엘리프 창원 <span class="badge">경남</span></div>
-          <span class="chip" style="background:#f0f4f8;color:#27ae60;border:1px solid #27ae6022">청약 준비중</span>
+          <span class="chip" style="background:#f0f4f8;color:#e67e22;border:1px solid #e67e2222">집계중</span>
         </div>
         <div class="price-sub">
           <span>모집공고 2026-04-10</span>
@@ -730,7 +884,7 @@
       <div class="price-card">
         <div class="price-header">
           <div class="price-name">도안자이 센텀리체 2단지 <span class="badge">대전</span></div>
-          <span class="chip" style="background:#f0f4f8;color:#27ae60;border:1px solid #27ae6022">청약 준비중</span>
+          <span class="chip" style="background:#f0f4f8;color:#e67e22;border:1px solid #e67e2222">집계중</span>
         </div>
         <div class="price-sub">
           <span>모집공고 2026-04-10</span>
@@ -748,7 +902,7 @@
       <div class="price-card">
         <div class="price-header">
           <div class="price-name">힐스테이트 평거 센트럴 <span class="badge">경남</span></div>
-          <span class="chip" style="background:#f0f4f8;color:#27ae60;border:1px solid #27ae6022">청약 준비중</span>
+          <span class="chip" style="background:#f0f4f8;color:#e67e22;border:1px solid #e67e2222">집계중</span>
         </div>
         <div class="price-sub">
           <span>모집공고 2026-04-10</span>
@@ -766,7 +920,7 @@
       <div class="price-card">
         <div class="price-header">
           <div class="price-name">청주 푸르지오 씨엘리체 <span class="badge">충북</span></div>
-          <span class="chip" style="background:#f0f4f8;color:#27ae60;border:1px solid #27ae6022">청약 준비중</span>
+          <span class="chip" style="background:#f0f4f8;color:#e67e22;border:1px solid #e67e2222">집계중</span>
         </div>
         <div class="price-sub">
           <span>모집공고 2026-04-10</span>
@@ -784,7 +938,7 @@
       <div class="price-card">
         <div class="price-header">
           <div class="price-name">고덕신도시 아테라 A-63블록 공공분양주택 <span class="badge">경기</span></div>
-          <span class="chip" style="background:#f0f4f8;color:#2e86de;border:1px solid #2e86de22">오픈 예정</span>
+          <span class="chip" style="background:#f0f4f8;color:#27ae60;border:1px solid #27ae6022">청약 준비중</span>
         </div>
         <div class="price-sub">
           <span>모집공고 2026-04-17</span>
@@ -802,7 +956,7 @@
       <div class="price-card">
         <div class="price-header">
           <div class="price-name">두산위브더제니스 구미(조합원취소분) <span class="badge">경북</span></div>
-          <span class="chip" style="background:#f0f4f8;color:#2e86de;border:1px solid #2e86de22">오픈 예정</span>
+          <span class="chip" style="background:#f0f4f8;color:#27ae60;border:1px solid #27ae6022">청약 준비중</span>
         </div>
         <div class="price-sub">
           <span>모집공고 2026-04-17</span>
@@ -820,7 +974,7 @@
       <div class="price-card">
         <div class="price-header">
           <div class="price-name">경기광주역 롯데캐슬 시그니처 1단지 <span class="badge">경기</span></div>
-          <span class="chip" style="background:#f0f4f8;color:#2e86de;border:1px solid #2e86de22">오픈 예정</span>
+          <span class="chip" style="background:#f0f4f8;color:#27ae60;border:1px solid #27ae6022">청약 준비중</span>
         </div>
         <div class="price-sub">
           <span>모집공고 2026-04-17</span>
@@ -838,7 +992,7 @@
       <div class="price-card">
         <div class="price-header">
           <div class="price-name">동탄 그웬 160 (동탄2 B11BL) <span class="badge">경기</span></div>
-          <span class="chip" style="background:#f0f4f8;color:#2e86de;border:1px solid #2e86de22">오픈 예정</span>
+          <span class="chip" style="background:#f0f4f8;color:#27ae60;border:1px solid #27ae6022">청약 준비중</span>
         </div>
         <div class="price-sub">
           <span>모집공고 2026-04-16</span>
@@ -856,7 +1010,7 @@
       <div class="price-card">
         <div class="price-header">
           <div class="price-name">공덕역자이르네 <span class="badge">서울</span></div>
-          <span class="chip" style="background:#f0f4f8;color:#2e86de;border:1px solid #2e86de22">오픈 예정</span>
+          <span class="chip" style="background:#f0f4f8;color:#27ae60;border:1px solid #27ae6022">청약 준비중</span>
         </div>
         <div class="price-sub">
           <span>모집공고 2026-04-17</span>
@@ -874,7 +1028,7 @@
       <div class="price-card">
         <div class="price-header">
           <div class="price-name">강릉 우미 린 더 프리미어 <span class="badge">강원</span></div>
-          <span class="chip" style="background:#f0f4f8;color:#2e86de;border:1px solid #2e86de22">오픈 예정</span>
+          <span class="chip" style="background:#f0f4f8;color:#27ae60;border:1px solid #27ae6022">청약 준비중</span>
         </div>
         <div class="price-sub">
           <span>모집공고 2026-04-17</span>
@@ -886,6 +1040,24 @@
           <table class="type-table">
             <thead><tr><th>주택형</th><th>전용</th><th>분양가</th><th>평단가</th><th>세대수</th></tr></thead>
             <tbody><tr><td class='t-type'>84A</td><td>84.98㎡</td><td class='t-price'>5억 4,640만</td><td class='t-unit'>2,126만/평</td><td>51세대</td></tr><tr><td class='t-type'>84B</td><td>84.83㎡</td><td class='t-price'>5억 3,460만</td><td class='t-unit'>2,083만/평</td><td>34세대</td></tr><tr><td class='t-type'>84C</td><td>84.93㎡</td><td class='t-price'>5억 3,260만</td><td class='t-unit'>2,073만/평</td><td>104세대</td></tr><tr><td class='t-type'>84D</td><td>84.79㎡</td><td class='t-price'>5억 3,740만</td><td class='t-unit'>2,095만/평</td><td>4세대</td></tr><tr><td class='t-type'>84E</td><td>84.98㎡</td><td class='t-price'>5억 4,840만</td><td class='t-unit'>2,133만/평</td><td>36세대</td></tr><tr><td class='t-type'>117A</td><td>117.97㎡</td><td class='t-price'>7억 5,070만</td><td class='t-unit'>2,104만/평</td><td>68세대</td></tr><tr><td class='t-type'>117B</td><td>117.96㎡</td><td class='t-price'>7억 2,890만</td><td class='t-unit'>2,043만/평</td><td>34세대</td></tr><tr><td class='t-type'>125A</td><td>125.92㎡</td><td class='t-price'>7억 9,550만</td><td class='t-unit'>2,088만/평</td><td>102세대</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="price-card">
+        <div class="price-header">
+          <div class="price-name">기장 이진캐스빌 포레 <span class="badge">부산</span></div>
+          <span class="chip" style="background:#f0f4f8;color:#2e86de;border:1px solid #2e86de22">오픈 예정</span>
+        </div>
+        <div class="price-sub">
+          <span>모집공고 2026-04-24</span>
+          <span>청약 2026-04-29 ~ 2026-05-04</span>
+          <span>당첨발표 2026-05-11</span>
+          <span>건설사 동수토건 주식회사</span>
+        </div>
+        <div class="type-table-wrap">
+          <table class="type-table">
+            <thead><tr><th>주택형</th><th>전용</th><th>분양가</th><th>평단가</th><th>세대수</th></tr></thead>
+            <tbody><tr><td class='t-type'>59</td><td>59.92㎡</td><td class='t-price'>3억 9,200만</td><td class='t-unit'>2,163만/평</td><td>29세대</td></tr><tr><td class='t-type'>70</td><td>70.79㎡</td><td class='t-price'>4억 7,660만</td><td class='t-unit'>2,226만/평</td><td>36세대</td></tr></tbody>
           </table>
         </div>
       </div>
@@ -909,6 +1081,132 @@
       </div>
       <div class="price-card">
         <div class="price-header">
+          <div class="price-name">파주금촌 금호어울림(조합원 취소분) <span class="badge">경기</span></div>
+          <span class="chip" style="background:#f0f4f8;color:#2e86de;border:1px solid #2e86de22">오픈 예정</span>
+        </div>
+        <div class="price-sub">
+          <span>모집공고 2026-04-24</span>
+          <span>청약 2026-05-04 ~ 2026-05-07</span>
+          <span>당첨발표 2026-05-13</span>
+          <span>건설사 금호건설 주식회사</span>
+        </div>
+        <div class="type-table-wrap">
+          <table class="type-table">
+            <thead><tr><th>주택형</th><th>전용</th><th>분양가</th><th>평단가</th><th>세대수</th></tr></thead>
+            <tbody><tr><td class='t-type'>26</td><td>26.91㎡</td><td class='t-price'>1억 8,170만</td><td class='t-unit'>2,232만/평</td><td>3세대</td></tr><tr><td class='t-type'>46</td><td>46.80㎡</td><td class='t-price'>3억 1,130만</td><td class='t-unit'>2,199만/평</td><td>1세대</td></tr><tr><td class='t-type'>59A</td><td>59.86㎡</td><td class='t-price'>3억 9,910만</td><td class='t-unit'>2,204만/평</td><td>18세대</td></tr><tr><td class='t-type'>59B</td><td>59.84㎡</td><td class='t-price'>3억 9,890만</td><td class='t-unit'>2,204만/평</td><td>1세대</td></tr><tr><td class='t-type'>74</td><td>74.98㎡</td><td class='t-price'>4억 9,730만</td><td class='t-unit'>2,193만/평</td><td>3세대</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="price-card">
+        <div class="price-header">
+          <div class="price-name">천안 휴먼빌 퍼스트시티(2회차) <span class="badge">충남</span></div>
+          <span class="chip" style="background:#f0f4f8;color:#2e86de;border:1px solid #2e86de22">오픈 예정</span>
+        </div>
+        <div class="price-sub">
+          <span>모집공고 2026-04-24</span>
+          <span>청약 2026-05-04 ~ 2026-05-07</span>
+          <span>당첨발표 2026-05-13</span>
+          <span>건설사 일신건영(주)</span>
+        </div>
+        <div class="type-table-wrap">
+          <table class="type-table">
+            <thead><tr><th>주택형</th><th>전용</th><th>분양가</th><th>평단가</th><th>세대수</th></tr></thead>
+            <tbody><tr><td class='t-type'>84C</td><td>85.00㎡</td><td class='t-price'>5억 2,960만</td><td class='t-unit'>2,060만/평</td><td>142세대</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="price-card">
+        <div class="price-header">
+          <div class="price-name">천안 동문 디 이스트 파크시티 <span class="badge">충남</span></div>
+          <span class="chip" style="background:#f0f4f8;color:#2e86de;border:1px solid #2e86de22">오픈 예정</span>
+        </div>
+        <div class="price-sub">
+          <span>모집공고 2026-04-24</span>
+          <span>청약 2026-05-04 ~ 2026-05-07</span>
+          <span>당첨발표 2026-05-13</span>
+          <span>건설사 동문건설(주)</span>
+        </div>
+        <div class="type-table-wrap">
+          <table class="type-table">
+            <thead><tr><th>주택형</th><th>전용</th><th>분양가</th><th>평단가</th><th>세대수</th></tr></thead>
+            <tbody><tr><td class='t-type'>59A</td><td>59.90㎡</td><td class='t-price'>4억 2,220만</td><td class='t-unit'>2,330만/평</td><td>9세대</td></tr><tr><td class='t-type'>59B</td><td>59.97㎡</td><td class='t-price'>4억 1,830만</td><td class='t-unit'>2,306만/평</td><td>3세대</td></tr><tr><td class='t-type'>74A</td><td>74.93㎡</td><td class='t-price'>5억 650만</td><td class='t-unit'>2,235만/평</td><td>16세대</td></tr><tr><td class='t-type'>74B</td><td>74.95㎡</td><td class='t-price'>5억 910만</td><td class='t-unit'>2,245만/평</td><td>12세대</td></tr><tr><td class='t-type'>84A</td><td>84.99㎡</td><td class='t-price'>5억 8,250만</td><td class='t-unit'>2,266만/평</td><td>109세대</td></tr><tr><td class='t-type'>84B</td><td>84.98㎡</td><td class='t-price'>5억 8,760만</td><td class='t-unit'>2,286만/평</td><td>52세대</td></tr><tr><td class='t-type'>105</td><td>106.00㎡</td><td class='t-price'>7억 2,550만</td><td class='t-unit'>2,263만/평</td><td>90세대</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="price-card">
+        <div class="price-header">
+          <div class="price-name">e편한세상 부천 어반스퀘어 <span class="badge">경기</span></div>
+          <span class="chip" style="background:#f0f4f8;color:#2e86de;border:1px solid #2e86de22">오픈 예정</span>
+        </div>
+        <div class="price-sub">
+          <span>모집공고 2026-04-23</span>
+          <span>청약 2026-05-04 ~ 2026-05-07</span>
+          <span>당첨발표 2026-05-13</span>
+          <span>건설사 디엘이앤씨 주식회사, 롯데건설 주식회사</span>
+        </div>
+        <div class="type-table-wrap">
+          <table class="type-table">
+            <thead><tr><th>주택형</th><th>전용</th><th>분양가</th><th>평단가</th><th>세대수</th></tr></thead>
+            <tbody><tr><td class='t-type'>59A</td><td>59.90㎡</td><td class='t-price'>8억 7,080만</td><td class='t-unit'>4,806만/평</td><td>169세대</td></tr><tr><td class='t-type'>59B</td><td>59.77㎡</td><td class='t-price'>8억 5,610만</td><td class='t-unit'>4,735만/평</td><td>47세대</td></tr><tr><td class='t-type'>74A</td><td>74.63㎡</td><td class='t-price'>10억 1,960만</td><td class='t-unit'>4,516만/평</td><td>92세대</td></tr><tr><td class='t-type'>74B</td><td>74.30㎡</td><td class='t-price'>10억 850만</td><td class='t-unit'>4,487만/평</td><td>48세대</td></tr><tr><td class='t-type'>84A</td><td>84.34㎡</td><td class='t-price'>11억 3,900만</td><td class='t-unit'>4,464만/평</td><td>34세대</td></tr><tr><td class='t-type'>84B</td><td>84.60㎡</td><td class='t-price'>11억 190만</td><td class='t-unit'>4,306만/평</td><td>12세대</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="price-card">
+        <div class="price-header">
+          <div class="price-name">더샵 관저아르테 <span class="badge">대전</span></div>
+          <span class="chip" style="background:#f0f4f8;color:#2e86de;border:1px solid #2e86de22">오픈 예정</span>
+        </div>
+        <div class="price-sub">
+          <span>모집공고 2026-04-24</span>
+          <span>청약 2026-05-06 ~ 2026-05-08</span>
+          <span>당첨발표 2026-05-14</span>
+          <span>건설사 (주)포스코이앤씨</span>
+        </div>
+        <div class="type-table-wrap">
+          <table class="type-table">
+            <thead><tr><th>주택형</th><th>전용</th><th>분양가</th><th>평단가</th><th>세대수</th></tr></thead>
+            <tbody><tr><td class='t-type'>59A</td><td>59.90㎡</td><td class='t-price'>4억 7,070만</td><td class='t-unit'>2,598만/평</td><td>23세대</td></tr><tr><td class='t-type'>59B</td><td>59.77㎡</td><td class='t-price'>4억 6,320만</td><td class='t-unit'>2,562만/평</td><td>45세대</td></tr><tr><td class='t-type'>84A</td><td>84.67㎡</td><td class='t-price'>6억 4,100만</td><td class='t-unit'>2,503만/평</td><td>106세대</td></tr><tr><td class='t-type'>84B</td><td>84.45㎡</td><td class='t-price'>6억 3,250만</td><td class='t-unit'>2,476만/평</td><td>102세대</td></tr><tr><td class='t-type'>104A</td><td>104.22㎡</td><td class='t-price'>7억 6,850만</td><td class='t-unit'>2,438만/평</td><td>251세대</td></tr><tr><td class='t-type'>119A</td><td>119.60㎡</td><td class='t-price'>8억 5,730만</td><td class='t-unit'>2,370만/평</td><td>62세대</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="price-card">
+        <div class="price-header">
+          <div class="price-name">울산신복역 비스타 메트로 <span class="badge">울산</span></div>
+          <span class="chip" style="background:#f0f4f8;color:#2e86de;border:1px solid #2e86de22">오픈 예정</span>
+        </div>
+        <div class="price-sub">
+          <span>모집공고 2026-04-24</span>
+          <span>청약 2026-05-06 ~ 2026-05-08</span>
+          <span>당첨발표 2026-05-14</span>
+          <span>건설사 (주)동원개발</span>
+        </div>
+        <div class="type-table-wrap">
+          <table class="type-table">
+            <thead><tr><th>주택형</th><th>전용</th><th>분양가</th><th>평단가</th><th>세대수</th></tr></thead>
+            <tbody><tr><td class='t-type'>84A</td><td>84.92㎡</td><td class='t-price'>7억 9,500만</td><td class='t-unit'>3,095만/평</td><td>27세대</td></tr><tr><td class='t-type'>84B</td><td>84.93㎡</td><td class='t-price'>7억 9,500만</td><td class='t-unit'>3,094만/평</td><td>27세대</td></tr><tr><td class='t-type'>84C</td><td>84.92㎡</td><td class='t-price'>7억 9,500만</td><td class='t-unit'>3,095만/평</td><td>55세대</td></tr><tr><td class='t-type'>84D</td><td>84.61㎡</td><td class='t-price'>7억 9,500만</td><td class='t-unit'>3,106만/평</td><td>55세대</td></tr><tr><td class='t-type'>84E</td><td>84.93㎡</td><td class='t-price'>7억 9,100만</td><td class='t-unit'>3,079만/평</td><td>27세대</td></tr><tr><td class='t-type'>84F</td><td>84.93㎡</td><td class='t-price'>7억 6,000만</td><td class='t-unit'>2,958만/평</td><td>1세대</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="price-card">
+        <div class="price-header">
+          <div class="price-name">소제지구 A3BL 중흥S-클래스 우미린 <span class="badge">전남</span></div>
+          <span class="chip" style="background:#f0f4f8;color:#2e86de;border:1px solid #2e86de22">오픈 예정</span>
+        </div>
+        <div class="price-sub">
+          <span>모집공고 2026-04-24</span>
+          <span>청약 2026-05-04 ~ 2026-05-08</span>
+          <span>당첨발표 2026-05-14</span>
+          <span>건설사 중흥토건(주)</span>
+        </div>
+        <div class="type-table-wrap">
+          <table class="type-table">
+            <thead><tr><th>주택형</th><th>전용</th><th>분양가</th><th>평단가</th><th>세대수</th></tr></thead>
+            <tbody><tr><td class='t-type'>84A</td><td>84.96㎡</td><td class='t-price'>4억 7,550만</td><td class='t-unit'>1,850만/평</td><td>118세대</td></tr><tr><td class='t-type'>84B</td><td>85.00㎡</td><td class='t-price'>4억 7,450만</td><td class='t-unit'>1,845만/평</td><td>28세대</td></tr><tr><td class='t-type'>84C</td><td>84.96㎡</td><td class='t-price'>4억 7,600만</td><td class='t-unit'>1,852만/평</td><td>52세대</td></tr><tr><td class='t-type'>84D</td><td>84.95㎡</td><td class='t-price'>4억 7,450만</td><td class='t-unit'>1,847만/평</td><td>25세대</td></tr><tr><td class='t-type'>84E</td><td>84.95㎡</td><td class='t-price'>4억 8,250만</td><td class='t-unit'>1,878만/평</td><td>7세대</td></tr><tr><td class='t-type'>84F</td><td>84.99㎡</td><td class='t-price'>4억 8,050만</td><td class='t-unit'>1,869만/평</td><td>7세대</td></tr><tr><td class='t-type'>109A</td><td>109.97㎡</td><td class='t-price'>6억 5,200만</td><td class='t-unit'>1,960만/평</td><td>37세대</td></tr><tr><td class='t-type'>109B</td><td>109.95㎡</td><td class='t-price'>6억 4,200만</td><td class='t-unit'>1,930만/평</td><td>105세대</td></tr><tr><td class='t-type'>135A</td><td>135.94㎡</td><td class='t-price'>8억 4,500만</td><td class='t-unit'>2,055만/평</td><td>24세대</td></tr><tr><td class='t-type'>135T</td><td>135.93㎡</td><td class='t-price'>8억 6,400만</td><td class='t-unit'>2,101만/평</td><td>6세대</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="price-card">
+        <div class="price-header">
           <div class="price-name">용인 양지 서희스타힐스 하이뷰 <span class="badge">경기</span></div>
           <span class="chip" style="background:#f0f4f8;color:#2e86de;border:1px solid #2e86de22">오픈 예정</span>
         </div>
@@ -927,8 +1225,26 @@
       </div>
       <div class="price-card">
         <div class="price-header">
-          <div class="price-name">인천가정2지구 B2블록 공공분양주택(후속사업) <span class="badge">인천</span></div>
+          <div class="price-name">소제지구 A4BL 중흥S-클래스 우미린 <span class="badge">전남</span></div>
           <span class="chip" style="background:#f0f4f8;color:#2e86de;border:1px solid #2e86de22">오픈 예정</span>
+        </div>
+        <div class="price-sub">
+          <span>모집공고 2026-04-24</span>
+          <span>청약 2026-05-04 ~ 2026-05-08</span>
+          <span>당첨발표 2026-05-15</span>
+          <span>건설사 중흥토건(주)</span>
+        </div>
+        <div class="type-table-wrap">
+          <table class="type-table">
+            <thead><tr><th>주택형</th><th>전용</th><th>분양가</th><th>평단가</th><th>세대수</th></tr></thead>
+            <tbody><tr><td class='t-type'>84A</td><td>84.96㎡</td><td class='t-price'>4억 9,100만</td><td class='t-unit'>1,910만/평</td><td>74세대</td></tr><tr><td class='t-type'>84B</td><td>85.00㎡</td><td class='t-price'>4억 9,000만</td><td class='t-unit'>1,906만/평</td><td>35세대</td></tr><tr><td class='t-type'>84C</td><td>84.96㎡</td><td class='t-price'>4억 9,300만</td><td class='t-unit'>1,918만/평</td><td>25세대</td></tr><tr><td class='t-type'>84D</td><td>84.95㎡</td><td class='t-price'>4억 9,000만</td><td class='t-unit'>1,907만/평</td><td>13세대</td></tr><tr><td class='t-type'>84E</td><td>84.95㎡</td><td class='t-price'>4억 8,800만</td><td class='t-unit'>1,899만/평</td><td>8세대</td></tr><tr><td class='t-type'>84F</td><td>84.99㎡</td><td class='t-price'>4억 9,100만</td><td class='t-unit'>1,910만/평</td><td>8세대</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="price-card">
+        <div class="price-header">
+          <div class="price-name">인천가정2지구 B2블록 공공분양주택(후속사업) <span class="badge">인천</span></div>
+          <span class="chip" style="background:#f0f4f8;color:#27ae60;border:1px solid #27ae6022">청약 준비중</span>
         </div>
         <div class="price-sub">
           <span>모집공고 2026-04-15</span>
@@ -942,16 +1258,63 @@
             <tbody><tr><td class='t-type'>74A</td><td>74.95㎡</td><td class='t-price'>5억 5,131만</td><td class='t-unit'>2,432만/평</td><td>11세대</td></tr><tr><td class='t-type'>84A</td><td>84.00㎡</td><td class='t-price'>6억 2,516만</td><td class='t-unit'>2,460만/평</td><td>50세대</td></tr><tr><td class='t-type'>84B</td><td>84.00㎡</td><td class='t-price'>6억 2,516만</td><td class='t-unit'>2,460만/평</td><td>15세대</td></tr><tr><td class='t-type'>84C</td><td>84.98㎡</td><td class='t-price'>6억 2,508만</td><td class='t-unit'>2,432만/평</td><td>8세대</td></tr></tbody>
           </table>
         </div>
+      </div>
+      <div class="price-card">
+        <div class="price-header">
+          <div class="price-name">더 리치먼드 미아 <span class="badge">서울</span></div>
+          <span class="chip" style="background:#f0f4f8;color:#2e86de;border:1px solid #2e86de22">오픈 예정</span>
+        </div>
+        <div class="price-sub">
+          <span>모집공고 2026-04-27</span>
+          <span>청약 2026-05-07 ~ 2026-05-12</span>
+          <span>당첨발표 2026-05-18</span>
+          <span>건설사 태원건설산업(주)</span>
+        </div>
+        <div class="type-table-wrap">
+          <table class="type-table">
+            <thead><tr><th>주택형</th><th>전용</th><th>분양가</th><th>평단가</th><th>세대수</th></tr></thead>
+            <tbody><tr><td class='t-type'>49A</td><td>49.75㎡</td><td class='t-price'>8억 200만</td><td class='t-unit'>5,329만/평</td><td>42세대</td></tr><tr><td class='t-type'>59A</td><td>59.84㎡</td><td class='t-price'>9억 5,300만</td><td class='t-unit'>5,265만/평</td><td>7세대</td></tr></tbody>
+          </table>
+        </div>
       </div></div>
   </div>
+  <div id="tab-realprice" class="tab-content">
+    <div class="container">
+    <div class="rp-filter"><button class="rp-btn rp-active" onclick="rpFilter('서울',this)">서울</button><button class="rp-btn " onclick="rpFilter('경기',this)">경기</button><button class="rp-btn " onclick="rpFilter('인천',this)">인천</button><button class="rp-btn " onclick="rpFilter('부산',this)">부산</button><button class="rp-btn " onclick="rpFilter('대구',this)">대구</button><button class="rp-btn " onclick="rpFilter('광주',this)">광주</button><button class="rp-btn " onclick="rpFilter('대전',this)">대전</button><button class="rp-btn " onclick="rpFilter('울산',this)">울산</button></div>
+    <div class="rp-table" id="rp-서울" style="display:block"></div><div class="rp-table" id="rp-경기" style="display:none"></div><div class="rp-table" id="rp-인천" style="display:none"></div><div class="rp-table" id="rp-부산" style="display:none"></div><div class="rp-table" id="rp-대구" style="display:none"></div><div class="rp-table" id="rp-광주" style="display:none"></div><div class="rp-table" id="rp-대전" style="display:none"></div><div class="rp-table" id="rp-울산" style="display:none"></div></div>
+  </div>
 
-  <footer>데이터 출처: 청약홈 (applyhome.co.kr)</footer>
+  <footer>데이터 출처: 청약홈 (applyhome.co.kr) · 국토교통부 실거래가 공개시스템</footer>
   <script>
     function switchTab(name, btn) {
       document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
       document.getElementById('tab-' + name).classList.add('active');
       btn.classList.add('active');
+    }
+    function rpFilter(sido, btn) {
+      document.querySelectorAll('.rp-table').forEach(el => el.style.display = 'none');
+      document.querySelectorAll('.rp-btn').forEach(el => el.classList.remove('rp-active'));
+      document.getElementById('rp-' + sido).style.display = 'block';
+      btn.classList.add('rp-active');
+    }
+    function toggleDeals(hd) {
+      const wrap = hd.nextElementSibling;
+      const arrow = hd.querySelector('.rp-arrow');
+      const open = wrap.style.display === 'none';
+      wrap.style.display = open ? 'block' : 'none';
+      arrow.classList.toggle('open', open);
+    }
+    function showAllDeals(code, deals) {
+      const wrap = document.getElementById('more-' + code);
+      if (!wrap) return;
+      wrap.innerHTML = deals.slice(3).map(d => {
+        const 억 = Math.floor(d.금액 / 10000);
+        const 만 = d.금액 % 10000;
+        const 금액str = 억 > 0 ? (억 + '억' + (만 ? ' ' + 만.toLocaleString() + '만' : '')) : 만.toLocaleString() + '만';
+        return '<div class="rp-deal">' + d.아파트 + ' ' + d.면적 + '㎡/' + d.층 + '층 — <b>' + 금액str + '</b> (' + d.월 + '/' + d.일 + ')</div>';
+      }).join('');
+      wrap.nextElementSibling.style.display = 'none';
     }
   </script>
 </body>
