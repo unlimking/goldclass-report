@@ -7,13 +7,17 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: -apple-system, 'Noto Sans KR', sans-serif; background: #f4f6f9; color: #222; }
-    header { background: #1a3c5e; color: #fff; padding: 18px 16px; text-align: center; }
+    header { background: #1a3c5e; color: #fff; padding: 16px 16px 14px; text-align: center; }
     header h1 { font-size: 1.25rem; font-weight: 700; }
     header p { font-size: 0.78rem; margin-top: 4px; opacity: 0.7; }
+    .hdr-stats { display: flex; justify-content: center; gap: 0; margin-top: 10px; }
+    .hdr-stat { flex: 1; max-width: 130px; background: rgba(255,255,255,0.1); border-radius: 8px; padding: 7px 6px; margin: 0 4px; }
+    .hdr-stat-val { font-size: 1.2rem; font-weight: 800; line-height: 1; }
+    .hdr-stat-lbl { font-size: 0.65rem; opacity: 0.75; margin-top: 3px; }
 
     /* 탭 */
     .tab-nav { display: flex; background: #fff; border-bottom: 2px solid #e0e4ea; position: sticky; top: 0; z-index: 10; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
-    .tab-btn { flex: 1; padding: 12px 4px; font-size: 0.82rem; font-weight: 600; color: #999; background: none; border: none; cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; }
+    .tab-btn { flex: 1; padding: 11px 2px; font-size: 0.79rem; font-weight: 600; color: #999; background: none; border: none; cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; white-space: nowrap; }
     .tab-btn.active { color: #1a3c5e; border-bottom-color: #1a3c5e; }
     .tab-content { display: none; }
     .tab-content.active { display: block; }
@@ -51,7 +55,8 @@
     .ct-h-sub { background:#2d5a8e; color:#cfe0f5; font-weight:500; padding:4px 8px; text-align:center; font-size:0.7rem; border-left:1px solid #3a6fa8; border-bottom:2px solid #1a3c5e; }
     .ct-table tbody tr:nth-child(even) { background:#f8fafc; }
     .ct-table tbody tr:hover { background:#eef3fb; }
-    .ct-type { font-weight:700; color:#1a3c5e; padding:8px 10px; text-align:center; background:#f0f4f9; border-right:1px solid #dde3ea; white-space:nowrap; }
+    .ct-type { font-weight:700; color:#1a3c5e; padding:8px 10px; text-align:center; background:#f0f4f9; border-right:1px solid #dde3ea; white-space:nowrap; position:sticky; left:0; z-index:1; }
+    .ct-h-type { position:sticky; left:0; z-index:2; }
     .ct-table td { padding:7px 8px; text-align:center; border-left:1px solid #f0f0f0; vertical-align:middle; line-height:1.4; }
     .ct-rate-val { display:block; font-weight:800; font-size:0.85rem; }
     .ct-cnt { display:block; font-size:0.68rem; font-weight:400; margin-top:1px; }
@@ -63,6 +68,10 @@
     .ct-pending .ct-cnt { color:#bbb; font-size:0.72rem; }
     .ct-label { font-size:0.65rem; color:#ccc; }
     .comp-meta { display: flex; flex-wrap: wrap; gap: 5px 14px; font-size: 0.75rem; color: #aaa; }
+    .sort-bar { display:flex; gap:6px; margin-bottom:12px; align-items:center; }
+    .sort-lbl { font-size:0.73rem; color:#aaa; margin-right:2px; }
+    .sort-btn { padding:5px 11px; border-radius:20px; border:1px solid #d0d6e0; background:#fff; font-size:0.75rem; font-weight:600; color:#666; cursor:pointer; }
+    .sort-btn.sort-active { background:#1a3c5e; color:#fff; border-color:#1a3c5e; }
 
     /* 탭3 분양가 카드 */
     .price-card { background: #fff; border-radius: 10px; padding: 13px 14px; margin-bottom: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.07); }
@@ -122,20 +131,39 @@
     .rp-deal b { color: #c0392b; }
     .rp-more-btn { margin-top: 8px; font-size: 0.72rem; color: #1a3c5e; background: none; border: 1px solid #d0d6e0; border-radius: 6px; padding: 4px 10px; cursor: pointer; }
 
+    .rp-compare { display:inline-block; font-size:0.68rem; font-weight:600; padding:1px 6px; border-radius:10px; margin-left:6px; vertical-align:middle; }
+    .rp-compare.above { background:#fff0f0; color:#c0392b; }
+    .rp-compare.below { background:#f0fff4; color:#27ae60; }
+    .badge-type { display:inline-block; font-size:0.63rem; padding:1px 5px; border-radius:10px; background:#f0f4f8; color:#555; font-weight:500; vertical-align:middle; margin-left:4px; }
+
     footer { text-align: center; font-size: 0.72rem; color: #bbb; padding: 20px; }
   </style>
 </head>
 <body>
   <header>
     <h1>전국 분양 일정 리포트</h1>
-    <p>매일 오전 8시 자동 업데이트 · 최종 업데이트: 2026-04-27 13:28</p>
+    <p>매일 오전 8시 자동 업데이트 · 최종 업데이트: 2026-04-27 13:43</p>
+    <div class="hdr-stats">
+      <div class="hdr-stat">
+        <div class="hdr-stat-val">7</div>
+        <div class="hdr-stat-lbl">청약 진행중</div>
+      </div>
+      <div class="hdr-stat">
+        <div class="hdr-stat-val">12</div>
+        <div class="hdr-stat-lbl">청약 예정</div>
+      </div>
+      <div class="hdr-stat">
+        <div class="hdr-stat-val">10</div>
+        <div class="hdr-stat-lbl">이번주 당첨발표</div>
+      </div>
+    </div>
   </header>
 
   <div class="tab-nav">
-    <button class="tab-btn active" onclick="switchTab('schedule',this)">분양 일정</button>
-    <button class="tab-btn" onclick="switchTab('competition',this)">경쟁률 자료</button>
-    <button class="tab-btn" onclick="switchTab('price',this)">분양가 상세</button>
-    <button class="tab-btn" onclick="switchTab('realprice',this)">실거래가</button>
+    <button class="tab-btn active" onclick="switchTab('schedule',this)">일정</button>
+    <button class="tab-btn" onclick="switchTab('competition',this)">경쟁률</button>
+    <button class="tab-btn" onclick="switchTab('price',this)">분양가</button>
+    <button class="tab-btn" onclick="switchTab('realprice',this)">시세</button>
   </div>
 
   <div id="tab-schedule" class="tab-content active">
@@ -149,6 +177,7 @@
           <div class="simple-name">
             <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000124&pblancNo=2026000124" target="_blank" rel="noopener" class="apt-link">고덕신도시 아테라 A-63블록 공공분양주택</a>
             <span class="badge">경기</span>
+            <span class="badge-type">국민</span>
             <span class="dday-chip" style="background:#c0392b">D-2</span>
           </div>
           <div class="simple-meta">
@@ -162,6 +191,7 @@
           <div class="simple-name">
             <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000115&pblancNo=2026000115" target="_blank" rel="noopener" class="apt-link">두산위브더제니스 구미(조합원취소분)</a>
             <span class="badge">경북</span>
+            <span class="badge-type">민영</span>
             <span class="dday-chip" style="background:#c0392b">D-2</span>
           </div>
           <div class="simple-meta">
@@ -175,6 +205,7 @@
           <div class="simple-name">
             <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000114&pblancNo=2026000114" target="_blank" rel="noopener" class="apt-link">공덕역자이르네</a>
             <span class="badge">서울</span>
+            <span class="badge-type">민영</span>
             <span class="dday-chip" style="background:#c0392b">D-3</span>
           </div>
           <div class="simple-meta">
@@ -188,6 +219,7 @@
           <div class="simple-name">
             <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000107&pblancNo=2026000107" target="_blank" rel="noopener" class="apt-link">경기광주역 롯데캐슬 시그니처 1단지</a>
             <span class="badge">경기</span>
+            <span class="badge-type">민영</span>
             <span class="dday-chip" style="background:#c0392b">D-2</span>
           </div>
           <div class="simple-meta">
@@ -201,6 +233,7 @@
           <div class="simple-name">
             <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000089&pblancNo=2026000089" target="_blank" rel="noopener" class="apt-link">강릉 우미 린 더 프리미어</a>
             <span class="badge">강원</span>
+            <span class="badge-type">민영</span>
             <span class="dday-chip" style="background:#c0392b">D-2</span>
           </div>
           <div class="simple-meta">
@@ -214,6 +247,7 @@
           <div class="simple-name">
             <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000113&pblancNo=2026000113" target="_blank" rel="noopener" class="apt-link">동탄 그웬 160 (동탄2 B11BL)</a>
             <span class="badge">경기</span>
+            <span class="badge-type">민영</span>
             <span class="dday-chip" style="background:#c0392b">D-2</span>
           </div>
           <div class="simple-meta">
@@ -227,6 +261,7 @@
           <div class="simple-name">
             <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000135&pblancNo=2026000135" target="_blank" rel="noopener" class="apt-link">인천가정2지구 B2블록 공공분양주택(후속사업)</a>
             <span class="badge">인천</span>
+            <span class="badge-type">국민</span>
             <span class="dday-chip" style="background:#c0392b">D-3</span>
           </div>
           <div class="simple-meta">
@@ -246,6 +281,7 @@
           <div class="simple-name">
             <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000146&pblancNo=2026000146" target="_blank" rel="noopener" class="apt-link">기장 이진캐스빌 포레</a>
             <span class="badge">부산</span>
+            <span class="badge-type">민영</span>
             <span class="dday-chip" style="background:#c0392b">D-2</span>
           </div>
           <div class="simple-meta">
@@ -259,6 +295,7 @@
           <div class="simple-name">
             <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000130&pblancNo=2026000130" target="_blank" rel="noopener" class="apt-link">PH159</a>
             <span class="badge">제주</span>
+            <span class="badge-type">민영</span>
             <span class="dday-chip" style="background:#c0392b">D-3</span>
           </div>
           <div class="simple-meta">
@@ -272,6 +309,7 @@
           <div class="simple-name">
             <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000143&pblancNo=2026000143" target="_blank" rel="noopener" class="apt-link">파주금촌 금호어울림(조합원 취소분)</a>
             <span class="badge">경기</span>
+            <span class="badge-type">민영</span>
             <span class="dday-chip" style="background:#c0392b">D-7</span>
           </div>
           <div class="simple-meta">
@@ -285,6 +323,7 @@
           <div class="simple-name">
             <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000127&pblancNo=2026000127" target="_blank" rel="noopener" class="apt-link">천안 휴먼빌 퍼스트시티(2회차)</a>
             <span class="badge">충남</span>
+            <span class="badge-type">민영</span>
             <span class="dday-chip" style="background:#c0392b">D-7</span>
           </div>
           <div class="simple-meta">
@@ -298,6 +337,7 @@
           <div class="simple-name">
             <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000096&pblancNo=2026000096" target="_blank" rel="noopener" class="apt-link">천안 동문 디 이스트 파크시티</a>
             <span class="badge">충남</span>
+            <span class="badge-type">민영</span>
             <span class="dday-chip" style="background:#c0392b">D-7</span>
           </div>
           <div class="simple-meta">
@@ -311,6 +351,7 @@
           <div class="simple-name">
             <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000091&pblancNo=2026000091" target="_blank" rel="noopener" class="apt-link">소제지구 A4BL 중흥S-클래스 우미린</a>
             <span class="badge">전남</span>
+            <span class="badge-type">민영</span>
             <span class="dday-chip" style="background:#c0392b">D-7</span>
           </div>
           <div class="simple-meta">
@@ -324,6 +365,7 @@
           <div class="simple-name">
             <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000090&pblancNo=2026000090" target="_blank" rel="noopener" class="apt-link">소제지구 A3BL 중흥S-클래스 우미린</a>
             <span class="badge">전남</span>
+            <span class="badge-type">민영</span>
             <span class="dday-chip" style="background:#c0392b">D-7</span>
           </div>
           <div class="simple-meta">
@@ -337,6 +379,7 @@
           <div class="simple-name">
             <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000152&pblancNo=2026000152" target="_blank" rel="noopener" class="apt-link">e편한세상 부천 어반스퀘어</a>
             <span class="badge">경기</span>
+            <span class="badge-type">민영</span>
             <span class="dday-chip" style="background:#c0392b">D-7</span>
           </div>
           <div class="simple-meta">
@@ -350,6 +393,7 @@
           <div class="simple-name">
             <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000129&pblancNo=2026000129" target="_blank" rel="noopener" class="apt-link">더샵 관저아르테</a>
             <span class="badge">대전</span>
+            <span class="badge-type">민영</span>
             <span class="dday-chip" style="background:#c0392b">D-9</span>
           </div>
           <div class="simple-meta">
@@ -363,6 +407,7 @@
           <div class="simple-name">
             <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000102&pblancNo=2026000102" target="_blank" rel="noopener" class="apt-link">울산신복역 비스타 메트로</a>
             <span class="badge">울산</span>
+            <span class="badge-type">민영</span>
             <span class="dday-chip" style="background:#c0392b">D-9</span>
           </div>
           <div class="simple-meta">
@@ -376,6 +421,7 @@
           <div class="simple-name">
             <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000088&pblancNo=2026000088" target="_blank" rel="noopener" class="apt-link">용인 양지 서희스타힐스 하이뷰</a>
             <span class="badge">경기</span>
+            <span class="badge-type">민영</span>
             <span class="dday-chip" style="background:#c0392b">D-9</span>
           </div>
           <div class="simple-meta">
@@ -389,6 +435,7 @@
           <div class="simple-name">
             <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000156&pblancNo=2026000156" target="_blank" rel="noopener" class="apt-link">더 리치먼드 미아</a>
             <span class="badge">서울</span>
+            <span class="badge-type">민영</span>
             <span class="dday-chip" style="background:#c0392b">D-10</span>
           </div>
           <div class="simple-meta">
@@ -402,10 +449,19 @@
   </div>
   <div id="tab-competition" class="tab-content">
     <div class="container">
-        <div class="comp-card">
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:14px;">
+      <div class="sf-wrap" style="margin:0;flex:1;min-width:0"><button class="sf-btn cf-btn sf-active" onclick="compFilter('전체',this)">전체</button><button class="sf-btn cf-btn" onclick="compFilter('강원',this)">강원</button><button class="sf-btn cf-btn" onclick="compFilter('경기',this)">경기</button><button class="sf-btn cf-btn" onclick="compFilter('경남',this)">경남</button><button class="sf-btn cf-btn" onclick="compFilter('경북',this)">경북</button><button class="sf-btn cf-btn" onclick="compFilter('대전',this)">대전</button><button class="sf-btn cf-btn" onclick="compFilter('부산',this)">부산</button><button class="sf-btn cf-btn" onclick="compFilter('서울',this)">서울</button><button class="sf-btn cf-btn" onclick="compFilter('울산',this)">울산</button><button class="sf-btn cf-btn" onclick="compFilter('전북',this)">전북</button><button class="sf-btn cf-btn" onclick="compFilter('충남',this)">충남</button><button class="sf-btn cf-btn" onclick="compFilter('충북',this)">충북</button></div>
+      <div class="sort-bar" style="margin:0;flex-shrink:0">
+        <span class="sort-lbl">정렬</span>
+        <button class="sort-btn sort-active" onclick="compSort('date',this)">최신순</button>
+        <button class="sort-btn" onclick="compSort('rate',this)">경쟁률순</button>
+      </div>
+    </div><div id="comp-cards">
+        <div class="comp-card" data-sido="충북" data-windate="2026-04-30" data-maxrate="16.71">
           <div class="comp-header">
-            <span class="comp-name">청주 푸르지오 씨엘리체</span>
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000087&pblancNo=2026000087" target="_blank" rel="noopener" class="apt-link comp-name">청주 푸르지오 씨엘리체</a>
             <span class="badge">충북</span>
+            <span class="badge-type">민영</span>
             <span class="chip chip-wait">집계중</span>
           </div>
           <div class="comp-rate"><div class="ct-wrap"><table class="ct-table"><thead><tr><th rowspan="2" class="ct-h-type">주택형</th><th colspan="2" class="ct-h-group">1순위</th><th colspan="2" class="ct-h-group">2순위</th></tr><tr><th class="ct-h-sub">해당지역</th><th class="ct-h-sub">기타지역</th><th class="ct-h-sub">해당지역</th><th class="ct-h-sub">기타지역</th></tr></thead><tbody><tr><td class="ct-type">84A</td><td class="ct-hit"><span class="ct-rate-val">16.71:1</span><br><span class="ct-cnt">4,110건</span></td><td class="ct-pending"><span class="ct-cnt">142건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">84B</td><td class="ct-hit"><span class="ct-rate-val">3.04:1</span><br><span class="ct-cnt">386건</span></td><td class="ct-pending"><span class="ct-cnt">21건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">294건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">17건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">84C</td><td class="ct-hit"><span class="ct-rate-val">2.83:1</span><br><span class="ct-cnt">391건</span></td><td class="ct-pending"><span class="ct-cnt">6건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">164건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">4건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">114A</td><td class="ct-hit"><span class="ct-rate-val">3.73:1</span><br><span class="ct-cnt">1,107건</span></td><td class="ct-pending"><span class="ct-cnt">21건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">172건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">8건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">114B</td><td class="ct-hit"><span class="ct-rate-val">1.31:1</span><br><span class="ct-cnt">134건</span></td><td class="ct-pending"><span class="ct-cnt">3건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">26건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">3건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">114C</td><td class="ct-hit"><span class="ct-rate-val">2.38:1</span><br><span class="ct-cnt">250건</span></td><td class="ct-pending"><span class="ct-cnt">1건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">34건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">1건</span><br><span class="ct-label">집계중</span></td></tr></tbody></table></div></div>
@@ -416,10 +472,11 @@
             <span>건설사 (주)대우건설</span>
           </div>
         </div>
-        <div class="comp-card">
+        <div class="comp-card" data-sido="울산" data-windate="2026-04-29" data-maxrate="1.5">
           <div class="comp-header">
-            <span class="comp-name">문수로 라티에르 673</span>
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000121&pblancNo=2026000121" target="_blank" rel="noopener" class="apt-link comp-name">문수로 라티에르 673</a>
             <span class="badge">울산</span>
+            <span class="badge-type">민영</span>
             <span class="chip chip-wait">집계중</span>
           </div>
           <div class="comp-rate"><div class="ct-wrap"><table class="ct-table"><thead><tr><th rowspan="2" class="ct-h-type">주택형</th><th colspan="2" class="ct-h-group">1순위</th><th colspan="2" class="ct-h-group">2순위</th></tr><tr><th class="ct-h-sub">해당지역</th><th class="ct-h-sub">기타지역</th><th class="ct-h-sub">해당지역</th><th class="ct-h-sub">기타지역</th></tr></thead><tbody><tr><td class="ct-type">84A</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">25건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">2건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">4건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">1건</span></td></tr><tr><td class="ct-type">84B</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">13건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td><td class="ct-hit"><span class="ct-rate-val">1.50:1</span><br><span class="ct-cnt">3건</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">84C</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">26건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">3건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">7건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td></tr><tr><td class="ct-type">104</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">3건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">5건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td></tr></tbody></table></div></div>
@@ -430,10 +487,11 @@
             <span>건설사 금강종합건설(주)</span>
           </div>
         </div>
-        <div class="comp-card">
+        <div class="comp-card" data-sido="경기" data-windate="2026-04-29" data-maxrate="2.6">
           <div class="comp-header">
-            <span class="comp-name">용인 고림 동문 디 이스트</span>
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000112&pblancNo=2026000112" target="_blank" rel="noopener" class="apt-link comp-name">용인 고림 동문 디 이스트</a>
             <span class="badge">경기</span>
+            <span class="badge-type">민영</span>
             <span class="chip chip-wait">집계중</span>
           </div>
           <div class="comp-rate"><div class="ct-wrap"><table class="ct-table"><thead><tr><th rowspan="2" class="ct-h-type">주택형</th><th colspan="2" class="ct-h-group">1순위</th><th colspan="2" class="ct-h-group">2순위</th></tr><tr><th class="ct-h-sub">해당지역</th><th class="ct-h-sub">기타지역</th><th class="ct-h-sub">해당지역</th><th class="ct-h-sub">기타지역</th></tr></thead><tbody><tr><td class="ct-type">59</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">33건</span></td><td class="ct-hit"><span class="ct-rate-val">2.60:1</span><br><span class="ct-cnt">26건</span></td><td class="ct-pending"><span class="ct-cnt">3건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">20건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">75A</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">1건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">14건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">1건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">5건</span></td></tr><tr><td class="ct-type">75B</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">4건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">15건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">1건</span></td></tr><tr><td class="ct-type">84A</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">2건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">12건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">6건</span></td></tr><tr><td class="ct-type">84B</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">1건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">1건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">1건</span></td></tr></tbody></table></div></div>
@@ -444,10 +502,11 @@
             <span>건설사 동문건설 주식회사</span>
           </div>
         </div>
-        <div class="comp-card">
+        <div class="comp-card" data-sido="경남" data-windate="2026-04-29" data-maxrate="38.51">
           <div class="comp-header">
-            <span class="comp-name">엘리프 창원</span>
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000110&pblancNo=2026000110" target="_blank" rel="noopener" class="apt-link comp-name">엘리프 창원</a>
             <span class="badge">경남</span>
+            <span class="badge-type">민영</span>
             <span class="chip chip-wait">집계중</span>
           </div>
           <div class="comp-rate"><div class="ct-wrap"><table class="ct-table"><thead><tr><th rowspan="2" class="ct-h-type">주택형</th><th colspan="2" class="ct-h-group">1순위</th><th colspan="2" class="ct-h-group">2순위</th></tr><tr><th class="ct-h-sub">해당지역</th><th class="ct-h-sub">기타지역</th><th class="ct-h-sub">해당지역</th><th class="ct-h-sub">기타지역</th></tr></thead><tbody><tr><td class="ct-type">76A</td><td class="ct-hit"><span class="ct-rate-val">15.87:1</span><br><span class="ct-cnt">984건</span></td><td class="ct-pending"><span class="ct-cnt">105건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">84A</td><td class="ct-hit"><span class="ct-rate-val">38.51:1</span><br><span class="ct-cnt">1,887건</span></td><td class="ct-pending"><span class="ct-cnt">177건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">84B</td><td class="ct-hit"><span class="ct-rate-val">16.29:1</span><br><span class="ct-cnt">228건</span></td><td class="ct-pending"><span class="ct-cnt">40건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr></tbody></table></div></div>
@@ -458,10 +517,11 @@
             <span>건설사 (주)케이알산업</span>
           </div>
         </div>
-        <div class="comp-card">
+        <div class="comp-card" data-sido="대전" data-windate="2026-04-29" data-maxrate="26.0">
           <div class="comp-header">
-            <span class="comp-name">도안자이 센텀리체 2단지</span>
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000105&pblancNo=2026000105" target="_blank" rel="noopener" class="apt-link comp-name">도안자이 센텀리체 2단지</a>
             <span class="badge">대전</span>
+            <span class="badge-type">민영</span>
             <span class="chip chip-wait">집계중</span>
           </div>
           <div class="comp-rate"><div class="ct-wrap"><table class="ct-table"><thead><tr><th rowspan="2" class="ct-h-type">주택형</th><th colspan="2" class="ct-h-group">1순위</th><th colspan="2" class="ct-h-group">2순위</th></tr><tr><th class="ct-h-sub">해당지역</th><th class="ct-h-sub">기타지역</th><th class="ct-h-sub">해당지역</th><th class="ct-h-sub">기타지역</th></tr></thead><tbody><tr><td class="ct-type">84A</td><td class="ct-hit"><span class="ct-rate-val">1.84:1</span><br><span class="ct-cnt">747건</span></td><td class="ct-pending"><span class="ct-cnt">165건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">117건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">39건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">115A</td><td class="ct-hit"><span class="ct-rate-val">1.05:1</span><br><span class="ct-cnt">207건</span></td><td class="ct-pending"><span class="ct-cnt">67건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">46건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">12건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">134</td><td class="ct-hit"><span class="ct-rate-val">26.00:1</span><br><span class="ct-cnt">52건</span></td><td class="ct-pending"><span class="ct-cnt">8건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr></tbody></table></div></div>
@@ -472,10 +532,11 @@
             <span>건설사 지에스건설(주)</span>
           </div>
         </div>
-        <div class="comp-card">
+        <div class="comp-card" data-sido="경남" data-windate="2026-04-29" data-maxrate="118.0">
           <div class="comp-header">
-            <span class="comp-name">힐스테이트 평거 센트럴</span>
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000085&pblancNo=2026000085" target="_blank" rel="noopener" class="apt-link comp-name">힐스테이트 평거 센트럴</a>
             <span class="badge">경남</span>
+            <span class="badge-type">민영</span>
             <span class="chip chip-wait">집계중</span>
           </div>
           <div class="comp-rate"><div class="ct-wrap"><table class="ct-table"><thead><tr><th rowspan="2" class="ct-h-type">주택형</th><th colspan="2" class="ct-h-group">1순위</th><th colspan="2" class="ct-h-group">2순위</th></tr><tr><th class="ct-h-sub">해당지역</th><th class="ct-h-sub">기타지역</th><th class="ct-h-sub">해당지역</th><th class="ct-h-sub">기타지역</th></tr></thead><tbody><tr><td class="ct-type">84A</td><td class="ct-hit"><span class="ct-rate-val">27.23:1</span><br><span class="ct-cnt">1,307건</span></td><td class="ct-pending"><span class="ct-cnt">149건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">84B</td><td class="ct-hit"><span class="ct-rate-val">118.00:1</span><br><span class="ct-cnt">1,416건</span></td><td class="ct-pending"><span class="ct-cnt">136건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">105A</td><td class="ct-hit"><span class="ct-rate-val">3.03:1</span><br><span class="ct-cnt">227건</span></td><td class="ct-pending"><span class="ct-cnt">31건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">185건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">39건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">105B</td><td class="ct-hit"><span class="ct-rate-val">4.08:1</span><br><span class="ct-cnt">102건</span></td><td class="ct-pending"><span class="ct-cnt">17건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">83건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">33건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">105C</td><td class="ct-hit"><span class="ct-rate-val">14.21:1</span><br><span class="ct-cnt">341건</span></td><td class="ct-pending"><span class="ct-cnt">27건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr></tbody></table></div></div>
@@ -486,10 +547,11 @@
             <span>건설사 현대엔지니어링(주)</span>
           </div>
         </div>
-        <div class="comp-card">
+        <div class="comp-card" data-sido="충남" data-windate="2026-04-28" data-maxrate="0.0">
           <div class="comp-header">
-            <span class="comp-name">아산경남아너스빌 랜드마크49</span>
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000109&pblancNo=2026000109" target="_blank" rel="noopener" class="apt-link comp-name">아산경남아너스빌 랜드마크49</a>
             <span class="badge">충남</span>
+            <span class="badge-type">민영</span>
             <span class="chip chip-wait">집계중</span>
           </div>
           <div class="comp-rate"><div class="ct-wrap"><table class="ct-table"><thead><tr><th rowspan="2" class="ct-h-type">주택형</th><th colspan="2" class="ct-h-group">1순위</th><th colspan="2" class="ct-h-group">2순위</th></tr><tr><th class="ct-h-sub">해당지역</th><th class="ct-h-sub">기타지역</th><th class="ct-h-sub">해당지역</th><th class="ct-h-sub">기타지역</th></tr></thead><tbody><tr><td class="ct-type">84</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">2건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">1건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">1건</span></td></tr><tr><td class="ct-type">89</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">1건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td></tr><tr><td class="ct-type">105</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">1건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td></tr></tbody></table></div></div>
@@ -500,10 +562,11 @@
             <span>건설사 (주)남선알미늄</span>
           </div>
         </div>
-        <div class="comp-card">
+        <div class="comp-card" data-sido="대전" data-windate="2026-04-28" data-maxrate="2.59">
           <div class="comp-header">
-            <span class="comp-name">도안자이 센텀리체 1단지</span>
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000104&pblancNo=2026000104" target="_blank" rel="noopener" class="apt-link comp-name">도안자이 센텀리체 1단지</a>
             <span class="badge">대전</span>
+            <span class="badge-type">민영</span>
             <span class="chip chip-wait">집계중</span>
           </div>
           <div class="comp-rate"><div class="ct-wrap"><table class="ct-table"><thead><tr><th rowspan="2" class="ct-h-type">주택형</th><th colspan="2" class="ct-h-group">1순위</th><th colspan="2" class="ct-h-group">2순위</th></tr><tr><th class="ct-h-sub">해당지역</th><th class="ct-h-sub">기타지역</th><th class="ct-h-sub">해당지역</th><th class="ct-h-sub">기타지역</th></tr></thead><tbody><tr><td class="ct-type">84A</td><td class="ct-hit"><span class="ct-rate-val">2.08:1</span><br><span class="ct-cnt">838건</span></td><td class="ct-pending"><span class="ct-cnt">198건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">109건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">32건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">84C</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">120건</span></td><td class="ct-hit"><span class="ct-rate-val">1.12:1</span><br><span class="ct-cnt">38건</span></td><td class="ct-pending"><span class="ct-cnt">28건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">2건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">99A</td><td class="ct-hit"><span class="ct-rate-val">2.59:1</span><br><span class="ct-cnt">238건</span></td><td class="ct-pending"><span class="ct-cnt">68건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">35건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">10건</span><br><span class="ct-label">집계중</span></td></tr></tbody></table></div></div>
@@ -514,10 +577,11 @@
             <span>건설사 지에스건설(주)</span>
           </div>
         </div>
-        <div class="comp-card">
+        <div class="comp-card" data-sido="전북" data-windate="2026-04-28" data-maxrate="72.56">
           <div class="comp-header">
-            <span class="comp-name">골드클래스 시그니처</span>
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000082&pblancNo=2026000082" target="_blank" rel="noopener" class="apt-link comp-name">골드클래스 시그니처</a>
             <span class="badge">전북</span>
+            <span class="badge-type">민영</span>
             <span class="chip chip-wait">집계중</span>
           </div>
           <div class="comp-rate"><div class="ct-wrap"><table class="ct-table"><thead><tr><th rowspan="2" class="ct-h-type">주택형</th><th colspan="2" class="ct-h-group">1순위</th><th colspan="2" class="ct-h-group">2순위</th></tr><tr><th class="ct-h-sub">해당지역</th><th class="ct-h-sub">기타지역</th><th class="ct-h-sub">해당지역</th><th class="ct-h-sub">기타지역</th></tr></thead><tbody><tr><td class="ct-type">39A</td><td class="ct-hit"><span class="ct-rate-val">3.00:1</span><br><span class="ct-cnt">36건</span></td><td class="ct-pending"><span class="ct-cnt">3건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">54건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">18건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">39B</td><td class="ct-hit"><span class="ct-rate-val">3.25:1</span><br><span class="ct-cnt">39건</span></td><td class="ct-pending"><span class="ct-cnt">8건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">44건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">16건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">59</td><td class="ct-hit"><span class="ct-rate-val">20.82:1</span><br><span class="ct-cnt">1,249건</span></td><td class="ct-pending"><span class="ct-cnt">124건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">84A</td><td class="ct-hit"><span class="ct-rate-val">72.56:1</span><br><span class="ct-cnt">1,161건</span></td><td class="ct-pending"><span class="ct-cnt">131건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">84B</td><td class="ct-hit"><span class="ct-rate-val">61.08:1</span><br><span class="ct-cnt">2,199건</span></td><td class="ct-pending"><span class="ct-cnt">179건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">84C</td><td class="ct-hit"><span class="ct-rate-val">29.55:1</span><br><span class="ct-cnt">325건</span></td><td class="ct-pending"><span class="ct-cnt">54건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">121</td><td class="ct-hit"><span class="ct-rate-val">20.85:1</span><br><span class="ct-cnt">688건</span></td><td class="ct-pending"><span class="ct-cnt">41건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr></tbody></table></div></div>
@@ -528,10 +592,11 @@
             <span>건설사 보광종합건설(주)</span>
           </div>
         </div>
-        <div class="comp-card">
+        <div class="comp-card" data-sido="경북" data-windate="2026-04-28" data-maxrate="12.76">
           <div class="comp-header">
-            <span class="comp-name">더샵 안동더퍼스트</span>
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000093&pblancNo=2026000093" target="_blank" rel="noopener" class="apt-link comp-name">더샵 안동더퍼스트</a>
             <span class="badge">경북</span>
+            <span class="badge-type">민영</span>
             <span class="chip chip-wait">집계중</span>
           </div>
           <div class="comp-rate"><div class="ct-wrap"><table class="ct-table"><thead><tr><th rowspan="2" class="ct-h-type">주택형</th><th colspan="2" class="ct-h-group">1순위</th><th colspan="2" class="ct-h-group">2순위</th></tr><tr><th class="ct-h-sub">해당지역</th><th class="ct-h-sub">기타지역</th><th class="ct-h-sub">해당지역</th><th class="ct-h-sub">기타지역</th></tr></thead><tbody><tr><td class="ct-type">70</td><td class="ct-hit"><span class="ct-rate-val">6.47:1</span><br><span class="ct-cnt">291건</span></td><td class="ct-pending"><span class="ct-cnt">49건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">84A</td><td class="ct-hit"><span class="ct-rate-val">2.75:1</span><br><span class="ct-cnt">292건</span></td><td class="ct-pending"><span class="ct-cnt">78건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">372건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">77건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">84B</td><td class="ct-hit"><span class="ct-rate-val">10.49:1</span><br><span class="ct-cnt">913건</span></td><td class="ct-pending"><span class="ct-cnt">154건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">84C</td><td class="ct-hit"><span class="ct-rate-val">12.76:1</span><br><span class="ct-cnt">217건</span></td><td class="ct-pending"><span class="ct-cnt">37건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">109</td><td class="ct-hit"><span class="ct-rate-val">5.31:1</span><br><span class="ct-cnt">308건</span></td><td class="ct-pending"><span class="ct-cnt">43건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">141</td><td class="ct-hit"><span class="ct-rate-val">6.50:1</span><br><span class="ct-cnt">26건</span></td><td class="ct-pending"><span class="ct-cnt">4건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr></tbody></table></div></div>
@@ -542,10 +607,11 @@
             <span>건설사 (주)포스코이앤씨</span>
           </div>
         </div>
-        <div class="comp-card">
+        <div class="comp-card" data-sido="경기" data-windate="2026-04-24" data-maxrate="3.0">
           <div class="comp-header">
-            <span class="comp-name">야목역 서희스타힐스 그랜드힐</span>
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000069&pblancNo=2026000069" target="_blank" rel="noopener" class="apt-link comp-name">야목역 서희스타힐스 그랜드힐</a>
             <span class="badge">경기</span>
+            <span class="badge-type">민영</span>
             <span class="chip chip-done">발표완료</span>
           </div>
           <div class="comp-rate"><div class="ct-wrap"><table class="ct-table"><thead><tr><th rowspan="2" class="ct-h-type">주택형</th><th colspan="2" class="ct-h-group">1순위</th><th colspan="2" class="ct-h-group">2순위</th></tr><tr><th class="ct-h-sub">해당지역</th><th class="ct-h-sub">기타지역</th><th class="ct-h-sub">해당지역</th><th class="ct-h-sub">기타지역</th></tr></thead><tbody><tr><td class="ct-type">59A</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">5건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">21건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">1건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">5건</span></td></tr><tr><td class="ct-type">59B</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">1건</span></td><td class="ct-hit"><span class="ct-rate-val">1.25:1</span><br><span class="ct-cnt">5건</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">2건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">59C</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">1건</span></td><td class="ct-hit"><span class="ct-rate-val">3.00:1</span><br><span class="ct-cnt">6건</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">2건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">84A</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">1건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">10건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">2건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">4건</span></td></tr><tr><td class="ct-type">84B</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">4건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">9건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">2건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">4건</span></td></tr></tbody></table></div></div>
@@ -556,10 +622,11 @@
             <span>건설사 (주)서희건설</span>
           </div>
         </div>
-        <div class="comp-card">
+        <div class="comp-card" data-sido="서울" data-windate="2026-04-22" data-maxrate="42.4">
           <div class="comp-header">
-            <span class="comp-name">라클라체자이드파인</span>
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000094&pblancNo=2026000094" target="_blank" rel="noopener" class="apt-link comp-name">라클라체자이드파인</a>
             <span class="badge">서울</span>
+            <span class="badge-type">민영</span>
             <span class="chip chip-done">발표완료</span>
           </div>
           <div class="comp-rate"><div class="ct-wrap"><table class="ct-table"><thead><tr><th rowspan="2" class="ct-h-type">주택형</th><th colspan="2" class="ct-h-group">1순위</th><th colspan="2" class="ct-h-group">2순위</th></tr><tr><th class="ct-h-sub">해당지역</th><th class="ct-h-sub">기타지역</th><th class="ct-h-sub">해당지역</th><th class="ct-h-sub">기타지역</th></tr></thead><tbody><tr><td class="ct-type">59A</td><td class="ct-hit"><span class="ct-rate-val">40.50:1</span><br><span class="ct-cnt">2,430건</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">59B</td><td class="ct-hit"><span class="ct-rate-val">42.40:1</span><br><span class="ct-cnt">212건</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">59C</td><td class="ct-hit"><span class="ct-rate-val">37.31:1</span><br><span class="ct-cnt">597건</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">84A</td><td class="ct-hit"><span class="ct-rate-val">21.36:1</span><br><span class="ct-cnt">598건</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">84B</td><td class="ct-hit"><span class="ct-rate-val">18.40:1</span><br><span class="ct-cnt">736건</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">84C</td><td class="ct-hit"><span class="ct-rate-val">14.10:1</span><br><span class="ct-cnt">141건</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">106A</td><td class="ct-hit"><span class="ct-rate-val">6.14:1</span><br><span class="ct-cnt">129건</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr></tbody></table></div></div>
@@ -570,10 +637,11 @@
             <span>건설사 지에스건설(주), 에스케이에코플랜트 주식회사</span>
           </div>
         </div>
-        <div class="comp-card">
+        <div class="comp-card" data-sido="충남" data-windate="2026-04-22" data-maxrate="12.75">
           <div class="comp-header">
-            <span class="comp-name">업성 푸르지오 레이크시티</span>
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000086&pblancNo=2026000086" target="_blank" rel="noopener" class="apt-link comp-name">업성 푸르지오 레이크시티</a>
             <span class="badge">충남</span>
+            <span class="badge-type">민영</span>
             <span class="chip chip-done">발표완료</span>
           </div>
           <div class="comp-rate"><div class="ct-wrap"><table class="ct-table"><thead><tr><th rowspan="2" class="ct-h-type">주택형</th><th colspan="2" class="ct-h-group">1순위</th><th colspan="2" class="ct-h-group">2순위</th></tr><tr><th class="ct-h-sub">해당지역</th><th class="ct-h-sub">기타지역</th><th class="ct-h-sub">해당지역</th><th class="ct-h-sub">기타지역</th></tr></thead><tbody><tr><td class="ct-type">72A</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">79건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">19건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">11건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">3건</span></td></tr><tr><td class="ct-type">72B</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">41건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">8건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">3건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">2건</span></td></tr><tr><td class="ct-type">72C</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">6건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td></tr><tr><td class="ct-type">72D</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">1건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">1건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td></tr><tr><td class="ct-type">84A</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">170건</span></td><td class="ct-hit"><span class="ct-rate-val">12.75:1</span><br><span class="ct-cnt">51건</span></td><td class="ct-pending"><span class="ct-cnt">38건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">11건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">84B</td><td class="ct-hit"><span class="ct-rate-val">9.94:1</span><br><span class="ct-cnt">477건</span></td><td class="ct-pending"><span class="ct-cnt">52건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">84C</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">45건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">14건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">9건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">5건</span></td></tr><tr><td class="ct-type">84D</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">18건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">3건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">9건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">2건</span></td></tr><tr><td class="ct-type">95A</td><td class="ct-hit"><span class="ct-rate-val">1.60:1</span><br><span class="ct-cnt">361건</span></td><td class="ct-pending"><span class="ct-cnt">57건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">17건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">11건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">95B</td><td class="ct-hit"><span class="ct-rate-val">1.93:1</span><br><span class="ct-cnt">139건</span></td><td class="ct-pending"><span class="ct-cnt">11건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">10건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">1건</span><br><span class="ct-label">집계중</span></td></tr></tbody></table></div></div>
@@ -584,10 +652,11 @@
             <span>건설사 (주)대우건설</span>
           </div>
         </div>
-        <div class="comp-card">
+        <div class="comp-card" data-sido="전북" data-windate="2026-04-22" data-maxrate="1.22">
           <div class="comp-header">
-            <span class="comp-name">북전주 광신프로그레스</span>
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000077&pblancNo=2026000077" target="_blank" rel="noopener" class="apt-link comp-name">북전주 광신프로그레스</a>
             <span class="badge">전북</span>
+            <span class="badge-type">민영</span>
             <span class="chip chip-done">발표완료</span>
           </div>
           <div class="comp-rate"><div class="ct-wrap"><table class="ct-table"><thead><tr><th rowspan="2" class="ct-h-type">주택형</th><th colspan="2" class="ct-h-group">1순위</th><th colspan="2" class="ct-h-group">2순위</th></tr><tr><th class="ct-h-sub">해당지역</th><th class="ct-h-sub">기타지역</th><th class="ct-h-sub">해당지역</th><th class="ct-h-sub">기타지역</th></tr></thead><tbody><tr><td class="ct-type">84A</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">201건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">39건</span></td><td class="ct-hit"><span class="ct-rate-val">1.22:1</span><br><span class="ct-cnt">56건</span></td><td class="ct-pending"><span class="ct-cnt">16건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">84B</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">14건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">5건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">3건</span></td></tr></tbody></table></div></div>
@@ -598,10 +667,11 @@
             <span>건설사 (주)광신종합건설, (주)광신토건</span>
           </div>
         </div>
-        <div class="comp-card">
+        <div class="comp-card" data-sido="부산" data-windate="2026-04-21" data-maxrate="2.0">
           <div class="comp-header">
-            <span class="comp-name">온천장 하늘채 엘리시움</span>
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000101&pblancNo=2026000101" target="_blank" rel="noopener" class="apt-link comp-name">온천장 하늘채 엘리시움</a>
             <span class="badge">부산</span>
+            <span class="badge-type">민영</span>
             <span class="chip chip-done">발표완료</span>
           </div>
           <div class="comp-rate"><div class="ct-wrap"><table class="ct-table"><thead><tr><th rowspan="2" class="ct-h-type">주택형</th><th colspan="2" class="ct-h-group">1순위</th><th colspan="2" class="ct-h-group">2순위</th></tr><tr><th class="ct-h-sub">해당지역</th><th class="ct-h-sub">기타지역</th><th class="ct-h-sub">해당지역</th><th class="ct-h-sub">기타지역</th></tr></thead><tbody><tr><td class="ct-type">73</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">13건</span></td><td class="ct-hit"><span class="ct-rate-val">2.00:1</span><br><span class="ct-cnt">4건</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">81</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td><td class="ct-hit"><span class="ct-rate-val">2.00:1</span><br><span class="ct-cnt">4건</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">84A</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">20건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">2건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">11건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">2건</span></td></tr><tr><td class="ct-type">84B</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">4건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">3건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">2건</span></td></tr></tbody></table></div></div>
@@ -612,10 +682,11 @@
             <span>건설사 코오롱글로벌(주)</span>
           </div>
         </div>
-        <div class="comp-card">
+        <div class="comp-card" data-sido="경기" data-windate="2026-04-21" data-maxrate="2.43">
           <div class="comp-header">
-            <span class="comp-name">풍무역세권 수자인 그라센트 2차</span>
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000073&pblancNo=2026000073" target="_blank" rel="noopener" class="apt-link comp-name">풍무역세권 수자인 그라센트 2차</a>
             <span class="badge">경기</span>
+            <span class="badge-type">민영</span>
             <span class="chip chip-done">발표완료</span>
           </div>
           <div class="comp-rate"><div class="ct-wrap"><table class="ct-table"><thead><tr><th rowspan="2" class="ct-h-type">주택형</th><th colspan="2" class="ct-h-group">1순위</th><th colspan="2" class="ct-h-group">2순위</th></tr><tr><th class="ct-h-sub">해당지역</th><th class="ct-h-sub">기타지역</th><th class="ct-h-sub">해당지역</th><th class="ct-h-sub">기타지역</th></tr></thead><tbody><tr><td class="ct-type">84</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">210건</span></td><td class="ct-hit"><span class="ct-rate-val">2.43:1</span><br><span class="ct-cnt">309건</span></td><td class="ct-pending"><span class="ct-cnt">37건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">95건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">105</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">30건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">47건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">10건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">24건</span></td></tr></tbody></table></div></div>
@@ -626,10 +697,11 @@
             <span>건설사 (주)비에스한양</span>
           </div>
         </div>
-        <div class="comp-card">
+        <div class="comp-card" data-sido="강원" data-windate="2026-04-21" data-maxrate="20.17">
           <div class="comp-header">
-            <span class="comp-name">르네오션 고성 퍼스트뷰</span>
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000071&pblancNo=2026000071" target="_blank" rel="noopener" class="apt-link comp-name">르네오션 고성 퍼스트뷰</a>
             <span class="badge">강원</span>
+            <span class="badge-type">민영</span>
             <span class="chip chip-done">발표완료</span>
           </div>
           <div class="comp-rate"><div class="ct-wrap"><table class="ct-table"><thead><tr><th rowspan="2" class="ct-h-type">주택형</th><th colspan="2" class="ct-h-group">1순위</th><th colspan="2" class="ct-h-group">2순위</th></tr><tr><th class="ct-h-sub">해당지역</th><th class="ct-h-sub">기타지역</th><th class="ct-h-sub">해당지역</th><th class="ct-h-sub">기타지역</th></tr></thead><tbody><tr><td class="ct-type">74</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">1건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">5건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">2건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">4건</span></td></tr><tr><td class="ct-type">84A</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">6건</span></td><td class="ct-hit"><span class="ct-rate-val">1.46:1</span><br><span class="ct-cnt">41건</span></td><td class="ct-pending"><span class="ct-cnt">17건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">65건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">84B</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">22건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">15건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">4건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">13건</span></td></tr><tr><td class="ct-type">84C</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">2건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">4건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">1건</span></td></tr><tr><td class="ct-type">109</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">2건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">3건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">15건</span></td><td class="ct-hit"><span class="ct-rate-val">20.17:1</span><br><span class="ct-cnt">121건</span></td></tr><tr><td class="ct-type">117A</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td></tr><tr><td class="ct-type">117B</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td><td class="ct-hit"><span class="ct-rate-val">1.00:1</span><br><span class="ct-cnt">1건</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">117C</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td></tr><tr><td class="ct-type">130</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td></tr><tr><td class="ct-type">137A</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td><td class="ct-hit"><span class="ct-rate-val">3.00:1</span><br><span class="ct-cnt">3건</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">137B</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td><td class="ct-hit"><span class="ct-rate-val">3.00:1</span><br><span class="ct-cnt">3건</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">143</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td><td class="ct-hit"><span class="ct-rate-val">1.00:1</span><br><span class="ct-cnt">1건</span></td></tr><tr><td class="ct-type">147</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td><td class="ct-hit"><span class="ct-rate-val">1.00:1</span><br><span class="ct-cnt">1건</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">148</td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td><td class="ct-miss"><span class="ct-rate-val">미달</span><br><span class="ct-cnt">0건</span></td><td class="ct-hit"><span class="ct-rate-val">2.00:1</span><br><span class="ct-cnt">2건</span></td></tr><tr><td class="ct-type">183</td><td class="ct-hit"><span class="ct-rate-val">2.00:1</span><br><span class="ct-cnt">2건</span></td><td class="ct-pending"><span class="ct-cnt">2건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">2건</span><br><span class="ct-label">집계중</span></td></tr></tbody></table></div></div>
@@ -640,10 +712,11 @@
             <span>건설사 금강종합건설(주)</span>
           </div>
         </div>
-        <div class="comp-card">
+        <div class="comp-card" data-sido="서울" data-windate="2026-04-21" data-maxrate="1180.87">
           <div class="comp-header">
-            <span class="comp-name">오티에르 반포</span>
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000058&pblancNo=2026000058" target="_blank" rel="noopener" class="apt-link comp-name">오티에르 반포</a>
             <span class="badge">서울</span>
+            <span class="badge-type">민영</span>
             <span class="chip chip-done">발표완료</span>
           </div>
           <div class="comp-rate"><div class="ct-wrap"><table class="ct-table"><thead><tr><th rowspan="2" class="ct-h-type">주택형</th><th colspan="2" class="ct-h-group">1순위</th><th colspan="2" class="ct-h-group">2순위</th></tr><tr><th class="ct-h-sub">해당지역</th><th class="ct-h-sub">기타지역</th><th class="ct-h-sub">해당지역</th><th class="ct-h-sub">기타지역</th></tr></thead><tbody><tr><td class="ct-type">44</td><td class="ct-hit"><span class="ct-rate-val">622.80:1</span><br><span class="ct-cnt">3,114건</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">44B</td><td class="ct-hit"><span class="ct-rate-val">342.50:1</span><br><span class="ct-cnt">685건</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">45</td><td class="ct-hit"><span class="ct-rate-val">329.00:1</span><br><span class="ct-cnt">658건</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">45B</td><td class="ct-hit"><span class="ct-rate-val">416.33:1</span><br><span class="ct-cnt">1,249건</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">59A</td><td class="ct-hit"><span class="ct-rate-val">939.67:1</span><br><span class="ct-cnt">2,819건</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">59B</td><td class="ct-hit"><span class="ct-rate-val">1180.87:1</span><br><span class="ct-cnt">17,713건</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">84A</td><td class="ct-hit"><span class="ct-rate-val">769.25:1</span><br><span class="ct-cnt">3,077건</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">97</td><td class="ct-hit"><span class="ct-rate-val">174.50:1</span><br><span class="ct-cnt">349건</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">113A</td><td class="ct-hit"><span class="ct-rate-val">106.00:1</span><br><span class="ct-cnt">106건</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">113B</td><td class="ct-hit"><span class="ct-rate-val">101.33:1</span><br><span class="ct-cnt">304건</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">115A</td><td class="ct-hit"><span class="ct-rate-val">153.00:1</span><br><span class="ct-cnt">306건</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr></tbody></table></div></div>
@@ -654,10 +727,11 @@
             <span>건설사 ㈜포스코이앤씨</span>
           </div>
         </div>
-        <div class="comp-card">
+        <div class="comp-card" data-sido="서울" data-windate="2026-04-20" data-maxrate="254.05">
           <div class="comp-header">
-            <span class="comp-name">이촌 르엘</span>
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000048&pblancNo=2026000048" target="_blank" rel="noopener" class="apt-link comp-name">이촌 르엘</a>
             <span class="badge">서울</span>
+            <span class="badge-type">민영</span>
             <span class="chip chip-done">발표완료</span>
           </div>
           <div class="comp-rate"><div class="ct-wrap"><table class="ct-table"><thead><tr><th rowspan="2" class="ct-h-type">주택형</th><th colspan="2" class="ct-h-group">1순위</th><th colspan="2" class="ct-h-group">2순위</th></tr><tr><th class="ct-h-sub">해당지역</th><th class="ct-h-sub">기타지역</th><th class="ct-h-sub">해당지역</th><th class="ct-h-sub">기타지역</th></tr></thead><tbody><tr><td class="ct-type">100</td><td class="ct-hit"><span class="ct-rate-val">254.05:1</span><br><span class="ct-cnt">4,827건</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">106</td><td class="ct-hit"><span class="ct-rate-val">181.85:1</span><br><span class="ct-cnt">3,637건</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">117</td><td class="ct-hit"><span class="ct-rate-val">36.83:1</span><br><span class="ct-cnt">442건</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">118</td><td class="ct-hit"><span class="ct-rate-val">50.45:1</span><br><span class="ct-cnt">555건</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr><tr><td class="ct-type">122</td><td class="ct-hit"><span class="ct-rate-val">66.69:1</span><br><span class="ct-cnt">1,067건</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td><td class="ct-pending"><span class="ct-cnt">0건</span><br><span class="ct-label">집계중</span></td></tr></tbody></table></div></div>
@@ -667,13 +741,17 @@
             <span>세대수 88세대</span>
             <span>건설사 롯데건설 주식회사</span>
           </div>
-        </div></div>
+        </div></div></div>
   </div>
   <div id="tab-price" class="tab-content">
-    <div class="container">
-      <div class="price-card">
+    <div class="container"><div class="sf-wrap"><button class="sf-btn pf-btn sf-active" onclick="priceFilter('전체',this)">전체</button><button class="sf-btn pf-btn" onclick="priceFilter('강원',this)">강원</button><button class="sf-btn pf-btn" onclick="priceFilter('경기',this)">경기</button><button class="sf-btn pf-btn" onclick="priceFilter('경남',this)">경남</button><button class="sf-btn pf-btn" onclick="priceFilter('경북',this)">경북</button><button class="sf-btn pf-btn" onclick="priceFilter('대전',this)">대전</button><button class="sf-btn pf-btn" onclick="priceFilter('부산',this)">부산</button><button class="sf-btn pf-btn" onclick="priceFilter('서울',this)">서울</button><button class="sf-btn pf-btn" onclick="priceFilter('울산',this)">울산</button><button class="sf-btn pf-btn" onclick="priceFilter('인천',this)">인천</button><button class="sf-btn pf-btn" onclick="priceFilter('전남',this)">전남</button><button class="sf-btn pf-btn" onclick="priceFilter('전북',this)">전북</button><button class="sf-btn pf-btn" onclick="priceFilter('제주',this)">제주</button><button class="sf-btn pf-btn" onclick="priceFilter('충남',this)">충남</button><button class="sf-btn pf-btn" onclick="priceFilter('충북',this)">충북</button></div><div id="price-cards">
+      <div class="price-card" data-sido="서울">
         <div class="price-header">
-          <div class="price-name">이촌 르엘 <span class="badge">서울</span></div>
+          <div class="price-name">
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000048&pblancNo=2026000048" target="_blank" rel="noopener" class="apt-link">이촌 르엘</a>
+            <span class="badge">서울</span>
+            <span class="badge-type">민영</span>
+          </div>
           <span class="chip" style="background:#f0f4f8;color:#7f8c8d;border:1px solid #7f8c8d22">발표완료</span>
         </div>
         <div class="price-sub">
@@ -681,6 +759,7 @@
           <span>청약 2026-04-09 ~ 2026-04-14</span>
           <span>당첨발표 2026-04-20</span>
           <span>건설사 롯데건설 주식회사</span>
+          
         </div>
         <div class="type-table-wrap">
           <table class="type-table">
@@ -689,9 +768,13 @@
           </table>
         </div>
       </div>
-      <div class="price-card">
+      <div class="price-card" data-sido="부산">
         <div class="price-header">
-          <div class="price-name">온천장 하늘채 엘리시움 <span class="badge">부산</span></div>
+          <div class="price-name">
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000101&pblancNo=2026000101" target="_blank" rel="noopener" class="apt-link">온천장 하늘채 엘리시움</a>
+            <span class="badge">부산</span>
+            <span class="badge-type">민영</span>
+          </div>
           <span class="chip" style="background:#f0f4f8;color:#7f8c8d;border:1px solid #7f8c8d22">발표완료</span>
         </div>
         <div class="price-sub">
@@ -699,6 +782,7 @@
           <span>청약 2026-04-13 ~ 2026-04-15</span>
           <span>당첨발표 2026-04-21</span>
           <span>건설사 코오롱글로벌(주)</span>
+          
         </div>
         <div class="type-table-wrap">
           <table class="type-table">
@@ -707,9 +791,13 @@
           </table>
         </div>
       </div>
-      <div class="price-card">
+      <div class="price-card" data-sido="경기">
         <div class="price-header">
-          <div class="price-name">풍무역세권 수자인 그라센트 2차 <span class="badge">경기</span></div>
+          <div class="price-name">
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000073&pblancNo=2026000073" target="_blank" rel="noopener" class="apt-link">풍무역세권 수자인 그라센트 2차</a>
+            <span class="badge">경기</span>
+            <span class="badge-type">민영</span>
+          </div>
           <span class="chip" style="background:#f0f4f8;color:#7f8c8d;border:1px solid #7f8c8d22">발표완료</span>
         </div>
         <div class="price-sub">
@@ -717,6 +805,7 @@
           <span>청약 2026-04-13 ~ 2026-04-15</span>
           <span>당첨발표 2026-04-21</span>
           <span>건설사 (주)비에스한양</span>
+          
         </div>
         <div class="type-table-wrap">
           <table class="type-table">
@@ -725,9 +814,13 @@
           </table>
         </div>
       </div>
-      <div class="price-card">
+      <div class="price-card" data-sido="강원">
         <div class="price-header">
-          <div class="price-name">르네오션 고성 퍼스트뷰 <span class="badge">강원</span></div>
+          <div class="price-name">
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000071&pblancNo=2026000071" target="_blank" rel="noopener" class="apt-link">르네오션 고성 퍼스트뷰</a>
+            <span class="badge">강원</span>
+            <span class="badge-type">민영</span>
+          </div>
           <span class="chip" style="background:#f0f4f8;color:#7f8c8d;border:1px solid #7f8c8d22">발표완료</span>
         </div>
         <div class="price-sub">
@@ -735,6 +828,7 @@
           <span>청약 2026-04-13 ~ 2026-04-15</span>
           <span>당첨발표 2026-04-21</span>
           <span>건설사 금강종합건설(주)</span>
+          
         </div>
         <div class="type-table-wrap">
           <table class="type-table">
@@ -743,9 +837,13 @@
           </table>
         </div>
       </div>
-      <div class="price-card">
+      <div class="price-card" data-sido="서울">
         <div class="price-header">
-          <div class="price-name">오티에르 반포 <span class="badge">서울</span></div>
+          <div class="price-name">
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000058&pblancNo=2026000058" target="_blank" rel="noopener" class="apt-link">오티에르 반포</a>
+            <span class="badge">서울</span>
+            <span class="badge-type">민영</span>
+          </div>
           <span class="chip" style="background:#f0f4f8;color:#7f8c8d;border:1px solid #7f8c8d22">발표완료</span>
         </div>
         <div class="price-sub">
@@ -753,6 +851,7 @@
           <span>청약 2026-04-10 ~ 2026-04-15</span>
           <span>당첨발표 2026-04-21</span>
           <span>건설사 ㈜포스코이앤씨</span>
+          
         </div>
         <div class="type-table-wrap">
           <table class="type-table">
@@ -761,9 +860,13 @@
           </table>
         </div>
       </div>
-      <div class="price-card">
+      <div class="price-card" data-sido="서울">
         <div class="price-header">
-          <div class="price-name">라클라체자이드파인 <span class="badge">서울</span></div>
+          <div class="price-name">
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000094&pblancNo=2026000094" target="_blank" rel="noopener" class="apt-link">라클라체자이드파인</a>
+            <span class="badge">서울</span>
+            <span class="badge-type">민영</span>
+          </div>
           <span class="chip" style="background:#f0f4f8;color:#7f8c8d;border:1px solid #7f8c8d22">발표완료</span>
         </div>
         <div class="price-sub">
@@ -771,6 +874,7 @@
           <span>청약 2026-04-13 ~ 2026-04-16</span>
           <span>당첨발표 2026-04-22</span>
           <span>건설사 지에스건설(주), 에스케이에코플랜트 주식회사</span>
+          
         </div>
         <div class="type-table-wrap">
           <table class="type-table">
@@ -779,9 +883,13 @@
           </table>
         </div>
       </div>
-      <div class="price-card">
+      <div class="price-card" data-sido="충남">
         <div class="price-header">
-          <div class="price-name">업성 푸르지오 레이크시티 <span class="badge">충남</span></div>
+          <div class="price-name">
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000086&pblancNo=2026000086" target="_blank" rel="noopener" class="apt-link">업성 푸르지오 레이크시티</a>
+            <span class="badge">충남</span>
+            <span class="badge-type">민영</span>
+          </div>
           <span class="chip" style="background:#f0f4f8;color:#7f8c8d;border:1px solid #7f8c8d22">발표완료</span>
         </div>
         <div class="price-sub">
@@ -789,6 +897,7 @@
           <span>청약 2026-04-13 ~ 2026-04-15</span>
           <span>당첨발표 2026-04-22</span>
           <span>건설사 (주)대우건설</span>
+          
         </div>
         <div class="type-table-wrap">
           <table class="type-table">
@@ -797,9 +906,13 @@
           </table>
         </div>
       </div>
-      <div class="price-card">
+      <div class="price-card" data-sido="전북">
         <div class="price-header">
-          <div class="price-name">북전주 광신프로그레스 <span class="badge">전북</span></div>
+          <div class="price-name">
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000077&pblancNo=2026000077" target="_blank" rel="noopener" class="apt-link">북전주 광신프로그레스</a>
+            <span class="badge">전북</span>
+            <span class="badge-type">민영</span>
+          </div>
           <span class="chip" style="background:#f0f4f8;color:#7f8c8d;border:1px solid #7f8c8d22">발표완료</span>
         </div>
         <div class="price-sub">
@@ -807,6 +920,7 @@
           <span>청약 2026-04-13 ~ 2026-04-15</span>
           <span>당첨발표 2026-04-22</span>
           <span>건설사 (주)광신종합건설, (주)광신토건</span>
+          
         </div>
         <div class="type-table-wrap">
           <table class="type-table">
@@ -815,9 +929,13 @@
           </table>
         </div>
       </div>
-      <div class="price-card">
+      <div class="price-card" data-sido="경기">
         <div class="price-header">
-          <div class="price-name">야목역 서희스타힐스 그랜드힐 <span class="badge">경기</span></div>
+          <div class="price-name">
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000069&pblancNo=2026000069" target="_blank" rel="noopener" class="apt-link">야목역 서희스타힐스 그랜드힐</a>
+            <span class="badge">경기</span>
+            <span class="badge-type">민영</span>
+          </div>
           <span class="chip" style="background:#f0f4f8;color:#7f8c8d;border:1px solid #7f8c8d22">발표완료</span>
         </div>
         <div class="price-sub">
@@ -825,6 +943,7 @@
           <span>청약 2026-04-16 ~ 2026-04-20</span>
           <span>당첨발표 2026-04-24</span>
           <span>건설사 (주)서희건설</span>
+          
         </div>
         <div class="type-table-wrap">
           <table class="type-table">
@@ -833,9 +952,13 @@
           </table>
         </div>
       </div>
-      <div class="price-card">
+      <div class="price-card" data-sido="충남">
         <div class="price-header">
-          <div class="price-name">아산경남아너스빌 랜드마크49 <span class="badge">충남</span></div>
+          <div class="price-name">
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000109&pblancNo=2026000109" target="_blank" rel="noopener" class="apt-link">아산경남아너스빌 랜드마크49</a>
+            <span class="badge">충남</span>
+            <span class="badge-type">민영</span>
+          </div>
           <span class="chip" style="background:#f0f4f8;color:#e67e22;border:1px solid #e67e2222">집계중</span>
         </div>
         <div class="price-sub">
@@ -843,6 +966,7 @@
           <span>청약 2026-04-20 ~ 2026-04-22</span>
           <span>당첨발표 2026-04-28</span>
           <span>건설사 (주)남선알미늄</span>
+          
         </div>
         <div class="type-table-wrap">
           <table class="type-table">
@@ -851,9 +975,13 @@
           </table>
         </div>
       </div>
-      <div class="price-card">
+      <div class="price-card" data-sido="대전">
         <div class="price-header">
-          <div class="price-name">도안자이 센텀리체 1단지 <span class="badge">대전</span></div>
+          <div class="price-name">
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000104&pblancNo=2026000104" target="_blank" rel="noopener" class="apt-link">도안자이 센텀리체 1단지</a>
+            <span class="badge">대전</span>
+            <span class="badge-type">민영</span>
+          </div>
           <span class="chip" style="background:#f0f4f8;color:#e67e22;border:1px solid #e67e2222">집계중</span>
         </div>
         <div class="price-sub">
@@ -861,6 +989,7 @@
           <span>청약 2026-04-20 ~ 2026-04-22</span>
           <span>당첨발표 2026-04-28</span>
           <span>건설사 지에스건설(주)</span>
+          
         </div>
         <div class="type-table-wrap">
           <table class="type-table">
@@ -869,9 +998,13 @@
           </table>
         </div>
       </div>
-      <div class="price-card">
+      <div class="price-card" data-sido="전북">
         <div class="price-header">
-          <div class="price-name">골드클래스 시그니처 <span class="badge">전북</span></div>
+          <div class="price-name">
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000082&pblancNo=2026000082" target="_blank" rel="noopener" class="apt-link">골드클래스 시그니처</a>
+            <span class="badge">전북</span>
+            <span class="badge-type">민영</span>
+          </div>
           <span class="chip" style="background:#f0f4f8;color:#e67e22;border:1px solid #e67e2222">집계중</span>
         </div>
         <div class="price-sub">
@@ -879,6 +1012,7 @@
           <span>청약 2026-04-20 ~ 2026-04-22</span>
           <span>당첨발표 2026-04-28</span>
           <span>건설사 보광종합건설(주)</span>
+          
         </div>
         <div class="type-table-wrap">
           <table class="type-table">
@@ -887,9 +1021,13 @@
           </table>
         </div>
       </div>
-      <div class="price-card">
+      <div class="price-card" data-sido="경북">
         <div class="price-header">
-          <div class="price-name">더샵 안동더퍼스트 <span class="badge">경북</span></div>
+          <div class="price-name">
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000093&pblancNo=2026000093" target="_blank" rel="noopener" class="apt-link">더샵 안동더퍼스트</a>
+            <span class="badge">경북</span>
+            <span class="badge-type">민영</span>
+          </div>
           <span class="chip" style="background:#f0f4f8;color:#e67e22;border:1px solid #e67e2222">집계중</span>
         </div>
         <div class="price-sub">
@@ -897,6 +1035,7 @@
           <span>청약 2026-04-20 ~ 2026-04-22</span>
           <span>당첨발표 2026-04-28</span>
           <span>건설사 (주)포스코이앤씨</span>
+          
         </div>
         <div class="type-table-wrap">
           <table class="type-table">
@@ -905,9 +1044,13 @@
           </table>
         </div>
       </div>
-      <div class="price-card">
+      <div class="price-card" data-sido="울산">
         <div class="price-header">
-          <div class="price-name">문수로 라티에르 673 <span class="badge">울산</span></div>
+          <div class="price-name">
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000121&pblancNo=2026000121" target="_blank" rel="noopener" class="apt-link">문수로 라티에르 673</a>
+            <span class="badge">울산</span>
+            <span class="badge-type">민영</span>
+          </div>
           <span class="chip" style="background:#f0f4f8;color:#e67e22;border:1px solid #e67e2222">집계중</span>
         </div>
         <div class="price-sub">
@@ -915,6 +1058,7 @@
           <span>청약 2026-04-20 ~ 2026-04-22</span>
           <span>당첨발표 2026-04-29</span>
           <span>건설사 금강종합건설(주)</span>
+          
         </div>
         <div class="type-table-wrap">
           <table class="type-table">
@@ -923,9 +1067,13 @@
           </table>
         </div>
       </div>
-      <div class="price-card">
+      <div class="price-card" data-sido="경기">
         <div class="price-header">
-          <div class="price-name">용인 고림 동문 디 이스트 <span class="badge">경기</span></div>
+          <div class="price-name">
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000112&pblancNo=2026000112" target="_blank" rel="noopener" class="apt-link">용인 고림 동문 디 이스트</a>
+            <span class="badge">경기</span>
+            <span class="badge-type">민영</span>
+          </div>
           <span class="chip" style="background:#f0f4f8;color:#e67e22;border:1px solid #e67e2222">집계중</span>
         </div>
         <div class="price-sub">
@@ -933,6 +1081,7 @@
           <span>청약 2026-04-20 ~ 2026-04-22</span>
           <span>당첨발표 2026-04-29</span>
           <span>건설사 동문건설 주식회사</span>
+          
         </div>
         <div class="type-table-wrap">
           <table class="type-table">
@@ -941,9 +1090,13 @@
           </table>
         </div>
       </div>
-      <div class="price-card">
+      <div class="price-card" data-sido="경남">
         <div class="price-header">
-          <div class="price-name">엘리프 창원 <span class="badge">경남</span></div>
+          <div class="price-name">
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000110&pblancNo=2026000110" target="_blank" rel="noopener" class="apt-link">엘리프 창원</a>
+            <span class="badge">경남</span>
+            <span class="badge-type">민영</span>
+          </div>
           <span class="chip" style="background:#f0f4f8;color:#e67e22;border:1px solid #e67e2222">집계중</span>
         </div>
         <div class="price-sub">
@@ -951,6 +1104,7 @@
           <span>청약 2026-04-20 ~ 2026-04-22</span>
           <span>당첨발표 2026-04-29</span>
           <span>건설사 (주)케이알산업</span>
+          
         </div>
         <div class="type-table-wrap">
           <table class="type-table">
@@ -959,9 +1113,13 @@
           </table>
         </div>
       </div>
-      <div class="price-card">
+      <div class="price-card" data-sido="대전">
         <div class="price-header">
-          <div class="price-name">도안자이 센텀리체 2단지 <span class="badge">대전</span></div>
+          <div class="price-name">
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000105&pblancNo=2026000105" target="_blank" rel="noopener" class="apt-link">도안자이 센텀리체 2단지</a>
+            <span class="badge">대전</span>
+            <span class="badge-type">민영</span>
+          </div>
           <span class="chip" style="background:#f0f4f8;color:#e67e22;border:1px solid #e67e2222">집계중</span>
         </div>
         <div class="price-sub">
@@ -969,6 +1127,7 @@
           <span>청약 2026-04-20 ~ 2026-04-22</span>
           <span>당첨발표 2026-04-29</span>
           <span>건설사 지에스건설(주)</span>
+          
         </div>
         <div class="type-table-wrap">
           <table class="type-table">
@@ -977,9 +1136,13 @@
           </table>
         </div>
       </div>
-      <div class="price-card">
+      <div class="price-card" data-sido="경남">
         <div class="price-header">
-          <div class="price-name">힐스테이트 평거 센트럴 <span class="badge">경남</span></div>
+          <div class="price-name">
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000085&pblancNo=2026000085" target="_blank" rel="noopener" class="apt-link">힐스테이트 평거 센트럴</a>
+            <span class="badge">경남</span>
+            <span class="badge-type">민영</span>
+          </div>
           <span class="chip" style="background:#f0f4f8;color:#e67e22;border:1px solid #e67e2222">집계중</span>
         </div>
         <div class="price-sub">
@@ -987,6 +1150,7 @@
           <span>청약 2026-04-20 ~ 2026-04-22</span>
           <span>당첨발표 2026-04-29</span>
           <span>건설사 현대엔지니어링(주)</span>
+          
         </div>
         <div class="type-table-wrap">
           <table class="type-table">
@@ -995,9 +1159,13 @@
           </table>
         </div>
       </div>
-      <div class="price-card">
+      <div class="price-card" data-sido="충북">
         <div class="price-header">
-          <div class="price-name">청주 푸르지오 씨엘리체 <span class="badge">충북</span></div>
+          <div class="price-name">
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000087&pblancNo=2026000087" target="_blank" rel="noopener" class="apt-link">청주 푸르지오 씨엘리체</a>
+            <span class="badge">충북</span>
+            <span class="badge-type">민영</span>
+          </div>
           <span class="chip" style="background:#f0f4f8;color:#e67e22;border:1px solid #e67e2222">집계중</span>
         </div>
         <div class="price-sub">
@@ -1005,6 +1173,7 @@
           <span>청약 2026-04-20 ~ 2026-04-22</span>
           <span>당첨발표 2026-04-30</span>
           <span>건설사 (주)대우건설</span>
+          
         </div>
         <div class="type-table-wrap">
           <table class="type-table">
@@ -1013,9 +1182,13 @@
           </table>
         </div>
       </div>
-      <div class="price-card">
+      <div class="price-card" data-sido="경기">
         <div class="price-header">
-          <div class="price-name">고덕신도시 아테라 A-63블록 공공분양주택 <span class="badge">경기</span></div>
+          <div class="price-name">
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000124&pblancNo=2026000124" target="_blank" rel="noopener" class="apt-link">고덕신도시 아테라 A-63블록 공공분양주택</a>
+            <span class="badge">경기</span>
+            <span class="badge-type">국민</span>
+          </div>
           <span class="chip" style="background:#f0f4f8;color:#27ae60;border:1px solid #27ae6022">청약 준비중</span>
         </div>
         <div class="price-sub">
@@ -1023,6 +1196,7 @@
           <span>청약 2026-04-27 ~ 2026-04-29</span>
           <span>당첨발표 2026-05-07</span>
           <span>건설사 금호건설(주)</span>
+          
         </div>
         <div class="type-table-wrap">
           <table class="type-table">
@@ -1031,9 +1205,13 @@
           </table>
         </div>
       </div>
-      <div class="price-card">
+      <div class="price-card" data-sido="경북">
         <div class="price-header">
-          <div class="price-name">두산위브더제니스 구미(조합원취소분) <span class="badge">경북</span></div>
+          <div class="price-name">
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000115&pblancNo=2026000115" target="_blank" rel="noopener" class="apt-link">두산위브더제니스 구미(조합원취소분)</a>
+            <span class="badge">경북</span>
+            <span class="badge-type">민영</span>
+          </div>
           <span class="chip" style="background:#f0f4f8;color:#27ae60;border:1px solid #27ae6022">청약 준비중</span>
         </div>
         <div class="price-sub">
@@ -1041,6 +1219,7 @@
           <span>청약 2026-04-27 ~ 2026-04-29</span>
           <span>당첨발표 2026-05-07</span>
           <span>건설사 두산건설(주)</span>
+          
         </div>
         <div class="type-table-wrap">
           <table class="type-table">
@@ -1049,9 +1228,13 @@
           </table>
         </div>
       </div>
-      <div class="price-card">
+      <div class="price-card" data-sido="경기">
         <div class="price-header">
-          <div class="price-name">경기광주역 롯데캐슬 시그니처 1단지 <span class="badge">경기</span></div>
+          <div class="price-name">
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000107&pblancNo=2026000107" target="_blank" rel="noopener" class="apt-link">경기광주역 롯데캐슬 시그니처 1단지</a>
+            <span class="badge">경기</span>
+            <span class="badge-type">민영</span>
+          </div>
           <span class="chip" style="background:#f0f4f8;color:#27ae60;border:1px solid #27ae6022">청약 준비중</span>
         </div>
         <div class="price-sub">
@@ -1059,6 +1242,7 @@
           <span>청약 2026-04-27 ~ 2026-04-29</span>
           <span>당첨발표 2026-05-07</span>
           <span>건설사 롯데건설㈜</span>
+          
         </div>
         <div class="type-table-wrap">
           <table class="type-table">
@@ -1067,9 +1251,13 @@
           </table>
         </div>
       </div>
-      <div class="price-card">
+      <div class="price-card" data-sido="경기">
         <div class="price-header">
-          <div class="price-name">동탄 그웬 160 (동탄2 B11BL) <span class="badge">경기</span></div>
+          <div class="price-name">
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000113&pblancNo=2026000113" target="_blank" rel="noopener" class="apt-link">동탄 그웬 160 (동탄2 B11BL)</a>
+            <span class="badge">경기</span>
+            <span class="badge-type">민영</span>
+          </div>
           <span class="chip" style="background:#f0f4f8;color:#27ae60;border:1px solid #27ae6022">청약 준비중</span>
         </div>
         <div class="price-sub">
@@ -1077,6 +1265,7 @@
           <span>청약 2026-04-27 ~ 2026-04-29</span>
           <span>당첨발표 2026-05-07</span>
           <span>건설사 (주)한토건설</span>
+          
         </div>
         <div class="type-table-wrap">
           <table class="type-table">
@@ -1085,9 +1274,13 @@
           </table>
         </div>
       </div>
-      <div class="price-card">
+      <div class="price-card" data-sido="서울">
         <div class="price-header">
-          <div class="price-name">공덕역자이르네 <span class="badge">서울</span></div>
+          <div class="price-name">
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000114&pblancNo=2026000114" target="_blank" rel="noopener" class="apt-link">공덕역자이르네</a>
+            <span class="badge">서울</span>
+            <span class="badge-type">민영</span>
+          </div>
           <span class="chip" style="background:#f0f4f8;color:#27ae60;border:1px solid #27ae6022">청약 준비중</span>
         </div>
         <div class="price-sub">
@@ -1095,6 +1288,7 @@
           <span>청약 2026-04-27 ~ 2026-04-30</span>
           <span>당첨발표 2026-05-08</span>
           <span>건설사 자이에스앤디(주)</span>
+          
         </div>
         <div class="type-table-wrap">
           <table class="type-table">
@@ -1103,9 +1297,13 @@
           </table>
         </div>
       </div>
-      <div class="price-card">
+      <div class="price-card" data-sido="강원">
         <div class="price-header">
-          <div class="price-name">강릉 우미 린 더 프리미어 <span class="badge">강원</span></div>
+          <div class="price-name">
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000089&pblancNo=2026000089" target="_blank" rel="noopener" class="apt-link">강릉 우미 린 더 프리미어</a>
+            <span class="badge">강원</span>
+            <span class="badge-type">민영</span>
+          </div>
           <span class="chip" style="background:#f0f4f8;color:#27ae60;border:1px solid #27ae6022">청약 준비중</span>
         </div>
         <div class="price-sub">
@@ -1113,6 +1311,7 @@
           <span>청약 2026-04-27 ~ 2026-04-29</span>
           <span>당첨발표 2026-05-08</span>
           <span>건설사 우미건설 주식회사</span>
+          
         </div>
         <div class="type-table-wrap">
           <table class="type-table">
@@ -1121,9 +1320,13 @@
           </table>
         </div>
       </div>
-      <div class="price-card">
+      <div class="price-card" data-sido="부산">
         <div class="price-header">
-          <div class="price-name">기장 이진캐스빌 포레 <span class="badge">부산</span></div>
+          <div class="price-name">
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000146&pblancNo=2026000146" target="_blank" rel="noopener" class="apt-link">기장 이진캐스빌 포레</a>
+            <span class="badge">부산</span>
+            <span class="badge-type">민영</span>
+          </div>
           <span class="chip" style="background:#f0f4f8;color:#2e86de;border:1px solid #2e86de22">오픈 예정</span>
         </div>
         <div class="price-sub">
@@ -1131,6 +1334,7 @@
           <span>청약 2026-04-29 ~ 2026-05-04</span>
           <span>당첨발표 2026-05-11</span>
           <span>건설사 동수토건 주식회사</span>
+          
         </div>
         <div class="type-table-wrap">
           <table class="type-table">
@@ -1139,9 +1343,13 @@
           </table>
         </div>
       </div>
-      <div class="price-card">
+      <div class="price-card" data-sido="제주">
         <div class="price-header">
-          <div class="price-name">PH159 <span class="badge">제주</span></div>
+          <div class="price-name">
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000130&pblancNo=2026000130" target="_blank" rel="noopener" class="apt-link">PH159</a>
+            <span class="badge">제주</span>
+            <span class="badge-type">민영</span>
+          </div>
           <span class="chip" style="background:#f0f4f8;color:#2e86de;border:1px solid #2e86de22">오픈 예정</span>
         </div>
         <div class="price-sub">
@@ -1149,6 +1357,7 @@
           <span>청약 2026-04-30 ~ 2026-05-04</span>
           <span>당첨발표 2026-05-11</span>
           <span>건설사 청솔종합건설(주)</span>
+          
         </div>
         <div class="type-table-wrap">
           <table class="type-table">
@@ -1157,9 +1366,13 @@
           </table>
         </div>
       </div>
-      <div class="price-card">
+      <div class="price-card" data-sido="경기">
         <div class="price-header">
-          <div class="price-name">파주금촌 금호어울림(조합원 취소분) <span class="badge">경기</span></div>
+          <div class="price-name">
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000143&pblancNo=2026000143" target="_blank" rel="noopener" class="apt-link">파주금촌 금호어울림(조합원 취소분)</a>
+            <span class="badge">경기</span>
+            <span class="badge-type">민영</span>
+          </div>
           <span class="chip" style="background:#f0f4f8;color:#2e86de;border:1px solid #2e86de22">오픈 예정</span>
         </div>
         <div class="price-sub">
@@ -1167,6 +1380,7 @@
           <span>청약 2026-05-04 ~ 2026-05-07</span>
           <span>당첨발표 2026-05-13</span>
           <span>건설사 금호건설 주식회사</span>
+          
         </div>
         <div class="type-table-wrap">
           <table class="type-table">
@@ -1175,9 +1389,13 @@
           </table>
         </div>
       </div>
-      <div class="price-card">
+      <div class="price-card" data-sido="충남">
         <div class="price-header">
-          <div class="price-name">천안 휴먼빌 퍼스트시티(2회차) <span class="badge">충남</span></div>
+          <div class="price-name">
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000127&pblancNo=2026000127" target="_blank" rel="noopener" class="apt-link">천안 휴먼빌 퍼스트시티(2회차)</a>
+            <span class="badge">충남</span>
+            <span class="badge-type">민영</span>
+          </div>
           <span class="chip" style="background:#f0f4f8;color:#2e86de;border:1px solid #2e86de22">오픈 예정</span>
         </div>
         <div class="price-sub">
@@ -1185,6 +1403,7 @@
           <span>청약 2026-05-04 ~ 2026-05-07</span>
           <span>당첨발표 2026-05-13</span>
           <span>건설사 일신건영(주)</span>
+          
         </div>
         <div class="type-table-wrap">
           <table class="type-table">
@@ -1193,9 +1412,13 @@
           </table>
         </div>
       </div>
-      <div class="price-card">
+      <div class="price-card" data-sido="충남">
         <div class="price-header">
-          <div class="price-name">천안 동문 디 이스트 파크시티 <span class="badge">충남</span></div>
+          <div class="price-name">
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000096&pblancNo=2026000096" target="_blank" rel="noopener" class="apt-link">천안 동문 디 이스트 파크시티</a>
+            <span class="badge">충남</span>
+            <span class="badge-type">민영</span>
+          </div>
           <span class="chip" style="background:#f0f4f8;color:#2e86de;border:1px solid #2e86de22">오픈 예정</span>
         </div>
         <div class="price-sub">
@@ -1203,6 +1426,7 @@
           <span>청약 2026-05-04 ~ 2026-05-07</span>
           <span>당첨발표 2026-05-13</span>
           <span>건설사 동문건설(주)</span>
+          
         </div>
         <div class="type-table-wrap">
           <table class="type-table">
@@ -1211,9 +1435,13 @@
           </table>
         </div>
       </div>
-      <div class="price-card">
+      <div class="price-card" data-sido="경기">
         <div class="price-header">
-          <div class="price-name">e편한세상 부천 어반스퀘어 <span class="badge">경기</span></div>
+          <div class="price-name">
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000152&pblancNo=2026000152" target="_blank" rel="noopener" class="apt-link">e편한세상 부천 어반스퀘어</a>
+            <span class="badge">경기</span>
+            <span class="badge-type">민영</span>
+          </div>
           <span class="chip" style="background:#f0f4f8;color:#2e86de;border:1px solid #2e86de22">오픈 예정</span>
         </div>
         <div class="price-sub">
@@ -1221,6 +1449,7 @@
           <span>청약 2026-05-04 ~ 2026-05-07</span>
           <span>당첨발표 2026-05-13</span>
           <span>건설사 디엘이앤씨 주식회사, 롯데건설 주식회사</span>
+          
         </div>
         <div class="type-table-wrap">
           <table class="type-table">
@@ -1229,9 +1458,13 @@
           </table>
         </div>
       </div>
-      <div class="price-card">
+      <div class="price-card" data-sido="대전">
         <div class="price-header">
-          <div class="price-name">더샵 관저아르테 <span class="badge">대전</span></div>
+          <div class="price-name">
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000129&pblancNo=2026000129" target="_blank" rel="noopener" class="apt-link">더샵 관저아르테</a>
+            <span class="badge">대전</span>
+            <span class="badge-type">민영</span>
+          </div>
           <span class="chip" style="background:#f0f4f8;color:#2e86de;border:1px solid #2e86de22">오픈 예정</span>
         </div>
         <div class="price-sub">
@@ -1239,6 +1472,7 @@
           <span>청약 2026-05-06 ~ 2026-05-08</span>
           <span>당첨발표 2026-05-14</span>
           <span>건설사 (주)포스코이앤씨</span>
+          
         </div>
         <div class="type-table-wrap">
           <table class="type-table">
@@ -1247,9 +1481,13 @@
           </table>
         </div>
       </div>
-      <div class="price-card">
+      <div class="price-card" data-sido="울산">
         <div class="price-header">
-          <div class="price-name">울산신복역 비스타 메트로 <span class="badge">울산</span></div>
+          <div class="price-name">
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000102&pblancNo=2026000102" target="_blank" rel="noopener" class="apt-link">울산신복역 비스타 메트로</a>
+            <span class="badge">울산</span>
+            <span class="badge-type">민영</span>
+          </div>
           <span class="chip" style="background:#f0f4f8;color:#2e86de;border:1px solid #2e86de22">오픈 예정</span>
         </div>
         <div class="price-sub">
@@ -1257,6 +1495,7 @@
           <span>청약 2026-05-06 ~ 2026-05-08</span>
           <span>당첨발표 2026-05-14</span>
           <span>건설사 (주)동원개발</span>
+          
         </div>
         <div class="type-table-wrap">
           <table class="type-table">
@@ -1265,9 +1504,13 @@
           </table>
         </div>
       </div>
-      <div class="price-card">
+      <div class="price-card" data-sido="전남">
         <div class="price-header">
-          <div class="price-name">소제지구 A3BL 중흥S-클래스 우미린 <span class="badge">전남</span></div>
+          <div class="price-name">
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000090&pblancNo=2026000090" target="_blank" rel="noopener" class="apt-link">소제지구 A3BL 중흥S-클래스 우미린</a>
+            <span class="badge">전남</span>
+            <span class="badge-type">민영</span>
+          </div>
           <span class="chip" style="background:#f0f4f8;color:#2e86de;border:1px solid #2e86de22">오픈 예정</span>
         </div>
         <div class="price-sub">
@@ -1275,6 +1518,7 @@
           <span>청약 2026-05-04 ~ 2026-05-08</span>
           <span>당첨발표 2026-05-14</span>
           <span>건설사 중흥토건(주)</span>
+          
         </div>
         <div class="type-table-wrap">
           <table class="type-table">
@@ -1283,9 +1527,13 @@
           </table>
         </div>
       </div>
-      <div class="price-card">
+      <div class="price-card" data-sido="경기">
         <div class="price-header">
-          <div class="price-name">용인 양지 서희스타힐스 하이뷰 <span class="badge">경기</span></div>
+          <div class="price-name">
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000088&pblancNo=2026000088" target="_blank" rel="noopener" class="apt-link">용인 양지 서희스타힐스 하이뷰</a>
+            <span class="badge">경기</span>
+            <span class="badge-type">민영</span>
+          </div>
           <span class="chip" style="background:#f0f4f8;color:#2e86de;border:1px solid #2e86de22">오픈 예정</span>
         </div>
         <div class="price-sub">
@@ -1293,6 +1541,7 @@
           <span>청약 2026-05-06 ~ 2026-05-08</span>
           <span>당첨발표 2026-05-14</span>
           <span>건설사 (주)서희건설</span>
+          
         </div>
         <div class="type-table-wrap">
           <table class="type-table">
@@ -1301,9 +1550,13 @@
           </table>
         </div>
       </div>
-      <div class="price-card">
+      <div class="price-card" data-sido="전남">
         <div class="price-header">
-          <div class="price-name">소제지구 A4BL 중흥S-클래스 우미린 <span class="badge">전남</span></div>
+          <div class="price-name">
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000091&pblancNo=2026000091" target="_blank" rel="noopener" class="apt-link">소제지구 A4BL 중흥S-클래스 우미린</a>
+            <span class="badge">전남</span>
+            <span class="badge-type">민영</span>
+          </div>
           <span class="chip" style="background:#f0f4f8;color:#2e86de;border:1px solid #2e86de22">오픈 예정</span>
         </div>
         <div class="price-sub">
@@ -1311,6 +1564,7 @@
           <span>청약 2026-05-04 ~ 2026-05-08</span>
           <span>당첨발표 2026-05-15</span>
           <span>건설사 중흥토건(주)</span>
+          
         </div>
         <div class="type-table-wrap">
           <table class="type-table">
@@ -1319,9 +1573,13 @@
           </table>
         </div>
       </div>
-      <div class="price-card">
+      <div class="price-card" data-sido="인천">
         <div class="price-header">
-          <div class="price-name">인천가정2지구 B2블록 공공분양주택(후속사업) <span class="badge">인천</span></div>
+          <div class="price-name">
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000135&pblancNo=2026000135" target="_blank" rel="noopener" class="apt-link">인천가정2지구 B2블록 공공분양주택(후속사업)</a>
+            <span class="badge">인천</span>
+            <span class="badge-type">국민</span>
+          </div>
           <span class="chip" style="background:#f0f4f8;color:#27ae60;border:1px solid #27ae6022">청약 준비중</span>
         </div>
         <div class="price-sub">
@@ -1329,6 +1587,7 @@
           <span>청약 2026-04-27 ~ 2026-04-30</span>
           <span>당첨발표 2026-05-15</span>
           <span>건설사 ㈜금강주택</span>
+          
         </div>
         <div class="type-table-wrap">
           <table class="type-table">
@@ -1337,9 +1596,13 @@
           </table>
         </div>
       </div>
-      <div class="price-card">
+      <div class="price-card" data-sido="서울">
         <div class="price-header">
-          <div class="price-name">더 리치먼드 미아 <span class="badge">서울</span></div>
+          <div class="price-name">
+            <a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000156&pblancNo=2026000156" target="_blank" rel="noopener" class="apt-link">더 리치먼드 미아</a>
+            <span class="badge">서울</span>
+            <span class="badge-type">민영</span>
+          </div>
           <span class="chip" style="background:#f0f4f8;color:#2e86de;border:1px solid #2e86de22">오픈 예정</span>
         </div>
         <div class="price-sub">
@@ -1347,6 +1610,7 @@
           <span>청약 2026-05-07 ~ 2026-05-12</span>
           <span>당첨발표 2026-05-18</span>
           <span>건설사 태원건설산업(주)</span>
+          
         </div>
         <div class="type-table-wrap">
           <table class="type-table">
@@ -1354,7 +1618,7 @@
             <tbody><tr><td class='t-type'>49A</td><td>49.75㎡</td><td class='t-price'>8억 200만</td><td class='t-unit'>5,329만/평</td><td>42세대</td></tr><tr><td class='t-type'>59A</td><td>59.84㎡</td><td class='t-price'>9억 5,300만</td><td class='t-unit'>5,265만/평</td><td>7세대</td></tr></tbody>
           </table>
         </div>
-      </div></div>
+      </div></div></div>
   </div>
   <div id="tab-realprice" class="tab-content">
     <div class="container"><p style="text-align:center;color:#aaa;padding:40px">실거래가 데이터가 없습니다.</p></div>
@@ -1386,6 +1650,38 @@
       document.querySelectorAll('.rp-btn').forEach(el => el.classList.remove('rp-active'));
       document.getElementById('rp-' + sido).style.display = 'block';
       btn.classList.add('rp-active');
+    }
+    function compFilter(sido, btn) {
+      document.querySelectorAll('.cf-btn').forEach(el => el.classList.remove('sf-active'));
+      btn.classList.add('sf-active');
+      document.querySelectorAll('#comp-cards .comp-card').forEach(card => {
+        card.style.display = (sido === '전체' || card.dataset.sido === sido) ? '' : 'none';
+      });
+    }
+    function compSort(mode, btn) {
+      document.querySelectorAll('.sort-btn').forEach(el => el.classList.remove('sort-active'));
+      btn.classList.add('sort-active');
+      const container = document.getElementById('comp-cards');
+      const cards = [...container.querySelectorAll('.comp-card')];
+      cards.sort((a, b) => {
+        if (mode === 'rate') {
+          const ra = parseFloat(a.dataset.maxrate || '0');
+          const rb = parseFloat(b.dataset.maxrate || '0');
+          return rb - ra;
+        } else {
+          const da = a.dataset.windate || '';
+          const db = b.dataset.windate || '';
+          return db.localeCompare(da);
+        }
+      });
+      cards.forEach(c => container.appendChild(c));
+    }
+    function priceFilter(sido, btn) {
+      document.querySelectorAll('.pf-btn').forEach(el => el.classList.remove('sf-active'));
+      btn.classList.add('sf-active');
+      document.querySelectorAll('#price-cards .price-card').forEach(card => {
+        card.style.display = (sido === '전체' || card.dataset.sido === sido) ? '' : 'none';
+      });
     }
     function toggleDeals(hd) {
       const wrap = hd.nextElementSibling;
