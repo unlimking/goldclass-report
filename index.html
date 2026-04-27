@@ -136,13 +136,41 @@
     .rp-compare.below { background:#f0fff4; color:#27ae60; }
     .badge-type { display:inline-block; font-size:0.63rem; padding:1px 5px; border-radius:10px; background:#f0f4f8; color:#555; font-weight:500; vertical-align:middle; margin-left:4px; }
 
+    /* 대시보드 */
+    .db-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    @media(max-width:540px){ .db-grid{ grid-template-columns:1fr; } }
+    .db-section { background:#fff; border-radius:12px; padding:14px; box-shadow:0 1px 4px rgba(0,0,0,0.07); }
+    .db-sec-title { font-size:0.85rem; font-weight:700; margin-bottom:10px; display:flex; align-items:center; gap:6px; }
+    .db-row { padding:8px 0; border-bottom:1px solid #f5f5f5; }
+    .db-row:last-child { border-bottom:none; }
+    .db-row-name { font-size:0.85rem; font-weight:600; margin-bottom:3px; line-height:1.3; }
+    .db-row-meta { font-size:0.72rem; color:#888; display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
+    .db-empty { font-size:0.78rem; color:#ccc; text-align:center; padding:12px 0; }
+
+    /* 뷰 토글 */
+    .view-toggle { display:flex; gap:6px; margin-bottom:10px; }
+    .vt-btn { padding:5px 14px; border-radius:20px; border:1px solid #d0d6e0; background:#fff; font-size:0.78rem; font-weight:600; color:#666; cursor:pointer; }
+    .vt-btn.vt-active { background:#1a3c5e; color:#fff; border-color:#1a3c5e; }
+
+    /* 일정 테이블 */
+    .tbl-wrap { overflow-x:auto; border-radius:10px; border:1px solid #e8ecf0; margin-bottom:8px; }
+    .sch-table { width:100%; border-collapse:collapse; font-size:0.78rem; }
+    .sch-table th { background:#1a3c5e; color:#fff; padding:9px 10px; text-align:left; font-weight:600; white-space:nowrap; cursor:pointer; user-select:none; }
+    .sch-table th.sortable:hover { background:#2d5a8e; }
+    .sch-table th.sort-asc::after { content:" ↑"; opacity:0.8; }
+    .sch-table th.sort-desc::after { content:" ↓"; opacity:0.8; }
+    .sch-table td { padding:8px 10px; border-bottom:1px solid #f0f0f0; vertical-align:middle; }
+    .sch-table tbody tr:hover { background:#f0f5fc; }
+    .tbl-name { max-width:180px; }
+    .tbl-date { white-space:nowrap; color:#555; font-size:0.74rem; }
+
     footer { text-align: center; font-size: 0.72rem; color: #bbb; padding: 20px; }
   </style>
 </head>
 <body>
   <header>
     <h1>전국 분양 일정 리포트</h1>
-    <p>매일 오전 8시 자동 업데이트 · 최종 업데이트: 2026-04-27 13:43</p>
+    <p>매일 오전 8시 자동 업데이트 · 최종 업데이트: 2026-04-27 13:47</p>
     <div class="hdr-stats">
       <div class="hdr-stat">
         <div class="hdr-stat-val">7</div>
@@ -160,14 +188,129 @@
   </header>
 
   <div class="tab-nav">
-    <button class="tab-btn active" onclick="switchTab('schedule',this)">일정</button>
+    <button class="tab-btn active" onclick="switchTab('dashboard',this)">대시보드</button>
+    <button class="tab-btn" onclick="switchTab('schedule',this)">일정</button>
     <button class="tab-btn" onclick="switchTab('competition',this)">경쟁률</button>
     <button class="tab-btn" onclick="switchTab('price',this)">분양가</button>
     <button class="tab-btn" onclick="switchTab('realprice',this)">시세</button>
   </div>
 
-  <div id="tab-schedule" class="tab-content active">
-    <div class="container"><div class="sf-wrap"><button class="sf-btn sf-active" onclick="sfFilter('전체',this)">전체</button><button class="sf-btn" onclick="sfFilter('강원',this)">강원</button><button class="sf-btn" onclick="sfFilter('경기',this)">경기</button><button class="sf-btn" onclick="sfFilter('경남',this)">경남</button><button class="sf-btn" onclick="sfFilter('경북',this)">경북</button><button class="sf-btn" onclick="sfFilter('대전',this)">대전</button><button class="sf-btn" onclick="sfFilter('부산',this)">부산</button><button class="sf-btn" onclick="sfFilter('서울',this)">서울</button><button class="sf-btn" onclick="sfFilter('울산',this)">울산</button><button class="sf-btn" onclick="sfFilter('인천',this)">인천</button><button class="sf-btn" onclick="sfFilter('전남',this)">전남</button><button class="sf-btn" onclick="sfFilter('전북',this)">전북</button><button class="sf-btn" onclick="sfFilter('제주',this)">제주</button><button class="sf-btn" onclick="sfFilter('충남',this)">충남</button><button class="sf-btn" onclick="sfFilter('충북',this)">충북</button></div><div id="schedule-cards">
+  <div id="tab-dashboard" class="tab-content active">
+    <div class="container">
+    <div class="db-grid">
+      <div class="db-section">
+          <div class="db-sec-title" style="color:#27ae60"><span>📋</span>현재 청약 진행중</div>
+          <div class="db-row">
+          <div class="db-row-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000124&pblancNo=2026000124" target="_blank" rel="noopener" class="apt-link">고덕신도시 아테라 A-63블록 공공분양주택</a><span class="badge" style="margin-left:5px">경기</span></div>
+          <div class="db-row-meta">청약마감 2026-04-29 <span class="dday-chip" style="background:#c0392b;font-size:0.65rem">D-2</span>  ·  세대 630세대</div>
+        </div><div class="db-row">
+          <div class="db-row-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000115&pblancNo=2026000115" target="_blank" rel="noopener" class="apt-link">두산위브더제니스 구미(조합원취소분)</a><span class="badge" style="margin-left:5px">경북</span></div>
+          <div class="db-row-meta">청약마감 2026-04-29 <span class="dday-chip" style="background:#c0392b;font-size:0.65rem">D-2</span>  ·  세대 63세대</div>
+        </div><div class="db-row">
+          <div class="db-row-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000107&pblancNo=2026000107" target="_blank" rel="noopener" class="apt-link">경기광주역 롯데캐슬 시그니처 1단지</a><span class="badge" style="margin-left:5px">경기</span></div>
+          <div class="db-row-meta">청약마감 2026-04-29 <span class="dday-chip" style="background:#c0392b;font-size:0.65rem">D-2</span>  ·  세대 1077세대</div>
+        </div><div class="db-row">
+          <div class="db-row-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000089&pblancNo=2026000089" target="_blank" rel="noopener" class="apt-link">강릉 우미 린 더 프리미어</a><span class="badge" style="margin-left:5px">강원</span></div>
+          <div class="db-row-meta">청약마감 2026-04-29 <span class="dday-chip" style="background:#c0392b;font-size:0.65rem">D-2</span>  ·  세대 772세대</div>
+        </div><div class="db-row">
+          <div class="db-row-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000113&pblancNo=2026000113" target="_blank" rel="noopener" class="apt-link">동탄 그웬 160 (동탄2 B11BL)</a><span class="badge" style="margin-left:5px">경기</span></div>
+          <div class="db-row-meta">청약마감 2026-04-29 <span class="dday-chip" style="background:#c0392b;font-size:0.65rem">D-2</span>  ·  세대 160세대</div>
+        </div><div class="db-row">
+          <div class="db-row-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000114&pblancNo=2026000114" target="_blank" rel="noopener" class="apt-link">공덕역자이르네</a><span class="badge" style="margin-left:5px">서울</span></div>
+          <div class="db-row-meta">청약마감 2026-04-30 <span class="dday-chip" style="background:#c0392b;font-size:0.65rem">D-3</span>  ·  세대 177세대</div>
+        </div><div class="db-row">
+          <div class="db-row-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000135&pblancNo=2026000135" target="_blank" rel="noopener" class="apt-link">인천가정2지구 B2블록 공공분양주택(후속사업)</a><span class="badge" style="margin-left:5px">인천</span></div>
+          <div class="db-row-meta">청약마감 2026-04-30 <span class="dday-chip" style="background:#c0392b;font-size:0.65rem">D-3</span>  ·  세대 308세대</div>
+        </div>
+        </div>
+      <div class="db-section">
+          <div class="db-sec-title" style="color:#2e86de"><span>📅</span>이번 주 청약 시작</div>
+          <div class="db-row">
+          <div class="db-row-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000146&pblancNo=2026000146" target="_blank" rel="noopener" class="apt-link">기장 이진캐스빌 포레</a><span class="badge" style="margin-left:5px">부산</span></div>
+          <div class="db-row-meta">청약시작 2026-04-29 <span class="dday-chip" style="background:#2e86de;font-size:0.65rem">D-2</span>  ·  세대 138세대</div>
+        </div><div class="db-row">
+          <div class="db-row-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000130&pblancNo=2026000130" target="_blank" rel="noopener" class="apt-link">PH159</a><span class="badge" style="margin-left:5px">제주</span></div>
+          <div class="db-row-meta">청약시작 2026-04-30 <span class="dday-chip" style="background:#2e86de;font-size:0.65rem">D-3</span>  ·  세대 49세대</div>
+        </div><div class="db-row">
+          <div class="db-row-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000143&pblancNo=2026000143" target="_blank" rel="noopener" class="apt-link">파주금촌 금호어울림(조합원 취소분)</a><span class="badge" style="margin-left:5px">경기</span></div>
+          <div class="db-row-meta">청약시작 2026-05-04 <span class="dday-chip" style="background:#2e86de;font-size:0.65rem">D-7</span>  ·  세대 60세대</div>
+        </div><div class="db-row">
+          <div class="db-row-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000127&pblancNo=2026000127" target="_blank" rel="noopener" class="apt-link">천안 휴먼빌 퍼스트시티(2회차)</a><span class="badge" style="margin-left:5px">충남</span></div>
+          <div class="db-row-meta">청약시작 2026-05-04 <span class="dday-chip" style="background:#2e86de;font-size:0.65rem">D-7</span>  ·  세대 309세대</div>
+        </div><div class="db-row">
+          <div class="db-row-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000096&pblancNo=2026000096" target="_blank" rel="noopener" class="apt-link">천안 동문 디 이스트 파크시티</a><span class="badge" style="margin-left:5px">충남</span></div>
+          <div class="db-row-meta">청약시작 2026-05-04 <span class="dday-chip" style="background:#2e86de;font-size:0.65rem">D-7</span>  ·  세대 500세대</div>
+        </div><div class="db-row">
+          <div class="db-row-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000091&pblancNo=2026000091" target="_blank" rel="noopener" class="apt-link">소제지구 A4BL 중흥S-클래스 우미린</a><span class="badge" style="margin-left:5px">전남</span></div>
+          <div class="db-row-meta">청약시작 2026-05-04 <span class="dday-chip" style="background:#2e86de;font-size:0.65rem">D-7</span>  ·  세대 584세대</div>
+        </div><div class="db-row">
+          <div class="db-row-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000090&pblancNo=2026000090" target="_blank" rel="noopener" class="apt-link">소제지구 A3BL 중흥S-클래스 우미린</a><span class="badge" style="margin-left:5px">전남</span></div>
+          <div class="db-row-meta">청약시작 2026-05-04 <span class="dday-chip" style="background:#2e86de;font-size:0.65rem">D-7</span>  ·  세대 1095세대</div>
+        </div><div class="db-row">
+          <div class="db-row-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000152&pblancNo=2026000152" target="_blank" rel="noopener" class="apt-link">e편한세상 부천 어반스퀘어</a><span class="badge" style="margin-left:5px">경기</span></div>
+          <div class="db-row-meta">청약시작 2026-05-04 <span class="dday-chip" style="background:#2e86de;font-size:0.65rem">D-7</span>  ·  세대 897세대</div>
+        </div>
+        </div>
+      <div class="db-section">
+          <div class="db-sec-title" style="color:#8e44ad"><span>🎯</span>이번 주 당첨 발표</div>
+          <div class="db-row">
+          <div class="db-row-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000109&pblancNo=2026000109" target="_blank" rel="noopener" class="apt-link">아산경남아너스빌 랜드마크49</a><span class="badge" style="margin-left:5px">충남</span></div>
+          <div class="db-row-meta">발표일 2026-04-28  ·  세대 467세대</div>
+        </div><div class="db-row">
+          <div class="db-row-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000104&pblancNo=2026000104" target="_blank" rel="noopener" class="apt-link">도안자이 센텀리체 1단지</a><span class="badge" style="margin-left:5px">대전</span></div>
+          <div class="db-row-meta">발표일 2026-04-28  ·  세대 946세대</div>
+        </div><div class="db-row">
+          <div class="db-row-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000082&pblancNo=2026000082" target="_blank" rel="noopener" class="apt-link">골드클래스 시그니처</a><span class="badge" style="margin-left:5px">전북</span></div>
+          <div class="db-row-meta">발표일 2026-04-28  ·  세대 341세대</div>
+        </div><div class="db-row">
+          <div class="db-row-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000093&pblancNo=2026000093" target="_blank" rel="noopener" class="apt-link">더샵 안동더퍼스트</a><span class="badge" style="margin-left:5px">경북</span></div>
+          <div class="db-row-meta">발표일 2026-04-28  ·  세대 493세대</div>
+        </div><div class="db-row">
+          <div class="db-row-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000121&pblancNo=2026000121" target="_blank" rel="noopener" class="apt-link">문수로 라티에르 673</a><span class="badge" style="margin-left:5px">울산</span></div>
+          <div class="db-row-meta">발표일 2026-04-29  ·  세대 199세대</div>
+        </div><div class="db-row">
+          <div class="db-row-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000112&pblancNo=2026000112" target="_blank" rel="noopener" class="apt-link">용인 고림 동문 디 이스트</a><span class="badge" style="margin-left:5px">경기</span></div>
+          <div class="db-row-meta">발표일 2026-04-29  ·  세대 350세대</div>
+        </div><div class="db-row">
+          <div class="db-row-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000110&pblancNo=2026000110" target="_blank" rel="noopener" class="apt-link">엘리프 창원</a><span class="badge" style="margin-left:5px">경남</span></div>
+          <div class="db-row-meta">발표일 2026-04-29  ·  세대 349세대</div>
+        </div><div class="db-row">
+          <div class="db-row-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000105&pblancNo=2026000105" target="_blank" rel="noopener" class="apt-link">도안자이 센텀리체 2단지</a><span class="badge" style="margin-left:5px">대전</span></div>
+          <div class="db-row-meta">발표일 2026-04-29  ·  세대 834세대</div>
+        </div><div class="db-row">
+          <div class="db-row-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000085&pblancNo=2026000085" target="_blank" rel="noopener" class="apt-link">힐스테이트 평거 센트럴</a><span class="badge" style="margin-left:5px">경남</span></div>
+          <div class="db-row-meta">발표일 2026-04-29  ·  세대 261세대</div>
+        </div><div class="db-row">
+          <div class="db-row-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000087&pblancNo=2026000087" target="_blank" rel="noopener" class="apt-link">청주 푸르지오 씨엘리체</a><span class="badge" style="margin-left:5px">충북</span></div>
+          <div class="db-row-meta">발표일 2026-04-30  ·  세대 1351세대</div>
+        </div>
+        </div>
+      <div class="db-section">
+          <div class="db-sec-title" style="color:#c0392b"><span>🏆</span>최고 경쟁률 TOP 5</div>
+          <div class="db-row">
+          <div class="db-row-name"><span style="margin-right:6px">🥇</span><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000058&pblancNo=2026000058" target="_blank" rel="noopener" class="apt-link">오티에르 반포</a><span class="badge" style="margin-left:5px">서울</span></div>
+          <div class="db-row-meta"><b style="color:#c0392b;font-size:0.9rem">1180.87:1</b>  ·  2026-04-21</div>
+        </div><div class="db-row">
+          <div class="db-row-name"><span style="margin-right:6px">🥈</span><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000048&pblancNo=2026000048" target="_blank" rel="noopener" class="apt-link">이촌 르엘</a><span class="badge" style="margin-left:5px">서울</span></div>
+          <div class="db-row-meta"><b style="color:#c0392b;font-size:0.9rem">254.05:1</b>  ·  2026-04-20</div>
+        </div><div class="db-row">
+          <div class="db-row-name"><span style="margin-right:6px">🥉</span><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000085&pblancNo=2026000085" target="_blank" rel="noopener" class="apt-link">힐스테이트 평거 센트럴</a><span class="badge" style="margin-left:5px">경남</span></div>
+          <div class="db-row-meta"><b style="color:#c0392b;font-size:0.9rem">118:1</b>  ·  2026-04-29</div>
+        </div><div class="db-row">
+          <div class="db-row-name"><span style="margin-right:6px">4.</span><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000082&pblancNo=2026000082" target="_blank" rel="noopener" class="apt-link">골드클래스 시그니처</a><span class="badge" style="margin-left:5px">전북</span></div>
+          <div class="db-row-meta"><b style="color:#c0392b;font-size:0.9rem">72.56:1</b>  ·  2026-04-28</div>
+        </div><div class="db-row">
+          <div class="db-row-name"><span style="margin-right:6px">5.</span><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000094&pblancNo=2026000094" target="_blank" rel="noopener" class="apt-link">라클라체자이드파인</a><span class="badge" style="margin-left:5px">서울</span></div>
+          <div class="db-row-meta"><b style="color:#c0392b;font-size:0.9rem">42.40:1</b>  ·  2026-04-22</div>
+        </div>
+        </div>
+    </div></div>
+  </div>
+  <div id="tab-schedule" class="tab-content">
+    <div class="container"><div class="sf-wrap"><button class="sf-btn sf-active" onclick="sfFilter('전체',this)">전체</button><button class="sf-btn" onclick="sfFilter('강원',this)">강원</button><button class="sf-btn" onclick="sfFilter('경기',this)">경기</button><button class="sf-btn" onclick="sfFilter('경남',this)">경남</button><button class="sf-btn" onclick="sfFilter('경북',this)">경북</button><button class="sf-btn" onclick="sfFilter('대전',this)">대전</button><button class="sf-btn" onclick="sfFilter('부산',this)">부산</button><button class="sf-btn" onclick="sfFilter('서울',this)">서울</button><button class="sf-btn" onclick="sfFilter('울산',this)">울산</button><button class="sf-btn" onclick="sfFilter('인천',this)">인천</button><button class="sf-btn" onclick="sfFilter('전남',this)">전남</button><button class="sf-btn" onclick="sfFilter('전북',this)">전북</button><button class="sf-btn" onclick="sfFilter('제주',this)">제주</button><button class="sf-btn" onclick="sfFilter('충남',this)">충남</button><button class="sf-btn" onclick="sfFilter('충북',this)">충북</button></div><div class="view-toggle">
+      <button class="vt-btn vt-active" id="vt-card" onclick="switchView('card')">카드</button>
+      <button class="vt-btn" id="vt-table" onclick="switchView('table')">테이블</button>
+    </div><div id="schedule-cards">
       <div class="status-section" data-group="청약 준비중">
         <div class="status-label" style="border-color:#27ae60;color:#27ae60">
           청약 준비중 <span class="count">7건</span>
@@ -445,7 +588,172 @@
             <span><b>건설사</b> 태원건설산업(주)</span>
           </div>
         </div>
-      </div></div></div>
+      </div></div><div class="tbl-wrap" id="schedule-table" style="display:none">
+      <table class="sch-table" id="sch-tbl">
+        <thead><tr>
+          <th onclick="tblSort(0)" class="sortable">단지명</th>
+          <th onclick="tblSort(1)" class="sortable">위치</th>
+          <th onclick="tblSort(2)" class="sortable">상태</th>
+          <th onclick="tblSort(3)" class="sortable">청약기간</th>
+          <th onclick="tblSort(4)" class="sortable">당첨발표</th>
+          <th onclick="tblSort(5)" class="sortable">세대</th>
+          <th>D-day</th>
+        </tr></thead>
+        <tbody><tr data-sido="경기">
+          <td class="tbl-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000124&pblancNo=2026000124" target="_blank" rel="noopener" class="apt-link">고덕신도시 아테라 A-63블록 공공분양주택</a></td>
+          <td><span class="badge">경기</span></td>
+          <td style="color:#27ae60;font-weight:600;font-size:0.75rem">청약중</td>
+          <td class="tbl-date">2026-04-27 ~ 2026-04-29</td>
+          <td class="tbl-date">2026-05-07</td>
+          <td>630세대</td>
+          <td><span class="dday-chip" style="background:#27ae60;font-size:0.65rem">D-2</span></td>
+        </tr><tr data-sido="경북">
+          <td class="tbl-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000115&pblancNo=2026000115" target="_blank" rel="noopener" class="apt-link">두산위브더제니스 구미(조합원취소분)</a></td>
+          <td><span class="badge">경북</span></td>
+          <td style="color:#27ae60;font-weight:600;font-size:0.75rem">청약중</td>
+          <td class="tbl-date">2026-04-27 ~ 2026-04-29</td>
+          <td class="tbl-date">2026-05-07</td>
+          <td>63세대</td>
+          <td><span class="dday-chip" style="background:#27ae60;font-size:0.65rem">D-2</span></td>
+        </tr><tr data-sido="서울">
+          <td class="tbl-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000114&pblancNo=2026000114" target="_blank" rel="noopener" class="apt-link">공덕역자이르네</a></td>
+          <td><span class="badge">서울</span></td>
+          <td style="color:#27ae60;font-weight:600;font-size:0.75rem">청약중</td>
+          <td class="tbl-date">2026-04-27 ~ 2026-04-30</td>
+          <td class="tbl-date">2026-05-08</td>
+          <td>177세대</td>
+          <td><span class="dday-chip" style="background:#27ae60;font-size:0.65rem">D-3</span></td>
+        </tr><tr data-sido="경기">
+          <td class="tbl-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000107&pblancNo=2026000107" target="_blank" rel="noopener" class="apt-link">경기광주역 롯데캐슬 시그니처 1단지</a></td>
+          <td><span class="badge">경기</span></td>
+          <td style="color:#27ae60;font-weight:600;font-size:0.75rem">청약중</td>
+          <td class="tbl-date">2026-04-27 ~ 2026-04-29</td>
+          <td class="tbl-date">2026-05-07</td>
+          <td>1077세대</td>
+          <td><span class="dday-chip" style="background:#27ae60;font-size:0.65rem">D-2</span></td>
+        </tr><tr data-sido="강원">
+          <td class="tbl-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000089&pblancNo=2026000089" target="_blank" rel="noopener" class="apt-link">강릉 우미 린 더 프리미어</a></td>
+          <td><span class="badge">강원</span></td>
+          <td style="color:#27ae60;font-weight:600;font-size:0.75rem">청약중</td>
+          <td class="tbl-date">2026-04-27 ~ 2026-04-29</td>
+          <td class="tbl-date">2026-05-08</td>
+          <td>772세대</td>
+          <td><span class="dday-chip" style="background:#27ae60;font-size:0.65rem">D-2</span></td>
+        </tr><tr data-sido="경기">
+          <td class="tbl-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000113&pblancNo=2026000113" target="_blank" rel="noopener" class="apt-link">동탄 그웬 160 (동탄2 B11BL)</a></td>
+          <td><span class="badge">경기</span></td>
+          <td style="color:#27ae60;font-weight:600;font-size:0.75rem">청약중</td>
+          <td class="tbl-date">2026-04-27 ~ 2026-04-29</td>
+          <td class="tbl-date">2026-05-07</td>
+          <td>160세대</td>
+          <td><span class="dday-chip" style="background:#27ae60;font-size:0.65rem">D-2</span></td>
+        </tr><tr data-sido="인천">
+          <td class="tbl-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000135&pblancNo=2026000135" target="_blank" rel="noopener" class="apt-link">인천가정2지구 B2블록 공공분양주택(후속사업)</a></td>
+          <td><span class="badge">인천</span></td>
+          <td style="color:#27ae60;font-weight:600;font-size:0.75rem">청약중</td>
+          <td class="tbl-date">2026-04-27 ~ 2026-04-30</td>
+          <td class="tbl-date">2026-05-15</td>
+          <td>308세대</td>
+          <td><span class="dday-chip" style="background:#27ae60;font-size:0.65rem">D-3</span></td>
+        </tr><tr data-sido="부산">
+          <td class="tbl-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000146&pblancNo=2026000146" target="_blank" rel="noopener" class="apt-link">기장 이진캐스빌 포레</a></td>
+          <td><span class="badge">부산</span></td>
+          <td style="color:#2e86de;font-weight:600;font-size:0.75rem">예정</td>
+          <td class="tbl-date">2026-04-29 ~ 2026-05-04</td>
+          <td class="tbl-date">2026-05-11</td>
+          <td>138세대</td>
+          <td><span class="dday-chip" style="background:#2e86de;font-size:0.65rem">D-2</span></td>
+        </tr><tr data-sido="제주">
+          <td class="tbl-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000130&pblancNo=2026000130" target="_blank" rel="noopener" class="apt-link">PH159</a></td>
+          <td><span class="badge">제주</span></td>
+          <td style="color:#2e86de;font-weight:600;font-size:0.75rem">예정</td>
+          <td class="tbl-date">2026-04-30 ~ 2026-05-04</td>
+          <td class="tbl-date">2026-05-11</td>
+          <td>49세대</td>
+          <td><span class="dday-chip" style="background:#2e86de;font-size:0.65rem">D-3</span></td>
+        </tr><tr data-sido="경기">
+          <td class="tbl-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000143&pblancNo=2026000143" target="_blank" rel="noopener" class="apt-link">파주금촌 금호어울림(조합원 취소분)</a></td>
+          <td><span class="badge">경기</span></td>
+          <td style="color:#2e86de;font-weight:600;font-size:0.75rem">예정</td>
+          <td class="tbl-date">2026-05-04 ~ 2026-05-07</td>
+          <td class="tbl-date">2026-05-13</td>
+          <td>60세대</td>
+          <td><span class="dday-chip" style="background:#2e86de;font-size:0.65rem">D-7</span></td>
+        </tr><tr data-sido="충남">
+          <td class="tbl-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000127&pblancNo=2026000127" target="_blank" rel="noopener" class="apt-link">천안 휴먼빌 퍼스트시티(2회차)</a></td>
+          <td><span class="badge">충남</span></td>
+          <td style="color:#2e86de;font-weight:600;font-size:0.75rem">예정</td>
+          <td class="tbl-date">2026-05-04 ~ 2026-05-07</td>
+          <td class="tbl-date">2026-05-13</td>
+          <td>309세대</td>
+          <td><span class="dday-chip" style="background:#2e86de;font-size:0.65rem">D-7</span></td>
+        </tr><tr data-sido="충남">
+          <td class="tbl-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000096&pblancNo=2026000096" target="_blank" rel="noopener" class="apt-link">천안 동문 디 이스트 파크시티</a></td>
+          <td><span class="badge">충남</span></td>
+          <td style="color:#2e86de;font-weight:600;font-size:0.75rem">예정</td>
+          <td class="tbl-date">2026-05-04 ~ 2026-05-07</td>
+          <td class="tbl-date">2026-05-13</td>
+          <td>500세대</td>
+          <td><span class="dday-chip" style="background:#2e86de;font-size:0.65rem">D-7</span></td>
+        </tr><tr data-sido="전남">
+          <td class="tbl-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000091&pblancNo=2026000091" target="_blank" rel="noopener" class="apt-link">소제지구 A4BL 중흥S-클래스 우미린</a></td>
+          <td><span class="badge">전남</span></td>
+          <td style="color:#2e86de;font-weight:600;font-size:0.75rem">예정</td>
+          <td class="tbl-date">2026-05-04 ~ 2026-05-08</td>
+          <td class="tbl-date">2026-05-15</td>
+          <td>584세대</td>
+          <td><span class="dday-chip" style="background:#2e86de;font-size:0.65rem">D-7</span></td>
+        </tr><tr data-sido="전남">
+          <td class="tbl-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000090&pblancNo=2026000090" target="_blank" rel="noopener" class="apt-link">소제지구 A3BL 중흥S-클래스 우미린</a></td>
+          <td><span class="badge">전남</span></td>
+          <td style="color:#2e86de;font-weight:600;font-size:0.75rem">예정</td>
+          <td class="tbl-date">2026-05-04 ~ 2026-05-08</td>
+          <td class="tbl-date">2026-05-14</td>
+          <td>1095세대</td>
+          <td><span class="dday-chip" style="background:#2e86de;font-size:0.65rem">D-7</span></td>
+        </tr><tr data-sido="경기">
+          <td class="tbl-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000152&pblancNo=2026000152" target="_blank" rel="noopener" class="apt-link">e편한세상 부천 어반스퀘어</a></td>
+          <td><span class="badge">경기</span></td>
+          <td style="color:#2e86de;font-weight:600;font-size:0.75rem">예정</td>
+          <td class="tbl-date">2026-05-04 ~ 2026-05-07</td>
+          <td class="tbl-date">2026-05-13</td>
+          <td>897세대</td>
+          <td><span class="dday-chip" style="background:#2e86de;font-size:0.65rem">D-7</span></td>
+        </tr><tr data-sido="대전">
+          <td class="tbl-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000129&pblancNo=2026000129" target="_blank" rel="noopener" class="apt-link">더샵 관저아르테</a></td>
+          <td><span class="badge">대전</span></td>
+          <td style="color:#2e86de;font-weight:600;font-size:0.75rem">예정</td>
+          <td class="tbl-date">2026-05-06 ~ 2026-05-08</td>
+          <td class="tbl-date">2026-05-14</td>
+          <td>951세대</td>
+          <td><span class="dday-chip" style="background:#2e86de;font-size:0.65rem">D-9</span></td>
+        </tr><tr data-sido="울산">
+          <td class="tbl-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000102&pblancNo=2026000102" target="_blank" rel="noopener" class="apt-link">울산신복역 비스타 메트로</a></td>
+          <td><span class="badge">울산</span></td>
+          <td style="color:#2e86de;font-weight:600;font-size:0.75rem">예정</td>
+          <td class="tbl-date">2026-05-06 ~ 2026-05-08</td>
+          <td class="tbl-date">2026-05-14</td>
+          <td>481세대</td>
+          <td><span class="dday-chip" style="background:#2e86de;font-size:0.65rem">D-9</span></td>
+        </tr><tr data-sido="경기">
+          <td class="tbl-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000088&pblancNo=2026000088" target="_blank" rel="noopener" class="apt-link">용인 양지 서희스타힐스 하이뷰</a></td>
+          <td><span class="badge">경기</span></td>
+          <td style="color:#2e86de;font-weight:600;font-size:0.75rem">예정</td>
+          <td class="tbl-date">2026-05-06 ~ 2026-05-08</td>
+          <td class="tbl-date">2026-05-14</td>
+          <td>547세대</td>
+          <td><span class="dday-chip" style="background:#2e86de;font-size:0.65rem">D-9</span></td>
+        </tr><tr data-sido="서울">
+          <td class="tbl-name"><a href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000156&pblancNo=2026000156" target="_blank" rel="noopener" class="apt-link">더 리치먼드 미아</a></td>
+          <td><span class="badge">서울</span></td>
+          <td style="color:#2e86de;font-weight:600;font-size:0.75rem">예정</td>
+          <td class="tbl-date">2026-05-07 ~ 2026-05-12</td>
+          <td class="tbl-date">2026-05-18</td>
+          <td>99세대</td>
+          <td><span class="dday-chip" style="background:#2e86de;font-size:0.65rem">D-10</span></td>
+        </tr></tbody>
+      </table>
+    </div></div>
   </div>
   <div id="tab-competition" class="tab-content">
     <div class="container">
@@ -1635,15 +1943,46 @@
     function sfFilter(sido, btn) {
       document.querySelectorAll('.sf-btn').forEach(el => el.classList.remove('sf-active'));
       btn.classList.add('sf-active');
+      // 카드 뷰 필터
       document.querySelectorAll('#schedule-cards .simple-card').forEach(card => {
         card.style.display = (sido === '전체' || card.dataset.sido === sido) ? '' : 'none';
       });
-      // 섹션 내 카드가 하나도 없으면 섹션 자체도 숨김
       document.querySelectorAll('#schedule-cards .status-section').forEach(sec => {
         const visible = [...sec.querySelectorAll('.simple-card')].some(c => c.style.display !== 'none');
         const hasNews = sec.querySelectorAll('.news-card').length > 0;
         sec.style.display = (visible || (sido === '전체' && hasNews)) ? '' : 'none';
       });
+      // 테이블 뷰 필터
+      document.querySelectorAll('#sch-tbl tbody tr').forEach(row => {
+        row.style.display = (sido === '전체' || row.dataset.sido === sido) ? '' : 'none';
+      });
+    }
+    function switchView(mode) {
+      const cards = document.getElementById('schedule-cards');
+      const table = document.getElementById('schedule-table');
+      const btnCard = document.getElementById('vt-card');
+      const btnTable = document.getElementById('vt-table');
+      if (mode === 'table') {
+        cards.style.display = 'none'; table.style.display = '';
+        btnCard.classList.remove('vt-active'); btnTable.classList.add('vt-active');
+      } else {
+        cards.style.display = ''; table.style.display = 'none';
+        btnTable.classList.remove('vt-active'); btnCard.classList.add('vt-active');
+      }
+    }
+    let _tblSortCol = -1, _tblSortAsc = true;
+    function tblSort(col) {
+      const tbody = document.querySelector('#sch-tbl tbody');
+      const rows = [...tbody.querySelectorAll('tr')];
+      const ths = document.querySelectorAll('#sch-tbl thead th');
+      if (_tblSortCol === col) { _tblSortAsc = !_tblSortAsc; } else { _tblSortCol = col; _tblSortAsc = true; }
+      ths.forEach((th,i) => { th.classList.remove('sort-asc','sort-desc'); if(i===col) th.classList.add(_tblSortAsc?'sort-asc':'sort-desc'); });
+      rows.sort((a,b) => {
+        const av = a.cells[col]?.textContent.trim() || '';
+        const bv = b.cells[col]?.textContent.trim() || '';
+        return _tblSortAsc ? av.localeCompare(bv, 'ko') : bv.localeCompare(av, 'ko');
+      });
+      rows.forEach(r => tbody.appendChild(r));
     }
     function rpFilter(sido, btn) {
       document.querySelectorAll('.rp-table').forEach(el => el.style.display = 'none');
